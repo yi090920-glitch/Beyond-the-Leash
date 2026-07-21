@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan Hale — Writer, Interviewer, Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#0F2647',
+          deep: '#1B3A6B',
+          ocean: '#2E5C9A',
+          sky: '#7FAEDD',
+          baby: '#BFDBFE',
+          mist: '#F4F7FB',
+          ink: '#334155',
+          slate: '#64748B',
+        },
+        fontFamily: {
+          display: ['Manrope', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, h4, .font-display { font-family: 'Manrope', sans-serif; }
+
+  ::selection { background: #BFDBFE; color: #0F2647; }
+
+  /* Reveal-on-scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Side dot nav */
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: #CBD5E1; transition: all 0.3s ease; }
+  .dot.active { background: #1B3A6B; width: 10px; height: 10px; }
+  .dot-label {
+    opacity: 0; transform: translateX(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  .dot-wrap:hover .dot-label { opacity: 1; transform: translateX(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  .focus-ring:focus-visible {
+    outline: 2px solid #1B3A6B;
+    outline-offset: 3px;
+  }
+
+  .grain-line {
+    background-image: repeating-linear-gradient(90deg, #E2E8F0 0px, #E2E8F0 1px, transparent 1px, transparent 8px);
+    height: 1px;
+  }
+</style>
+</head>
+<body class="bg-white text-ink antialiased">
+
+<!-- ============ SIDE DOT NAVIGATION (desktop only) ============ -->
+<nav aria-label="Section progress" class="hidden lg:flex flex-col gap-5 fixed right-8 top-1/2 -translate-y-1/2 z-40">
+  <a href="#home" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="home">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">Home</span>
+    <span class="dot"></span>
+  </a>
+  <a href="#about" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="about">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">About</span>
+    <span class="dot"></span>
+  </a>
+  <a href="#blog" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="blog">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">Blog</span>
+    <span class="dot"></span>
+  </a>
+  <a href="#resources" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="resources">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">Resources</span>
+    <span class="dot"></span>
+  </a>
+  <a href="#interviews" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="interviews">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">Interviews</span>
+    <span class="dot"></span>
+  </a>
+  <a href="#contact" class="dot-wrap group flex items-center justify-end gap-3 focus-ring rounded" data-dot="contact">
+    <span class="dot-label text-xs font-medium text-navy bg-white px-2 py-1 rounded shadow-sm border border-slate-100">Contact</span>
+    <span class="dot"></span>
+  </a>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header id="top" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="#home" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+        Jordan Hale
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink">
+        <a href="#about" class="hover:text-deep transition-colors focus-ring rounded">About</a>
+        <a href="#blog" class="hover:text-deep transition-colors focus-ring rounded">Blog</a>
+        <a href="#resources" class="hover:text-deep transition-colors focus-ring rounded">Resources</a>
+        <a href="#interviews" class="hover:text-deep transition-colors focus-ring rounded">Interviews</a>
+        <a href="#contact" class="ml-2 px-4 py-2 rounded-full bg-navy text-white hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="#about" class="py-2.5 text-ink hover:text-deep focus-ring rounded">About</a>
+      <a href="#blog" class="py-2.5 text-ink hover:text-deep focus-ring rounded">Blog</a>
+      <a href="#resources" class="py-2.5 text-ink hover:text-deep focus-ring rounded">Resources</a>
+      <a href="#interviews" class="py-2.5 text-ink hover:text-deep focus-ring rounded">Interviews</a>
+      <a href="#contact" class="py-2.5 text-ink hover:text-deep focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative pt-40 pb-28 md:pt-52 md:pb-36 px-6 overflow-hidden">
+  <!-- soft background accents -->
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative">
+    <p class="reveal text-sm font-semibold tracking-widest text-ocean uppercase mb-5">Notes, conversations & things worth keeping</p>
+    <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">
+      I write, I ask questions,<br class="hidden sm:block"> and I keep what's useful.
+    </h1>
+    <p class="reveal mt-7 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+      This is a small, ongoing archive of essays, interviews, and resources —
+      built slowly, in public, for anyone doing similar work.
+    </p>
+    <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href="#blog" class="px-6 py-3 rounded-full bg-navy text-white text-sm font-semibold hover:bg-deep transition-colors focus-ring">Read the blog</a>
+      <a href="#about" class="px-6 py-3 rounded-full border border-slate-200 text-navy text-sm font-semibold hover:border-deep hover:text-deep transition-colors focus-ring">More about me</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal order-2 md:order-1">
+      <p class="text-sm font-semibold tracking-widest text-ocean uppercase mb-4">About me</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Hi, I'm Jordan.</h2>
+      <p class="text-slate leading-relaxed mb-4">
+        I spend most of my time reading, writing, and talking to people who are further
+        along a path I'm curious about. This site is where that work lives — long-form
+        posts, interview recordings, and a running list of resources I keep coming back to.
+      </p>
+      <p class="text-slate leading-relaxed mb-8">
+        I started it because the best ideas I've come across rarely lived in one place.
+        I wanted a single, honest home for the things I learn, so I can share them —
+        and so I can find them again myself.
+      </p>
+      <blockquote class="border-l-4 border-baby pl-5 py-1">
+        <p class="font-display text-lg font-semibold text-deep leading-snug">
+          "Mission: to make good thinking easier to find, and good questions easier to ask."
+        </p>
+      </blockquote>
+    </div>
+
+    <div class="reveal order-1 md:order-2 flex justify-center">
+      <div class="relative">
+        <div class="absolute -inset-4 bg-baby/50 rounded-3xl -z-10"></div>
+        <div class="w-72 h-80 sm:w-80 sm:h-96 rounded-3xl bg-gradient-to-br from-mist to-baby/60 border border-slate-100 flex items-center justify-center overflow-hidden">
+          <svg viewBox="0 0 200 200" class="w-2/3 h-2/3 text-deep/70" fill="none">
+            <circle cx="100" cy="72" r="34" stroke="currentColor" stroke-width="4"/>
+            <path d="M40 168c8-38 40-58 60-58s52 20 60 58" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="text-center text-xs text-slate mt-3">Add your photo here</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ BLOG ============ -->
+<section id="blog" class="py-24 md:py-32 px-6 bg-mist">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal flex items-end justify-between flex-wrap gap-4 mb-14">
+      <div>
+        <p class="text-sm font-semibold tracking-widest text-ocean uppercase mb-4">Writing</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-navy">From the blog</h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <article class="reveal bg-white rounded-2xl p-7 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Reflection</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">What I learned from a year of asking better questions</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">A look back at the interviews that changed how I listen — and the questions that fell flat.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>June 2, 2026</span>
+          <a href="post-1.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more →</a>
+        </div>
+      </article>
+
+      <article class="reveal bg-white rounded-2xl p-7 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Process</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">Building this site slowly, on purpose</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">Why I chose to launch with three posts instead of thirty, and what "done" means for a passion project.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>May 18, 2026</span>
+          <a href="post-2.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more →</a>
+        </div>
+      </article>
+
+      <article class="reveal bg-white rounded-2xl p-7 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Notes</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">A short reading list on the craft of interviewing</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">Five books and essays that shaped how I prepare for conversations.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>April 30, 2026</span>
+          <a href="post-3.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section id="resources" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="text-sm font-semibold tracking-widest text-ocean uppercase mb-4">Resources</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-4">Things worth bookmarking</h2>
+      <p class="text-slate max-w-xl">A running, hand-picked list of tools, reading, and communities I return to.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="reveal">
+        <h3 class="font-display font-bold text-navy mb-5 pb-3 border-b-2 border-baby">Tools</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href="https://www.notion.so" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Notion</span>
+              <p class="text-sm text-slate mt-1">Where I draft and organize every post.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.descript.com" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Descript</span>
+              <p class="text-sm text-slate mt-1">For editing interview audio and video.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://readwise.io" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Readwise</span>
+              <p class="text-sm text-slate mt-1">Keeps highlights from everything I read in one place.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-display font-bold text-navy mb-5 pb-3 border-b-2 border-baby">Reading</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href="https://www.goodreads.com/search?q=the+craft+of+interviewing" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">The Craft of Interviewing</span>
+              <p class="text-sm text-slate mt-1">A short, practical guide to asking better questions.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/53343.On_Writing_Well" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">On Writing Well</span>
+              <p class="text-sm text-slate mt-1">Still the clearest book on nonfiction writing I know.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://longform.org" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Longform.org</span>
+              <p class="text-sm text-slate mt-1">A steady stream of great long-form journalism.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-display font-bold text-navy mb-5 pb-3 border-b-2 border-baby">Communities</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href="https://www.writeofpassage.school" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Write of Passage</span>
+              <p class="text-sm text-slate mt-1">A community for people writing in public.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.indiehackers.com" target="_blank" rel="noopener" class="group block focus-ring rounded">
+              <span class="font-semibold text-ink group-hover:text-deep transition-colors">Indie Hackers</span>
+              <p class="text-sm text-slate mt-1">Good for talking shop about small, independent projects.</p>
+            </a>
+          </li>
+          <li>
+            <span class="block cursor-default">
+              <span class="font-semibold text-ink">Local writers' meetup</span>
+              <p class="text-sm text-slate mt-1">A monthly in-person group I show up to when I can. <em>(Add your own meetup link here — see notes below.)</em></p>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ INTERVIEWS ============ -->
+<section id="interviews" class="py-24 md:py-32 px-6 bg-mist">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="text-sm font-semibold tracking-widest text-ocean uppercase mb-4">Conversations</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-4">Interviews</h2>
+      <p class="text-slate max-w-xl">Recorded conversations with people whose work I admire. New ones added as they're finished.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <article class="reveal bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+        <div class="aspect-video bg-gradient-to-br from-deep to-ocean flex items-center justify-center relative group cursor-pointer">
+          <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 text-navy ml-1" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-lg font-bold text-navy mb-2">On building a career from side projects</h3>
+          <p class="text-sm text-slate leading-relaxed">A conversation about turning a hobby into steady, sustainable work. 32 min.</p>
+        </div>
+      </article>
+
+      <article class="reveal bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+        <div class="aspect-video bg-gradient-to-br from-ocean to-sky flex items-center justify-center relative group cursor-pointer">
+          <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 text-navy ml-1" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-lg font-bold text-navy mb-2">What ten years of teaching taught her about learning</h3>
+          <p class="text-sm text-slate leading-relaxed">On patience, curiosity, and knowing when to stop explaining. 41 min.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="reveal text-sm text-slate mt-8">
+      Replace the placeholders above with embedded YouTube or Vimeo players when your videos are ready.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 md:py-32 px-6">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="reveal text-sm font-semibold tracking-widest text-ocean uppercase mb-4">Get in touch</p>
+    <h2 class="reveal font-display text-3xl md:text-4xl font-bold text-navy mb-5">Say hello</h2>
+    <p class="reveal text-slate mb-10 leading-relaxed">
+      Have a resource to recommend, a question, or someone I should interview? I read everything that comes in.
+    </p>
+
+    <form class="reveal grid sm:grid-cols-2 gap-4 text-left" onsubmit="event.preventDefault(); this.reset(); document.getElementById('contactSent').classList.remove('hidden');">
+      <div class="sm:col-span-1">
+        <label for="name" class="block text-xs font-semibold text-navy mb-1.5">Name</label>
+        <input id="name" type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
+      </div>
+      <div class="sm:col-span-1">
+        <label for="email2" class="block text-xs font-semibold text-navy mb-1.5">Email</label>
+        <input id="email2" type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-xs font-semibold text-navy mb-1.5">Message</label>
+        <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow resize-none"></textarea>
+      </div>
+      <div class="sm:col-span-2 flex items-center gap-4">
+        <button type="submit" class="px-6 py-3 rounded-full bg-navy text-white text-sm font-semibold hover:bg-deep transition-colors focus-ring">Send message</button>
+        <span id="contactSent" class="hidden text-sm text-ocean font-medium">Sent — thanks for reaching out.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER BANNER ============ -->
+<section class="px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal bg-navy rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
+      <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-baby/10 blur-3xl pointer-events-none"></div>
+      <div class="relative">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Get new posts by email</h2>
+        <p class="text-baby/90 mb-8 max-w-md mx-auto">
+          One email whenever something new goes up — no more than a couple times a month.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); document.getElementById('subEmail').value=''; document.getElementById('subSent').classList.remove('hidden');">
+          <label for="subEmail" class="sr-only">Email address</label>
+          <input id="subEmail" type="email" required placeholder="you@example.com"
+            class="flex-1 px-5 py-3 rounded-full border-0 outline-none focus:ring-4 focus:ring-sky/40 text-ink placeholder:text-slate-400">
+          <button type="submit" class="px-6 py-3 rounded-full bg-white text-navy text-sm font-semibold hover:bg-baby transition-colors focus-ring">Subscribe</button>
+        </form>
+        <p id="subSent" class="hidden text-sm text-baby mt-4">You're on the list — thank you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="mt-16 px-6 pb-10">
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate">© 2026 Jordan Hale. Built with care.</p>
+    <div class="flex items-center gap-6 text-sm text-slate">
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const bar1 = document.getElementById('bar1'), bar2 = document.getElementById('bar2'), bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden', !menuOpen);
+    menuBtn.setAttribute('aria-expanded', String(menuOpen));
+    bar1.style.transform = menuOpen ? 'translateY(6px) rotate(45deg)' : '';
+    bar3.style.transform = menuOpen ? 'translateY(-6px) rotate(-45deg)' : '';
+    bar2.style.opacity = menuOpen ? '0' : '1';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuOpen = false;
+    mobileMenu.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    bar1.style.transform = ''; bar3.style.transform = ''; bar2.style.opacity = '1';
+  }));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active dot nav
+  const sections = ['home','about','blog','resources','interviews','contact'].map(id => document.getElementById(id));
+  const dots = document.querySelectorAll('[data-dot]');
+  const dotObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        dots.forEach(d => {
+          const dotSpan = d.querySelector('.dot');
+          if (d.dataset.dot === id) dotSpan.classList.add('active');
+          else dotSpan.classList.remove('active');
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(s => s && dotObserver.observe(s));
+</script>
+
+</body>
+</html>

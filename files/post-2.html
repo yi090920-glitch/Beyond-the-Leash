@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building this site slowly, on purpose — Jordan Hale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#0F2647', deep: '#1B3A6B', ocean: '#2E5C9A',
+          sky: '#7FAEDD', baby: '#BFDBFE', mist: '#F4F7FB',
+          ink: '#334155', slate: '#64748B',
+        },
+        fontFamily: { display: ['Manrope', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Manrope', sans-serif; }
+  .focus-ring:focus-visible { outline: 2px solid #1B3A6B; outline-offset: 3px; }
+</style>
+</head>
+<body class="bg-white text-ink antialiased">
+
+<header class="border-b border-slate-100">
+  <div class="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">Jordan Hale</a>
+    <a href="index.html#blog" class="text-sm font-semibold text-deep hover:text-navy transition-colors focus-ring rounded">← Back to blog</a>
+  </div>
+</header>
+
+<article class="max-w-3xl mx-auto px-6 py-16 md:py-24">
+  <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-4">Process · May 18, 2026</p>
+  <h1 class="font-display text-3xl md:text-4xl font-bold text-navy mb-8 leading-tight">
+    Building this site slowly, on purpose
+  </h1>
+
+  <div class="prose-content text-slate leading-relaxed space-y-6 text-[1.05rem]">
+    <p>
+      I launched this site with three posts instead of thirty. That was a deliberate choice,
+      not a lack of material — I wanted the first version to feel finished at a small scale
+      rather than half-finished at a large one.
+    </p>
+    <p>
+      This is placeholder text. Replace this paragraph and the ones below with your own
+      writing about how and why you're building this project.
+    </p>
+    <h2 class="font-display text-xl font-bold text-navy pt-4">Why small and slow, on purpose</h2>
+    <p>
+      Talk about your process here — how you decide what to publish, how often, and what
+      "finished" means for a passion project like this one.
+    </p>
+    <h2 class="font-display text-xl font-bold text-navy pt-4">What's next</h2>
+    <p>
+      Close with what readers can expect going forward, or an invitation for them to follow
+      along or reach out.
+    </p>
+  </div>
+
+  <div class="mt-14 pt-8 border-t border-slate-100">
+    <a href="index.html#blog" class="text-sm font-semibold text-deep hover:text-navy transition-colors focus-ring rounded">← Back to all posts</a>
+  </div>
+</article>
+
+<footer class="px-6 pb-10">
+  <div class="max-w-3xl mx-auto pt-10 border-t border-slate-100 text-center text-sm text-slate">
+    © 2026 Jordan Hale. Built with care.
+  </div>
+</footer>
+
+</body>
+</html>
