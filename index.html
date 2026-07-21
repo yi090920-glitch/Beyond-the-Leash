@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan Hale — Writer, Interviewer, Builder</title>
+<meta name="description" content="Essays, interviews, and hand-picked resources from Jordan Hale — a small, ongoing archive built in public.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+</head>
+<body class="bg-white text-ink antialiased" id="top">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+        Jordan Hale
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link nav-active focus-ring rounded" aria-current="page">Home</a>
+        <a href="about.html" class="nav-link focus-ring rounded">About</a>
+        <a href="blog.html" class="nav-link focus-ring rounded">Blog</a>
+        <a href="resources.html" class="nav-link focus-ring rounded">Resources</a>
+        <a href="interviews.html" class="nav-link focus-ring rounded">Interviews</a>
+        <a href="contact.html" class="ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="index.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">Home</a>
+      <a href="about.html" class="mobile-nav-link block py-2.5 focus-ring rounded">About</a>
+      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="relative pt-40 pb-24 md:pt-52 md:pb-32 px-6 overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative">
+    <p class="reveal eyebrow">Notes, conversations &amp; things worth keeping</p>
+    <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">
+      I write, I ask questions,<br class="hidden sm:block"> and I keep what's useful.
+    </h1>
+    <p class="reveal mt-7 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+      This is a small, ongoing archive of essays, interviews, and resources &mdash;
+      built slowly, in public, for anyone doing similar work.
+    </p>
+    <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href="blog.html" class="btn-primary focus-ring">Read the blog</a>
+      <a href="about.html" class="btn-secondary focus-ring">More about me</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ ABOUT PREVIEW ============ -->
+<section class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal order-2 md:order-1">
+      <p class="eyebrow">About me</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Hi, I'm Jordan.</h2>
+      <p class="text-slate leading-relaxed mb-8">
+        I spend most of my time reading, writing, and talking to people who are further
+        along a path I'm curious about. This site is where that work lives &mdash; long-form
+        posts, interview recordings, and a running list of resources I keep coming back to.
+      </p>
+      <a href="about.html" class="btn-secondary focus-ring">Learn more about me &rarr;</a>
+    </div>
+
+    <div class="reveal order-1 md:order-2 flex justify-center">
+      <div class="relative">
+        <div class="absolute -inset-4 bg-baby/50 rounded-3xl -z-10"></div>
+        <div class="w-64 h-72 sm:w-72 sm:h-80 rounded-3xl bg-gradient-to-br from-mist to-baby/60 border border-slate-100 flex items-center justify-center overflow-hidden">
+          <!-- PLACEHOLDER: replace this SVG with an <img src="images/your-photo.jpg"> tag -->
+          <svg viewBox="0 0 200 200" class="w-2/3 h-2/3 text-deep/70" fill="none">
+            <circle cx="100" cy="72" r="34" stroke="currentColor" stroke-width="4"/>
+            <path d="M40 168c8-38 40-58 60-58s52 20 60 58" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ BLOG PREVIEW ============ -->
+<section class="py-20 md:py-28 px-6 bg-mist">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal flex items-end justify-between flex-wrap gap-4 mb-12">
+      <div>
+        <p class="eyebrow">Writing</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-navy">From the blog</h2>
+      </div>
+      <a href="blog.html" class="text-sm font-semibold text-deep hover:text-navy transition-colors focus-ring rounded">View all posts &rarr;</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <article class="reveal card">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Reflection</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">What I learned from a year of asking better questions</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">A look back at the interviews that changed how I listen &mdash; and the questions that fell flat.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>June 2, 2026</span>
+          <a href="post-1.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="reveal card">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Process</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">Building this site slowly, on purpose</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">Why I chose to launch with three posts instead of thirty, and what "done" means for a passion project.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>May 18, 2026</span>
+          <a href="post-2.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="reveal card">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Notes</p>
+        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">A short reading list on the craft of interviewing</h3>
+        <p class="text-sm text-slate leading-relaxed mb-5">Five books and essays that shaped how I prepare for conversations.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>April 30, 2026</span>
+          <a href="post-3.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESOURCES PREVIEW ============ -->
+<section class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="eyebrow">Resources</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Things worth bookmarking</h2>
+      <p class="text-slate leading-relaxed mb-8">
+        A running, hand-picked list of tools, reading, and communities I return to &mdash;
+        organized by category so you can find what's useful fast.
+      </p>
+      <a href="resources.html" class="btn-secondary focus-ring">Explore resources &rarr;</a>
+    </div>
+    <div class="reveal grid grid-cols-2 gap-4">
+      <div class="card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Tools</p>
+      </div>
+      <div class="card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Reading</p>
+      </div>
+      <div class="card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Communities</p>
+      </div>
+      <div class="card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Programs</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ INTERVIEWS PREVIEW ============ -->
+<section class="py-20 md:py-28 px-6 bg-mist">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="reveal eyebrow">Conversations</p>
+    <h2 class="reveal font-display text-3xl md:text-4xl font-bold text-navy mb-6">Interviews</h2>
+    <p class="reveal text-slate max-w-xl mx-auto mb-10 leading-relaxed">
+      Recorded conversations with people whose work I admire &mdash; new ones added as they're finished.
+    </p>
+    <a href="interviews.html" class="reveal btn-primary focus-ring inline-block">Watch interviews &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section class="px-6 py-20 md:py-28">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal bg-navy rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
+      <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-baby/10 blur-3xl pointer-events-none"></div>
+      <div class="relative">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Say hello</h2>
+        <p class="text-baby/90 mb-8 max-w-md mx-auto">
+          Have a resource to recommend, a question, or someone I should interview? I read everything that comes in.
+        </p>
+        <a href="contact.html" class="inline-block px-6 py-3 rounded-full bg-white text-navy text-sm font-semibold hover:bg-baby transition-colors focus-ring">Contact me &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="mt-16 px-6 pb-10">
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate">&copy; 2026 Jordan Hale. Built with care.</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
+      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <!-- TODO: replace these three with your real profile URLs -->
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Jordan Hale</title>
+<meta name="description" content="A hand-picked, categorized list of organizations, books, tools, and communities worth bookmarking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+</head>
+<body class="bg-white text-ink antialiased" id="top">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+        Jordan Hale
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link focus-ring rounded">Home</a>
+        <a href="about.html" class="nav-link focus-ring rounded">About</a>
+        <a href="blog.html" class="nav-link focus-ring rounded">Blog</a>
+        <a href="resources.html" class="nav-link nav-active focus-ring rounded" aria-current="page">Resources</a>
+        <a href="interviews.html" class="nav-link focus-ring rounded">Interviews</a>
+        <a href="contact.html" class="ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="index.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Home</a>
+      <a href="about.html" class="mobile-nav-link block py-2.5 focus-ring rounded">About</a>
+      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
+
+<section class="pt-40 pb-14 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="reveal eyebrow">Resources</p>
+    <h1 class="reveal font-display text-4xl md:text-5xl font-bold text-navy mb-4">Things worth bookmarking</h1>
+    <p class="reveal text-slate max-w-xl mx-auto">A running, hand-picked list, organized by category so you can find what's useful fast.</p>
+  </div>
+</section>
+
+<section class="pb-24 px-6">
+  <div class="max-w-5xl mx-auto space-y-16">
+
+    <!-- ORGANIZATIONS -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Organizations</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for the real organization link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Organization</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Organization name]</p>
+          <p class="text-sm text-slate leading-relaxed">[One or two sentences on what they do and why they're useful.]</p>
+        </a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for the real organization link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Organization</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Organization name]</p>
+          <p class="text-sm text-slate leading-relaxed">[One or two sentences on what they do and why they're useful.]</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- EDUCATIONAL WEBSITES -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Educational websites</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://longform.org" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Educational</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Longform.org</p>
+          <p class="text-sm text-slate leading-relaxed">A steady stream of great long-form journalism.</p>
+        </a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for a real link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Educational</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Website name]</p>
+          <p class="text-sm text-slate leading-relaxed">[Why you recommend it.]</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- BOOKS AND ARTICLES -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Books &amp; articles</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://www.goodreads.com/book/show/53343.On_Writing_Well" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Book</span>
+          <p class="font-semibold text-ink mt-2 mb-1">On Writing Well</p>
+          <p class="text-sm text-slate leading-relaxed">Still the clearest book on nonfiction writing I know.</p>
+        </a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for a real link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Article</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Article title]</p>
+          <p class="text-sm text-slate leading-relaxed">[A line on what it covers.]</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- RESEARCH TOOLS -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Research tools</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://www.notion.so" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Tool</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Notion</p>
+          <p class="text-sm text-slate leading-relaxed">Where I draft and organize every post.</p>
+        </a>
+        <a href="https://readwise.io" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Tool</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Readwise</p>
+          <p class="text-sm text-slate leading-relaxed">Keeps highlights from everything I read in one place.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- VIDEOS AND PODCASTS -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Videos &amp; podcasts</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://www.descript.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Tool</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Descript</p>
+          <p class="text-sm text-slate leading-relaxed">For editing interview audio and video.</p>
+        </a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for a real podcast or channel link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Podcast</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Podcast name]</p>
+          <p class="text-sm text-slate leading-relaxed">[Why you recommend it.]</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- COMMUNITIES -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Communities</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://www.writeofpassage.school" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Community</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Write of Passage</p>
+          <p class="text-sm text-slate leading-relaxed">A community for people writing in public.</p>
+        </a>
+        <a href="https://www.indiehackers.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Community</span>
+          <p class="font-semibold text-ink mt-2 mb-1">Indie Hackers</p>
+          <p class="text-sm text-slate leading-relaxed">Good for talking shop about small, independent projects.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- RECOMMENDED PROGRAMS -->
+    <div class="reveal">
+      <h2 class="font-display text-xl font-bold text-navy mb-6 pb-3 border-b-2 border-baby">Recommended programs</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="card block focus-ring">
+          <!-- REPLACE: swap https://example.com for a real program/course link -->
+          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Program</span>
+          <p class="font-semibold text-ink mt-2 mb-1">[Program name]</p>
+          <p class="text-sm text-slate leading-relaxed">[What it is and who it's for.]</p>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<footer class="mt-16 px-6 pb-10">
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate">&copy; 2026 Jordan Hale. Built with care.</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
+      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <!-- TODO: replace these three with your real profile URLs -->
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* ============================================================
+   Jordan Hale — shared stylesheet
+   This file controls colors, fonts, buttons, cards, and animations
+   for every page on the site. Edit here once and it updates everywhere.
+   ============================================================ */
+
+:root {
+  --navy:  #0F2647;
+  --deep:  #1B3A6B;
+  --ocean: #2E5C9A;
+  --sky:   #7FAEDD;
+  --baby:  #BFDBFE;
+  --mist:  #F4F7FB;
+  --ink:   #334155;
+  --slate: #64748B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Manrope', sans-serif;
+}
+
+::selection {
+  background: var(--baby);
+  color: var(--navy);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+.btn-primary:hover { background: var(--deep); }
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid #E2E8F0;
+  color: var(--navy);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.btn-secondary:hover { border-color: var(--deep); color: var(--deep); }
+
+.btn-disabled {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: #E2E8F0;
+  color: var(--slate);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+/* ---------- Text helpers ---------- */
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  border: 1px solid #F1F5F9;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 12px 30px -12px rgba(15, 38, 71, 0.18);
+  transform: translateY(-4px);
+}
+
+/* ---------- Divider ---------- */
+.grain-line {
+  height: 1px;
+  background-image: repeating-linear-gradient(90deg, #E2E8F0 0px, #E2E8F0 1px, transparent 1px, transparent 8px);
+}
+
+/* ---------- Navigation ---------- */
+.nav-link {
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-link:hover { color: var(--deep); }
+
+.nav-link.nav-active {
+  color: var(--navy);
+  font-weight: 700;
+}
+.nav-link.nav-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--ocean);
+  border-radius: 2px;
+}
+
+.mobile-nav-link.nav-active {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Focus states (accessibility) ---------- */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--deep);
+  outline-offset: 3px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}

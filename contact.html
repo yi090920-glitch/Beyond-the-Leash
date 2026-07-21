@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Jordan Hale</title>
+<meta name="description" content="Get in touch with Jordan Hale — send a message or find me on social media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+</head>
+<body class="bg-white text-ink antialiased" id="top">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+        Jordan Hale
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link focus-ring rounded">Home</a>
+        <a href="about.html" class="nav-link focus-ring rounded">About</a>
+        <a href="blog.html" class="nav-link focus-ring rounded">Blog</a>
+        <a href="resources.html" class="nav-link focus-ring rounded">Resources</a>
+        <a href="interviews.html" class="nav-link focus-ring rounded">Interviews</a>
+        <a href="contact.html" class="ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring nav-active" aria-current="page">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="index.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Home</a>
+      <a href="about.html" class="mobile-nav-link block py-2.5 focus-ring rounded">About</a>
+      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">Contact</a>
+    </div>
+  </div>
+</header>
+
+<section class="pt-40 pb-16 px-6">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="reveal eyebrow">Get in touch</p>
+    <h1 class="reveal font-display text-4xl md:text-5xl font-bold text-navy mb-5">Say hello</h1>
+    <p class="reveal text-slate mb-8 leading-relaxed">
+      Have a resource to recommend, a question, or someone I should interview? I read everything that comes in.
+    </p>
+    <!-- Quick email option: replace the address below with your real email -->
+    <a href="mailto:hello@example.com" class="reveal btn-secondary focus-ring inline-block">Email me directly &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT FORM ============
+     This form uses Formspree (https://formspree.io), a free service that emails
+     form submissions to you — no backend code needed, which works fine on GitHub Pages.
+
+     TO ACTIVATE THIS FORM:
+     1. Create a free account at https://formspree.io
+     2. Create a new form and copy the form ID it gives you (looks like "abcdwxyz")
+     3. Replace YOUR_FORM_ID in the action="" attribute below with that ID
+-->
+<section class="pb-24 px-6">
+  <div class="max-w-2xl mx-auto">
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal grid sm:grid-cols-2 gap-4 text-left card">
+      <div class="sm:col-span-1">
+        <label for="name" class="block text-xs font-semibold text-navy mb-1.5">Name</label>
+        <input id="name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
+      </div>
+      <div class="sm:col-span-1">
+        <label for="email" class="block text-xs font-semibold text-navy mb-1.5">Email</label>
+        <input id="email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
+      </div>
+      <div class="sm:col-span-2">
+        <label for="subject" class="block text-xs font-semibold text-navy mb-1.5">Subject</label>
+        <input id="subject" name="subject" type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-xs font-semibold text-navy mb-1.5">Message</label>
+        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow resize-none"></textarea>
+      </div>
+      <div class="sm:col-span-2">
+        <button type="submit" class="btn-primary focus-ring">Send message</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section class="pb-24 px-6 text-center">
+  <p class="reveal eyebrow">Find me elsewhere</p>
+  <div class="reveal flex items-center justify-center gap-6 text-sm font-medium text-ink">
+    <!-- TODO: replace these three with your real profile URLs -->
+    <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+    <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+    <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="pb-24 px-6">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="reveal font-display text-2xl font-bold text-navy mb-8 text-center">A few common questions</h2>
+    <div class="space-y-4">
+      <details class="reveal card group">
+        <summary class="font-semibold text-ink cursor-pointer list-none flex items-center justify-between focus-ring rounded">
+          How quickly do you reply?
+          <span class="text-slate group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <p class="text-sm text-slate leading-relaxed mt-3">
+          <!-- PLACEHOLDER TEXT -->
+          [Add your typical response time here.]
+        </p>
+      </details>
+      <details class="reveal card group">
+        <summary class="font-semibold text-ink cursor-pointer list-none flex items-center justify-between focus-ring rounded">
+          Can I suggest someone for an interview?
+          <span class="text-slate group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <p class="text-sm text-slate leading-relaxed mt-3">
+          <!-- PLACEHOLDER TEXT -->
+          [Explain how you'd like people to submit interview suggestions.]
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+<footer class="mt-16 px-6 pb-10">
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate">&copy; 2026 Jordan Hale. Built with care.</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
+      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <!-- TODO: replace these three with your real profile URLs -->
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
