@@ -495,3 +495,204 @@ footer::before {
     padding-top: 2rem;
   }
 }
+
+
+/* ============================================================
+   Homepage mission, lighter contact CTA, and nav hover details
+   ============================================================ */
+
+/* Give fixed-header anchor jumps comfortable breathing room. */
+#mission {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Desktop navigation: a subtle animated underline on hover and active page. */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--ocean), var(--sky));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.nav-active::after {
+  transform: scaleX(1);
+}
+
+.header-contact-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-contact-link::after {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.45rem;
+  height: 1.5px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+.header-contact-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* One simple hero button that scrolls to the mission statement. */
+.mission-scroll-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.35rem;
+  border: 1px solid rgba(127, 174, 221, 0.62);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--navy);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px -22px rgba(15, 38, 71, 0.82);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mission-scroll-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--ocean);
+  background: var(--mist);
+  box-shadow: 0 16px 30px -22px rgba(15, 38, 71, 0.72);
+}
+
+/* Horizontal mission statement directly above the About preview. */
+.mission-section {
+  position: relative;
+}
+
+.mission-panel {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid rgba(127, 174, 221, 0.42);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.98), rgba(244, 247, 251, 0.94) 58%, rgba(221, 238, 255, 0.86)),
+    radial-gradient(circle at 92% 20%, rgba(127, 174, 221, 0.2), transparent 15rem);
+  box-shadow: 0 24px 60px -44px rgba(15, 38, 71, 0.62);
+}
+
+.mission-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mission-kicker {
+  flex: 0 0 auto;
+  color: var(--ocean);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mission-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(46, 92, 154, 0.55), transparent);
+}
+
+.mission-heading {
+  margin-bottom: 0.85rem;
+  color: var(--navy);
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mission-copy p {
+  max-width: 48rem;
+  color: var(--slate);
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .mission-panel {
+    grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 2.3fr);
+    gap: 3rem;
+    padding: 2.5rem 3rem;
+  }
+
+  .mission-label-wrap {
+    align-self: stretch;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  .mission-line {
+    width: 4.5rem;
+  }
+}
+
+/* Lighter home-page contact panel that still feels special. */
+.contact-cta-card {
+  isolation: isolate;
+  border: 1px solid rgba(127, 174, 221, 0.46);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F8FC 52%, #E4F1FF 100%);
+  box-shadow: 0 28px 68px -46px rgba(15, 38, 71, 0.7);
+}
+
+.contact-cta-orb {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.contact-cta-orb-one {
+  width: 17rem;
+  height: 17rem;
+  top: -10rem;
+  left: -5rem;
+  background: radial-gradient(circle, rgba(127, 174, 221, 0.28), transparent 68%);
+}
+
+.contact-cta-orb-two {
+  width: 14rem;
+  height: 14rem;
+  right: -4rem;
+  bottom: -8rem;
+  border: 1px solid rgba(46, 92, 154, 0.13);
+  box-shadow: 0 0 0 2rem rgba(191, 219, 254, 0.11);
+}
+
+.contact-cta-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(127, 174, 221, 0.58);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--navy);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 12px 26px -21px rgba(15, 38, 71, 0.78);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-cta-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--ocean);
+  background: var(--baby);
+  box-shadow: 0 16px 28px -21px rgba(15, 38, 71, 0.68);
+}
