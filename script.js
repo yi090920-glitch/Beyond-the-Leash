@@ -4,8 +4,7 @@
    and fade-in-on-scroll animations. Loaded on every page.
    ============================================================ */
 
-/* Newsletter setup — replace the placeholder below once with your
-   Buttondown username. This activates the Subscribe form on every page. */
+/* Newsletter setup — connected to the Buttondown newsletter below. */
 const BUTTONDOWN_USERNAME = 'beyond_the_leash';
 
 /* Tailwind Play CDN configuration — keeps the same custom color
@@ -25,7 +24,7 @@ tailwind.config = {
         slate: '#64748B',
       },
       fontFamily: {
-        display: ['Manrope', 'sans-ser'],
+        display: ['Manrope', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },
     },
@@ -34,13 +33,12 @@ tailwind.config = {
 
 document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Activate the shared newsletter forms ---------- */
- if (BUTTONDOWN_USERNAME) {
-  document.querySelectorAll('.newsletter-form').forEach(function (form) {
-    form.action =
-      'https://buttondown.com/api/emails/embed-subscribe/' +
-      encodeURIComponent(BUTTONDOWN_USERNAME);
-  });
-}
+  if (BUTTONDOWN_USERNAME) {
+    document.querySelectorAll('.newsletter-form').forEach(function (form) {
+      form.action = 'https://buttondown.com/api/emails/embed-subscribe/' + encodeURIComponent(BUTTONDOWN_USERNAME);
+    });
+  }
+
   /* ---------- Mobile hamburger menu ---------- */
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
