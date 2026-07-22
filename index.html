@@ -207,6 +207,49 @@
     </div>
   </div>
 </section>
+
+<!-- ============ NEWSLETTER SIGNUP ============ -->
+<section class="newsletter-section px-6 pb-20 md:pb-24" aria-labelledby="newsletter-heading">
+  <div class="newsletter-card reveal max-w-6xl mx-auto">
+    <div class="newsletter-copy">
+      <p class="newsletter-eyebrow">Website updates</p>
+      <h2 id="newsletter-heading" class="font-display newsletter-title">Stay updated</h2>
+      <p class="newsletter-description">
+        Receive an occasional email when a new article, interview, or resource is added.
+      </p>
+    </div>
+
+    <!--
+      TO ACTIVATE THIS FORM:
+      Create a Buttondown newsletter, then replace YOUR-BUTTONDOWN-USERNAME in the
+      action URL below with your Buttondown username. Until you replace it, the form
+      is only a visual placeholder and cannot collect email addresses.
+    -->
+    <form
+      class="newsletter-form"
+      action="https://buttondown.com/api/emails/embed-subscribe/YOUR-BUTTONDOWN-USERNAME"
+      method="post"
+    >
+      <label class="sr-only" for="newsletter-email">Email address</label>
+      <input
+        id="newsletter-email"
+        class="newsletter-input"
+        type="email"
+        name="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      >
+      <input type="hidden" name="embed" value="1">
+      <button class="newsletter-button focus-ring" type="submit">Subscribe</button>
+    </form>
+
+    <p class="newsletter-privacy">
+      Your email will only be used for website updates. You can unsubscribe at any time.
+    </p>
+  </div>
+</section>
+
 <footer class="mt-16 px-6 pb-10">
   <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-slate">&copy; 2026 Jordan Hale. Built with care.</p>

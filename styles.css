@@ -151,3 +151,122 @@ h1, h2, h3, h4, .font-display {
   .reveal { transition: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- Newsletter signup ---------- */
+.newsletter-section {
+  background: #ffffff;
+}
+
+.newsletter-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.25rem 1.5rem;
+  border-radius: 1.5rem;
+  background: var(--mist);
+  border: 1px solid #E2E8F0;
+  text-align: center;
+}
+
+.newsletter-copy {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.newsletter-eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--ocean);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.newsletter-title {
+  margin-bottom: 0.75rem;
+  color: var(--navy);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.newsletter-description {
+  color: var(--slate);
+  line-height: 1.7;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 34rem;
+  margin: 1.75rem auto 0;
+}
+
+.newsletter-input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-input::placeholder {
+  color: #94A3B8;
+}
+
+.newsletter-input:focus {
+  border-color: var(--deep);
+  box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.75);
+}
+
+.newsletter-button {
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--navy);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.newsletter-button:hover {
+  background: var(--deep);
+  transform: translateY(-1px);
+}
+
+.newsletter-privacy {
+  margin-top: 1rem;
+  color: var(--slate);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .newsletter-card {
+    padding: 3rem;
+  }
+
+  .newsletter-form {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .newsletter-input {
+    flex: 1;
+  }
+
+  .newsletter-button {
+    flex: 0 0 auto;
+  }
+}
+
