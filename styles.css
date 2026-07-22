@@ -472,3 +472,26 @@ footer::before {
   background: linear-gradient(90deg, transparent, rgba(46, 92, 154, 0.42), transparent);
 }
 
+
+/* ---------- Shared footer newsletter placement ---------- */
+.site-footer {
+  background:
+    linear-gradient(180deg, rgba(244, 247, 251, 0) 0%, rgba(244, 247, 251, 0.78) 38%, rgba(237, 246, 255, 0.95) 100%);
+  border-radius: 2rem 2rem 0 0;
+  padding-top: 3rem;
+}
+
+.site-footer .newsletter-section {
+  background: transparent;
+}
+
+.site-footer .newsletter-card {
+  margin-bottom: 0;
+}
+
+@media (max-width: 639px) {
+  .site-footer {
+    border-radius: 1.5rem 1.5rem 0 0;
+    padding-top: 2rem;
+  }
+}
