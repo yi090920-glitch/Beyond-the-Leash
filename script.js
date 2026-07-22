@@ -25,7 +25,7 @@ tailwind.config = {
         slate: '#64748B',
       },
       fontFamily: {
-        display: ['Manrope', 'sans-serif'],
+        display: ['Manrope', 'sans-ser'],
         body: ['Inter', 'sans-serif'],
       },
     },
@@ -34,12 +34,13 @@ tailwind.config = {
 
 document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Activate the shared newsletter forms ---------- */
-  if (BUTTONDOWN_USERNAME && BUTTONDOWN_USERNAME !== 'beyond_the_leash') {
-    document.querySelectorAll('.newsletter-form').forEach(function (form) {
-      form.action = 'https://buttondown.com/api/emails/embed-subscribe/' + encodeURIComponent(BUTTONDOWN_USERNAME);
-    });
-  }
-
+ if (BUTTONDOWN_USERNAME) {
+  document.querySelectorAll('.newsletter-form').forEach(function (form) {
+    form.action =
+      'https://buttondown.com/api/emails/embed-subscribe/' +
+      encodeURIComponent(BUTTONDOWN_USERNAME);
+  });
+}
   /* ---------- Mobile hamburger menu ---------- */
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
