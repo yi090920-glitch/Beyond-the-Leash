@@ -6,7 +6,7 @@
 
 /* Newsletter setup — replace the placeholder below once with your
    Buttondown username. This activates the Subscribe form on every page. */
-const BUTTONDOWN_USERNAME = 'YOUR-BUTTONDOWN-USERNAME';
+const BUTTONDOWN_USERNAME = 'beyond_the_leash';
 
 /* Tailwind Play CDN configuration — keeps the same custom color
    names (navy, deep, ocean, sky, baby, mist, ink, slate) available
@@ -34,7 +34,7 @@ tailwind.config = {
 
 document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Activate the shared newsletter forms ---------- */
-  if (BUTTONDOWN_USERNAME && BUTTONDOWN_USERNAME !== 'YOUR-BUTTONDOWN-USERNAME') {
+  if (BUTTONDOWN_USERNAME && BUTTONDOWN_USERNAME !== 'beyond_the_leash') {
     document.querySelectorAll('.newsletter-form').forEach(function (form) {
       form.action = 'https://buttondown.com/api/emails/embed-subscribe/' + encodeURIComponent(BUTTONDOWN_USERNAME);
     });
