@@ -3,14 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Beyond the Leash with Sandra</title>
-<meta name="description" content="Learn more about Beyond the Leash with Sandra: background, interests, mission, and the story behind this site.">
+<title>About Sandra Chen — Beyond the Leash with Sandra</title>
+<meta name="description" content="Meet Sandra Chen and learn about her interests in veterinary medicine, animal science, research, One Health, and the story behind Beyond the Leash with Sandra.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
+<style>
+  .about-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #2E5C9A;
+  }
+  .about-section-label::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: #7FAEDD;
+  }
+  .about-prose p + p { margin-top: 1rem; }
+  .research-card {
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 14px 42px rgba(15, 38, 71, .06);
+  }
+  .research-card-head {
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(244,247,251,.95), rgba(191,219,254,.25));
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .mentor-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: 1rem;
+    padding: .5rem .8rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(127,174,221,.35);
+    color: #1B3A6B;
+    font-size: .78rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .abstract-copy p + p { margin-top: 1rem; }
+  .abstract-label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #2E5C9A;
+  }
+
+  /* About-page photo carousel. Replace the placeholder blocks with real photos later. */
+  .about-gallery-shell {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .about-gallery-frame {
+    position: relative;
+    border-radius: 1.75rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 18px 50px rgba(15,38,71,.08);
+    overflow: hidden;
+  }
+  .about-gallery-viewport { overflow: hidden; }
+  .about-gallery-track {
+    display: flex;
+    transition: transform .45s cubic-bezier(.22,.8,.24,1);
+    will-change: transform;
+  }
+  .about-gallery-slide {
+    min-width: 100%;
+    margin: 0;
+  }
+  .about-gallery-placeholder {
+    aspect-ratio: 16 / 10;
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background:
+      radial-gradient(circle at 25% 20%, rgba(191,219,254,.78), transparent 32%),
+      radial-gradient(circle at 78% 70%, rgba(127,174,221,.28), transparent 34%),
+      linear-gradient(135deg, #f4f7fb 0%, #eef6ff 55%, #dbeafe 100%);
+  }
+  .about-gallery-placeholder-inner {
+    max-width: 340px;
+    color: #1B3A6B;
+  }
+  .about-gallery-placeholder-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    margin: 0 auto 1rem;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,.8);
+    border: 1px solid rgba(127,174,221,.35);
+    font-size: 1.45rem;
+  }
+  .about-gallery-caption {
+    padding: 1.1rem 1.4rem 1.25rem;
+    text-align: center;
+    color: #64748B;
+    font-size: .9rem;
+    line-height: 1.6;
+    border-top: 1px solid #eef2f7;
+  }
+  .about-gallery-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(226,232,240,.95);
+    color: #0F2647;
+    box-shadow: 0 8px 24px rgba(15,38,71,.12);
+    font-size: 1.35rem;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .about-gallery-button:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
+  .about-gallery-prev { left: 1rem; }
+  .about-gallery-next { right: 1rem; }
+  .about-gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 1.2rem;
+  }
+  .about-gallery-dot {
+    width: .55rem;
+    height: .55rem;
+    border-radius: 999px;
+    background: #cbd5e1;
+    transition: width .25s ease, background .25s ease;
+  }
+  .about-gallery-dot[aria-current="true"] {
+    width: 1.5rem;
+    background: #2E5C9A;
+  }
+  @media (max-width: 640px) {
+    .about-gallery-placeholder { min-height: 275px; aspect-ratio: 4 / 5; }
+    .about-gallery-button { width: 2.5rem; height: 2.5rem; }
+    .about-gallery-prev { left: .65rem; }
+    .about-gallery-next { right: .65rem; }
+    .research-card-head { padding: 1.5rem; }
+  }
+</style>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
@@ -49,143 +209,226 @@
   </div>
 </header>
 
-<section class="pt-40 pb-16 px-6">
-  <div class="max-w-4xl mx-auto text-center">
-    <p class="reveal eyebrow">About</p>
-    <h1 class="reveal font-display text-4xl md:text-5xl font-bold text-navy">Hi, I'm Sandra.</h1>
+<!-- ============ ABOUT HERO ============ -->
+<section class="relative pt-40 pb-16 md:pt-48 md:pb-20 px-6 overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/35 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-36 -left-32 w-80 h-80 rounded-full bg-sky/15 blur-3xl pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto text-center relative">
+    <p class="reveal eyebrow">About me</p>
+    <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy tracking-tight">Hi, I’m Sandra.</h1>
+    <p class="reveal mt-6 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+      Student, researcher, animal lover, and lifelong learner exploring veterinary medicine through science, curiosity, and One Health.
+    </p>
   </div>
 </section>
 
-<!-- ============ INTRO + PHOTO ============ -->
-<section class="pb-16 px-6">
-  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal order-2 md:order-1">
-      <h2 class="font-display text-2xl font-bold text-navy mb-4">Introduction</h2>
-      <!-- PLACEHOLDER TEXT: replace with your own introduction -->
-      <p class="text-slate leading-relaxed mb-4">
-        I spend most of my time reading, writing, and talking to people who are further along
-        a path I'm curious about. <em>[Replace this sentence with 2&ndash;3 sentences about who you are.]</em>
+<!-- ============ INTRODUCTION ============ -->
+<section class="pb-20 md:pb-24 px-6">
+  <div class="max-w-4xl mx-auto reveal">
+    <div class="about-prose text-slate leading-relaxed text-[1.02rem] md:text-[1.06rem]">
+      <p>
+        I’m Sandra Chen, a student from Jericho, New York, with a passion for veterinary medicine, animal science, and research.
       </p>
-      <p class="text-slate leading-relaxed">
-        <em>[Add a sentence about what you do day-to-day, or what brought you to this project.]</em>
+      <p>
+        I’ve always been drawn to both animals and medicine, so veterinary medicine felt like a natural fit. As I began exploring the field more deeply through shadowing opportunities, research, and animal science advocacy, that initial interest only grew stronger. Each experience has shown me another side of veterinary medicine and has continued to solidify my passion for pursuing it as a career.
       </p>
-    </div>
-    <div class="reveal order-1 md:order-2 flex justify-center">
-      <div class="relative">
-        <div class="absolute -inset-4 bg-baby/50 rounded-3xl -z-10"></div>
-        <div class="w-64 h-72 sm:w-80 sm:h-96 rounded-3xl bg-gradient-to-br from-mist to-baby/60 border border-slate-100 flex items-center justify-center overflow-hidden">
-          <!-- PLACEHOLDER: replace this SVG with <img src="images/your-photo.jpg" alt="Beyond the Leash with Sandra" class="w-full h-full object-cover"> -->
-          <svg viewBox="0 0 200 200" class="w-2/3 h-2/3 text-deep/70" fill="none">
-            <circle cx="100" cy="72" r="34" stroke="currentColor" stroke-width="4"/>
-            <path d="M40 168c8-38 40-58 60-58s52 20 60 58" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
+      <p>
+        Outside of science, I enjoy playing piano and sharing my love of music with others through teaching, as well as traveling across the country for badminton tournaments, where I’ve had the opportunity to win medals and compete in new places. I also love running and spending time with my dog (Teddy!), which helps me stay grounded and balanced in everyday life.
+      </p>
     </div>
   </div>
 </section>
 
 <div class="max-w-5xl mx-auto px-6"><div class="grain-line"></div></div>
 
-<!-- ============ BACKGROUND / INTERESTS / MISSION ============ -->
-<section class="py-16 px-6">
-  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
-    <div class="reveal card">
-      <h2 class="font-display text-xl font-bold text-navy mb-3">Personal background</h2>
-      <p class="text-sm text-slate leading-relaxed">
-        <!-- PLACEHOLDER TEXT -->
-        [Add a short paragraph about your background &mdash; where you're from, how you got
-        into this work, or anything relevant to why you started this site.]
+<!-- ============ WHY VET MED + WHY BTL ============ -->
+<section class="py-20 md:py-24 px-6">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+    <article class="reveal card">
+      <p class="about-section-label mb-4">What draws me in</p>
+      <h2 class="font-display text-2xl font-bold text-navy mb-5">Why Veterinary Medicine</h2>
+      <p class="text-slate leading-relaxed mb-4">
+        What excites me most about veterinary medicine is how many different areas it brings together. It combines science and medicine with the opportunity to improve animal health, while also connecting to research, public health, and the broader One Health perspective.
       </p>
-    </div>
-    <div class="reveal card">
-      <h2 class="font-display text-xl font-bold text-navy mb-3">Interests</h2>
-      <p class="text-sm text-slate leading-relaxed">
-        <!-- PLACEHOLDER TEXT -->
-        [List a few things you're genuinely interested in &mdash; topics, hobbies, or
-        questions you find yourself returning to.]
+      <p class="text-slate leading-relaxed">
+        The more I’ve learned about the field, the more I’ve realized that veterinary medicine extends far beyond the clinic. That broader view is a large part of what inspired me to create <strong class="text-navy">Beyond the Leash with Sandra</strong>.
       </p>
-    </div>
-    <div class="reveal card">
-      <h2 class="font-display text-xl font-bold text-navy mb-3">Mission &amp; purpose</h2>
-      <p class="text-sm text-slate leading-relaxed">
-        <!-- PLACEHOLDER TEXT -->
-        [Explain why this website exists and what you want it to do for the people who visit.]
+    </article>
+
+    <article class="reveal card">
+      <p class="about-section-label mb-4">The purpose</p>
+      <h2 class="font-display text-2xl font-bold text-navy mb-5">Why Beyond the Leash</h2>
+      <p class="text-slate leading-relaxed mb-4">
+        I created <strong class="text-navy">Beyond the Leash with Sandra</strong> as a space to explore animal health beyond the traditional image of veterinary medicine.
       </p>
-    </div>
-    <div class="reveal card">
-      <h2 class="font-display text-xl font-bold text-navy mb-3">Current work &amp; projects</h2>
-      <p class="text-sm text-slate leading-relaxed">
-        <!-- PLACEHOLDER TEXT -->
-        [Describe what you're working on right now, including this site itself if relevant.]
+      <p class="text-slate leading-relaxed mb-4">
+        Through research, interviews, writing, and resources, I hope to share what I’m learning while highlighting the vital connections between animal, human, and environmental health.
       </p>
-    </div>
+      <p class="text-slate leading-relaxed">
+        My goal is to make these ideas more approachable, spark curiosity, and encourage others to see animal health as part of a much larger and deeply interconnected picture.
+      </p>
+    </article>
   </div>
 </section>
 
-<!-- ============ ACCOMPLISHMENTS ============ -->
-<section class="py-16 px-6 bg-mist">
+<!-- ============ RESEARCH ============ -->
+<section class="py-20 md:py-28 px-6 bg-mist">
   <div class="max-w-5xl mx-auto">
-    <h2 class="reveal font-display text-2xl font-bold text-navy mb-8 text-center">Accomplishments &amp; experiences</h2>
-    <div class="grid sm:grid-cols-3 gap-6">
-      <div class="reveal card text-center">
-        <p class="font-display text-3xl font-extrabold text-navy mb-1">[00]</p>
-        <p class="text-sm text-slate"><!-- PLACEHOLDER: e.g. "interviews recorded" --> Placeholder stat</p>
-      </div>
-      <div class="reveal card text-center">
-        <p class="font-display text-3xl font-extrabold text-navy mb-1">[00]</p>
-        <p class="text-sm text-slate"><!-- PLACEHOLDER: e.g. "articles published" --> Placeholder stat</p>
-      </div>
-      <div class="reveal card text-center">
-        <p class="font-display text-3xl font-extrabold text-navy mb-1">[00]</p>
-        <p class="text-sm text-slate"><!-- PLACEHOLDER: e.g. "years doing this" --> Placeholder stat</p>
-      </div>
+    <div class="reveal text-center max-w-3xl mx-auto mb-12">
+      <p class="eyebrow">Research</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-5">Questions I’m exploring</h2>
+      <p class="text-slate leading-relaxed">
+        Research has given me the opportunity to explore the scientific side of veterinary medicine more deeply and to better understand how discoveries in animal health can also contribute to our understanding of human disease. These are two studies I have completed, presented, and am in the process of publishing, and I hope they are the start of many more to come.
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      <article class="reveal research-card">
+        <div class="research-card-head">
+          <p class="text-xs font-bold text-ocean uppercase tracking-[.13em] mb-3">Research Project 01</p>
+          <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight">
+            Precision Target Discovery for Synovial Fibrosis and Inflammation Using RNA-seq-Driven Regulatory Analysis and Drug Repurposing
+          </h3>
+          <p class="mentor-chip">Conducted under mentorship from the University of Pennsylvania School of Veterinary Medicine</p>
+        </div>
+        <div class="p-6 md:p-8 lg:p-10 abstract-copy text-slate leading-relaxed text-[.96rem] md:text-[1rem]">
+          <p class="abstract-label">Abstract</p>
+          <p>
+            Canine cranial cruciate ligament (CCL) injuries are a common orthopedic condition inflicting joint instability, pain, and chronic synovial fibrosis, contributing to post-traumatic osteoarthritis (PTOA) development. These biological alterations to the damaged knee are often paralleled in human joint diseases as well, supporting the value of the canine model in further understanding the underlying process behind osteoarthritis. Despite this relevance, systematic pipelines connecting biological data to actionable therapeutic targets are limited.
+          </p>
+          <p>
+            This study aimed to identify dysregulated genes in CCL-injured canine synovium and rank candidate genes with Food and Drug Administration (FDA)-approved drugs in order of therapeutic potential. RNA-sequencing data from CCL-injured and healthy canine synovium were filtered for genes statistically significant based on an adjusted p-value &lt;0.05 and a log2 fold-change &gt;1.
+          </p>
+          <p>
+            Top 150 upregulated genes were ranked and g:Profiler was used to map resulting canine genes to human orthologs. Utilizing DAVID, functional enrichment analysis was performed to identify relevant biological pathways with clusters highlighting Il-17 signaling, inflammatory cytokines, collagen deposition, and extracellular matrix organization and remodeling.
+          </p>
+          <p>
+            The resulting 41 genes were analyzed using comprehensive literature review to ultimately identify five high-priority, therapeutically actionable gene-drug pairs: ADAMTS4 and Doxycycline, PTGS2 (COX-2) and Celecoxib, CCR7 and Fingolimod, IL1B and Anakinra, IL6 and Tocilizumab.
+          </p>
+          <p>
+            These findings establish a reliable pipeline linking canine CCL injury transcriptomics to clinically actionable therapeutic treatments, highlighting promising candidates for drug repurposing in PTOA and offering deeper insight into underlying mechanisms of osteoarthritis in both canines and humans.
+          </p>
+        </div>
+      </article>
+
+      <article class="reveal research-card">
+        <div class="research-card-head">
+          <p class="text-xs font-bold text-ocean uppercase tracking-[.13em] mb-3">Research Project 02</p>
+          <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight">
+            Investigating Spatial Fibroblast-Immune Crosstalk Driving Osteoarthritis
+          </h3>
+          <p class="mentor-chip">Conducted under mentorship through the ASPIRE Fellowship</p>
+        </div>
+        <div class="p-6 md:p-8 lg:p-10">
+          <p class="abstract-label">Abstract</p>
+          <div class="rounded-2xl border border-dashed border-slate-200 bg-mist/60 px-6 py-10 text-center">
+            <p class="font-display font-semibold text-navy">Coming soon.</p>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ TIMELINE / JOURNEY ============ -->
-<section class="py-16 px-6">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="reveal font-display text-2xl font-bold text-navy mb-10 text-center">My journey</h2>
-    <div class="space-y-8">
-      <div class="reveal flex gap-5">
-        <div class="flex flex-col items-center">
-          <span class="w-3 h-3 rounded-full bg-ocean mt-1.5"></span>
-          <span class="flex-1 w-px bg-slate-200 mt-2"></span>
+<!-- ============ BEYOND SCIENCE + PHOTO GALLERY ============ -->
+<section class="py-20 md:py-28 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal text-center max-w-3xl mx-auto mb-12">
+      <p class="eyebrow">Beyond science</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-5">A little more about me</h2>
+      <p class="text-slate leading-relaxed">
+        There’s more to me than research and veterinary medicine. I also enjoy playing piano, badminton, running, spending time with my dog, and finding time for the people and experiences that keep me curious.
+      </p>
+    </div>
+
+    <div class="reveal">
+      <h3 class="font-display text-2xl font-bold text-navy text-center mb-3">A Few Moments Along the Way</h3>
+      <p class="text-sm text-slate text-center mb-8">Use the arrows or swipe to move through the gallery.</p>
+
+      <div class="about-gallery-shell" id="aboutGallery" tabindex="0" aria-label="Sandra's photo gallery">
+        <div class="about-gallery-frame">
+          <button class="about-gallery-button about-gallery-prev focus-ring" type="button" aria-label="Previous photo">&#8249;</button>
+          <div class="about-gallery-viewport">
+            <div class="about-gallery-track">
+              <figure class="about-gallery-slide">
+                <div class="about-gallery-placeholder">
+                  <div class="about-gallery-placeholder-inner">
+                    <div class="about-gallery-placeholder-icon">🐾</div>
+                    <p class="font-display text-xl font-bold mb-2">Photo with Teddy</p>
+                    <p class="text-sm text-slate">Your photo will go here when you’re ready to add it.</p>
+                  </div>
+                </div>
+                <figcaption class="about-gallery-caption">Teddy — one of my favorite reasons to slow down and enjoy the everyday moments.</figcaption>
+              </figure>
+
+              <figure class="about-gallery-slide">
+                <div class="about-gallery-placeholder">
+                  <div class="about-gallery-placeholder-inner">
+                    <div class="about-gallery-placeholder-icon">🏸</div>
+                    <p class="font-display text-xl font-bold mb-2">Badminton</p>
+                    <p class="text-sm text-slate">A tournament, medal, or team photo can go here.</p>
+                  </div>
+                </div>
+                <figcaption class="about-gallery-caption">Badminton has taken me to competitions across the country and taught me a lot about focus, resilience, and teamwork.</figcaption>
+              </figure>
+
+              <figure class="about-gallery-slide">
+                <div class="about-gallery-placeholder">
+                  <div class="about-gallery-placeholder-inner">
+                    <div class="about-gallery-placeholder-icon">🔬</div>
+                    <p class="font-display text-xl font-bold mb-2">Research</p>
+                    <p class="text-sm text-slate">Add a research, presentation, or laboratory photo here.</p>
+                  </div>
+                </div>
+                <figcaption class="about-gallery-caption">Research has become one of my favorite ways to turn curiosity into questions I can actually investigate.</figcaption>
+              </figure>
+
+              <figure class="about-gallery-slide">
+                <div class="about-gallery-placeholder">
+                  <div class="about-gallery-placeholder-inner">
+                    <div class="about-gallery-placeholder-icon">🎹</div>
+                    <p class="font-display text-xl font-bold mb-2">Piano &amp; Music</p>
+                    <p class="text-sm text-slate">A piano, performance, or teaching photo can go here.</p>
+                  </div>
+                </div>
+                <figcaption class="about-gallery-caption">Music is another important part of my life, both through playing piano and sharing it with others through teaching.</figcaption>
+              </figure>
+
+              <figure class="about-gallery-slide">
+                <div class="about-gallery-placeholder">
+                  <div class="about-gallery-placeholder-inner">
+                    <div class="about-gallery-placeholder-icon">✨</div>
+                    <p class="font-display text-xl font-bold mb-2">A Moment That Feels Like Me</p>
+                    <p class="text-sm text-slate">Use this spot for a favorite candid or personal photo.</p>
+                  </div>
+                </div>
+                <figcaption class="about-gallery-caption">Not every meaningful moment fits neatly into a category — and those are often some of the best ones.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <button class="about-gallery-button about-gallery-next focus-ring" type="button" aria-label="Next photo">&#8250;</button>
         </div>
-        <div class="pb-2">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-1">[Year]</p>
-          <p class="text-sm text-slate leading-relaxed"><!-- PLACEHOLDER --> [Describe a milestone &mdash; where you started.]</p>
-        </div>
-      </div>
-      <div class="reveal flex gap-5">
-        <div class="flex flex-col items-center">
-          <span class="w-3 h-3 rounded-full bg-ocean mt-1.5"></span>
-          <span class="flex-1 w-px bg-slate-200 mt-2"></span>
-        </div>
-        <div class="pb-2">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-1">[Year]</p>
-          <p class="text-sm text-slate leading-relaxed"><!-- PLACEHOLDER --> [Describe a turning point or a project you began.]</p>
-        </div>
-      </div>
-      <div class="reveal flex gap-5">
-        <div class="flex flex-col items-center">
-          <span class="w-3 h-3 rounded-full bg-ocean mt-1.5"></span>
-        </div>
-        <div class="pb-2">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-1">2026</p>
-          <p class="text-sm text-slate leading-relaxed">Launched this website as a home for writing, interviews, and resources.</p>
-        </div>
+        <div class="about-gallery-dots" aria-label="Choose a photo"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ CONTACT CTA ============ -->
-<section class="pb-24 px-6 text-center">
-  <a href="contact.html" class="reveal btn-primary focus-ring inline-block">Get in touch &rarr;</a>
+<section class="px-6 pb-24 md:pb-28">
+  <div class="max-w-5xl mx-auto text-center">
+    <div class="reveal contact-cta-card rounded-3xl px-8 py-12 md:px-14 md:py-14 relative overflow-hidden">
+      <div class="contact-cta-orb contact-cta-orb-one" aria-hidden="true"></div>
+      <div class="contact-cta-orb contact-cta-orb-two" aria-hidden="true"></div>
+      <div class="relative">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-navy mb-3">Let’s connect</h2>
+        <p class="text-slate mb-7 max-w-lg mx-auto">Have a question, a resource to share, or someone you think I should interview? I’d love to hear from you.</p>
+        <a href="contact.html" class="contact-cta-button focus-ring inline-block">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </div>
 </section>
+
 <footer class="site-footer mt-16 px-6 pb-10">
   <!-- Newsletter signup is part of the shared footer -->
   <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
@@ -197,7 +440,7 @@
           Receive an occasional email when a new article, interview, or resource is added.
         </p>
       </div>
-  
+
       <!-- Newsletter form connected to Buttondown: beyond_the_leash -->
       <form
         class="newsletter-form"
@@ -217,7 +460,7 @@
         <input type="hidden" name="embed" value="1">
         <button class="newsletter-button focus-ring" type="submit">Subscribe</button>
       </form>
-  
+
       <p class="newsletter-privacy">
         Your email will only be used for website updates. You can unsubscribe at any time.
       </p>
@@ -237,5 +480,68 @@
   </div>
 </footer>
 
+<script>
+  (function () {
+    const gallery = document.getElementById('aboutGallery');
+    if (!gallery) return;
+
+    const track = gallery.querySelector('.about-gallery-track');
+    const slides = Array.from(gallery.querySelectorAll('.about-gallery-slide'));
+    const prev = gallery.querySelector('.about-gallery-prev');
+    const next = gallery.querySelector('.about-gallery-next');
+    const dotsWrap = gallery.querySelector('.about-gallery-dots');
+    let index = 0;
+    let touchStartX = null;
+
+    const dots = slides.map(function (_, i) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'about-gallery-dot focus-ring';
+      dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      dot.addEventListener('click', function () {
+        index = i;
+        update();
+      });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function update() {
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      slides.forEach(function (slide, i) {
+        slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      });
+      dots.forEach(function (dot, i) {
+        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+    }
+
+    function go(direction) {
+      index = (index + direction + slides.length) % slides.length;
+      update();
+    }
+
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+
+    gallery.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowLeft') go(-1);
+      if (event.key === 'ArrowRight') go(1);
+    });
+
+    gallery.addEventListener('touchstart', function (event) {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    gallery.addEventListener('touchend', function (event) {
+      if (touchStartX === null) return;
+      const delta = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 45) go(delta > 0 ? -1 : 1);
+      touchStartX = null;
+    }, { passive: true });
+
+    update();
+  })();
+</script>
 </body>
 </html>
