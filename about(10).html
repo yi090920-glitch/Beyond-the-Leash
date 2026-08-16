@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Sandra Chen — Beyond the Leash with Sandra</title>
+<meta name="description" content="Meet Sandra Chen and learn about her interests in veterinary medicine, animal science, research, One Health, and the story behind Beyond the Leash with Sandra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+<style>
+  /* About-page-only layout helpers. Colors and typography come from styles.css. */
+  .about-role-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem .9rem;
+    margin-top: 1.35rem;
+    color: var(--ocean);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .about-role-dot {
+    width: .24rem;
+    height: .24rem;
+    border-radius: 9999px;
+    background: var(--sky);
+  }
+  .story-copy p + p,
+  .abstract-copy p + p {
+    margin-top: 1rem;
+  }
+  .about-bio-list {
+    position: relative;
+    padding-left: 1.4rem;
+    border-top: 1px solid rgba(127, 174, 221, .42);
+  }
+  .about-bio-list::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, var(--deep), var(--sky), var(--baby));
+  }
+  .about-bio-row {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(127, 174, 221, .28);
+  }
+  .about-bio-label {
+    position: relative;
+    padding-top: .15rem;
+    padding-left: .85rem;
+    color: var(--ocean);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .about-bio-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .52rem;
+    width: .34rem;
+    height: .34rem;
+    border-radius: 9999px;
+    background: var(--sky);
+  }
+  .about-bio-text {
+    color: var(--slate);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+  .about-bio-row:first-child .about-bio-text {
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .story-grid {
+    display: grid;
+    gap: 3rem;
+  }
+  .story-item {
+    position: relative;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(46, 92, 154, .42);
+  }
+  .story-item::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 4.5rem;
+    height: 2px;
+    background: var(--ocean);
+  }
+  .story-number {
+    display: block;
+    margin-bottom: .75rem;
+    color: var(--ocean);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+  .research-mentorship {
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+    width: fit-content;
+    margin-top: 1.15rem;
+    padding: .55rem .85rem .55rem .9rem;
+    border-left: 3px solid var(--ocean);
+    border-radius: .35rem;
+    background: rgba(255,255,255,.62);
+    line-height: 1.5;
+  }
+  .research-mentorship-label {
+    flex: 0 0 auto;
+    color: var(--ocean);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .research-mentorship-value {
+    color: var(--deep);
+    font-size: .82rem;
+    font-weight: 600;
+  }
+  .abstract-label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--ocean);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .intro-section {
+    background:
+      radial-gradient(circle at 10% 20%, rgba(191,219,254,.24), transparent 22rem),
+      #ffffff;
+  }
+  .why-section {
+    background: linear-gradient(180deg, rgba(244,247,251,.76), rgba(255,255,255,.96));
+  }
+  .section-title-accent {
+    position: relative;
+    display: inline-block;
+  }
+  .section-title-accent::after {
+    content: '';
+    display: block;
+    width: 3.25rem;
+    height: 3px;
+    margin-top: .7rem;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--deep), var(--sky));
+  }
+
+  /* Research section — same soft-blue visual language as the rest of the site. */
+  .research-section {
+    background:
+      radial-gradient(circle at 86% 12%, rgba(191, 219, 254, .38), transparent 25rem),
+      radial-gradient(circle at 8% 78%, rgba(127, 174, 221, .12), transparent 24rem),
+      var(--mist);
+  }
+  .research-card {
+    overflow: hidden;
+    border: 1px solid rgba(127, 174, 221, .28);
+    border-radius: .75rem;
+    background: #ffffff;
+    box-shadow: 0 18px 42px -34px rgba(15, 38, 71, .45);
+  }
+  .research-card-header {
+    background: linear-gradient(135deg, rgba(239,246,255,.98), rgba(219,234,254,.52));
+    border-bottom: 1px solid rgba(127, 174, 221, .24);
+  }
+  .research-card-header:last-child { border-bottom: 0; }
+  .section-kicker-dot::before {
+    content: '';
+    display: inline-block;
+    width: .38rem;
+    height: .38rem;
+    margin-right: .45rem;
+    border-radius: 9999px;
+    background: var(--sky);
+    vertical-align: .08rem;
+  }
+
+  /* Photo gallery — intentionally uses the same card / blue treatment as the site. */
+  .about-gallery-shell {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .about-gallery-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(127, 174, 221, .34);
+    border-radius: .75rem;
+    background: #ffffff;
+    box-shadow: 0 18px 42px -34px rgba(15, 38, 71, .48);
+  }
+  .about-gallery-frame::before {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--deep), var(--sky), var(--baby));
+  }
+  .about-gallery-viewport { overflow: hidden; }
+  .about-gallery-track {
+    display: flex;
+    transition: transform .42s cubic-bezier(.22,.8,.24,1);
+    will-change: transform;
+  }
+  .about-gallery-slide {
+    min-width: 100%;
+    margin: 0;
+  }
+  .about-gallery-placeholder {
+    aspect-ratio: 16 / 10;
+    min-height: 330px;
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(135deg, rgba(239,246,255,.96), rgba(219,234,254,.62)),
+      radial-gradient(circle at 82% 18%, rgba(127,174,221,.24), transparent 18rem);
+    color: rgba(46, 92, 154, .44);
+  }
+  .about-gallery-placeholder svg {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  .about-gallery-button {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(127, 174, 221, .45);
+    border-radius: 9999px;
+    background: rgba(255,255,255,.92);
+    color: var(--navy);
+    box-shadow: 0 12px 28px -18px rgba(15,38,71,.7);
+    font-size: 1.35rem;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .about-gallery-button:hover {
+    transform: translateY(-50%) scale(1.04);
+    border-color: var(--ocean);
+    background: #fff;
+  }
+  .about-gallery-prev { left: 1rem; }
+  .about-gallery-next { right: 1rem; }
+  .about-gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 1.25rem;
+  }
+  .about-gallery-dot {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 9999px;
+    background: #CBD5E1;
+    transition: width .2s ease, background .2s ease;
+  }
+  .about-gallery-dot[aria-current="true"] {
+    width: 1.4rem;
+    background: var(--ocean);
+  }
+  /* Slightly tighter box corners on the About page. */
+  .about-page .contact-cta-card,
+  .about-page .newsletter-card {
+    border-radius: .75rem !important;
+  }
+  @media (min-width: 768px) {
+    .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
+    .story-item { padding-top: 2.35rem; }
+  }
+  @media (max-width: 640px) {
+    .about-role-dot { display: none; }
+    .about-bio-list { padding-left: 1rem; }
+    .about-bio-row { grid-template-columns: 1fr; gap: .35rem; padding: 1rem 0; }
+    .research-mentorship { align-items: flex-start; flex-direction: column; gap: .2rem; }
+    .about-role-line { gap: .45rem 1rem; }
+    .about-gallery-placeholder { min-height: 280px; aspect-ratio: 4 / 5; }
+    .about-gallery-prev { left: .7rem; }
+    .about-gallery-next { right: .7rem; }
+  }
+</style>
+</head>
+<body class="about-page bg-white text-ink antialiased" id="top">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+        Beyond the Leash with Sandra
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link focus-ring rounded">Home</a>
+        <a href="about.html" class="nav-link nav-active focus-ring rounded" aria-current="page">About</a>
+        <a href="blog.html" class="nav-link focus-ring rounded">Blog</a>
+        <a href="resources.html" class="nav-link focus-ring rounded">Resources</a>
+        <a href="interviews.html" class="nav-link focus-ring rounded">Interviews</a>
+        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="index.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Home</a>
+      <a href="about.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">About</a>
+      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT HERO ============ -->
+<section class="relative pt-40 pb-20 md:pt-52 md:pb-24 px-6 overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto text-center relative">
+    <p class="reveal eyebrow">About me</p>
+    <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">Hi, I’m Sandra.</h1>
+    <div class="reveal about-role-line" aria-label="Student, researcher, animal lover, and lifelong learner">
+      <span>Student</span><span class="about-role-dot" aria-hidden="true"></span>
+      <span>Researcher</span><span class="about-role-dot" aria-hidden="true"></span>
+      <span>Animal Lover</span><span class="about-role-dot" aria-hidden="true"></span>
+      <span>Lifelong Learner</span>
+    </div>
+    <p class="reveal mt-7 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+      Exploring veterinary medicine through science, curiosity, and One Health.
+    </p>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6"><div class="grain-line"></div></div>
+
+<!-- ============ INTRODUCTION ============ -->
+<section class="intro-section py-20 md:py-24 px-6">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-[0.75fr_1.6fr] gap-10 md:gap-16 items-start">
+    <div class="reveal">
+      <p class="eyebrow">A little about me</p>
+      <h2 class="section-title-accent font-display text-2xl md:text-3xl font-bold text-navy leading-tight">Curiosity shaped by animals, medicine, and research.</h2>
+    </div>
+    <div class="reveal about-bio-list">
+      <div class="about-bio-row">
+        <p class="about-bio-label">Background</p>
+        <p class="about-bio-text">I’m Sandra Chen, a student from Jericho, New York, with a passion for veterinary medicine, animal science, and research.</p>
+      </div>
+      <div class="about-bio-row">
+        <p class="about-bio-label">My path</p>
+        <p class="about-bio-text">I’ve always been drawn to both animals and medicine, so veterinary medicine felt like a natural fit. As I began exploring the field more deeply through shadowing opportunities, research, and animal science advocacy, that initial interest only grew stronger. Each experience has shown me another side of veterinary medicine and has continued to solidify my passion for pursuing it as a career.</p>
+      </div>
+      <div class="about-bio-row">
+        <p class="about-bio-label">Beyond science</p>
+        <p class="about-bio-text">Outside of science, I enjoy playing piano, badminton, running, and spending time with my dog.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY VET MED + WHY BTL ============ -->
+<section class="why-section py-20 md:py-24 px-6 border-y border-slate-100">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal mb-12">
+      <p class="eyebrow">What drives me</p>
+      <h2 class="section-title-accent font-display text-3xl md:text-4xl font-bold text-navy">The ideas behind my work</h2>
+    </div>
+    <div class="story-grid">
+      <article class="reveal story-item">
+        <span class="story-number">01</span>
+        <h3 class="font-display text-2xl font-bold text-navy mb-5">Why Veterinary Medicine</h3>
+        <div class="story-copy text-slate leading-relaxed">
+          <p>What excites me most about veterinary medicine is how many different areas it brings together. It combines science and medicine with the opportunity to improve animal health, while also connecting to research, public health, and the broader One Health perspective.</p>
+          <p>The more I’ve learned about the field, the more I’ve realized that veterinary medicine extends far beyond the clinic. That broader view is a large part of what inspired me to create <strong class="text-navy">Beyond the Leash with Sandra</strong>.</p>
+        </div>
+      </article>
+
+      <article class="reveal story-item">
+        <span class="story-number">02</span>
+        <h3 class="font-display text-2xl font-bold text-navy mb-5">Why Beyond the Leash</h3>
+        <div class="story-copy text-slate leading-relaxed">
+          <p>I created <strong class="text-navy">Beyond the Leash with Sandra</strong> as a space to explore animal health beyond the traditional image of veterinary medicine.</p>
+          <p>Through research, interviews, writing, and resources, I hope to share what I’m learning while highlighting the vital connections between animal, human, and environmental health.</p>
+          <p>My goal is to make these ideas more approachable, spark curiosity, and encourage others to see animal health as part of a much larger and deeply interconnected picture.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="research-section py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-3xl mx-auto text-center mb-14">
+      <p class="eyebrow section-kicker-dot">Research</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-5">Research interests &amp; projects</h2>
+      <p class="text-slate leading-relaxed">
+        Research has given me the opportunity to explore the scientific side of veterinary medicine more deeply and to better understand how discoveries in animal health can also contribute to our understanding of human disease.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <article class="reveal research-card">
+        <div class="research-card-header p-7 md:p-9">
+          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research Project 01</p>
+          <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight max-w-4xl">
+            Precision Target Discovery for Synovial Fibrosis and Inflammation Using RNA-seq-Driven Regulatory Analysis and Drug Repurposing
+          </h3>
+          <div class="research-mentorship">
+            <span class="research-mentorship-label">Mentorship</span>
+            <span class="research-mentorship-value">University of Pennsylvania School of Veterinary Medicine</span>
+          </div>
+        </div>
+        <div class="p-7 md:p-9 abstract-copy text-slate leading-relaxed">
+          <p class="abstract-label">Abstract</p>
+          <p>Canine cranial cruciate ligament (CCL) injuries are a common orthopedic condition inflicting joint instability, pain, and chronic synovial fibrosis, contributing to post-traumatic osteoarthritis (PTOA) development. These biological alterations to the damaged knee are often paralleled in human joint diseases as well, supporting the value of the canine model in further understanding the underlying process behind osteoarthritis. Despite this relevance, systematic pipelines connecting biological data to actionable therapeutic targets are limited.</p>
+          <p>This study aimed to identify dysregulated genes in CCL-injured canine synovium and rank candidate genes with Food and Drug Administration (FDA)-approved drugs in order of therapeutic potential. RNA-sequencing data from CCL-injured and healthy canine synovium were filtered for genes statistically significant based on an adjusted p-value &lt;0.05 and a log2 fold-change &gt;1.</p>
+          <p>Top 150 upregulated genes were ranked and g:Profiler was used to map resulting canine genes to human orthologs. Utilizing DAVID, functional enrichment analysis was performed to identify relevant biological pathways with clusters highlighting Il-17 signaling, inflammatory cytokines, collagen deposition, and extracellular matrix organization and remodeling.</p>
+          <p>The resulting 41 genes were analyzed using comprehensive literature review to ultimately identify five high-priority, therapeutically actionable gene-drug pairs: ADAMTS4 and Doxycycline, PTGS2 (COX-2) and Celecoxib, CCR7 and Fingolimod, IL1B and Anakinra, IL6 and Tocilizumab.</p>
+          <p>These findings establish a reliable pipeline linking canine CCL injury transcriptomics to clinically actionable therapeutic treatments, highlighting promising candidates for drug repurposing in PTOA and offering deeper insight into underlying mechanisms of osteoarthritis in both canines and humans.</p>
+        </div>
+      </article>
+
+      <article class="reveal research-card">
+        <div class="research-card-header p-7 md:p-9">
+          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research Project 02</p>
+          <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight max-w-4xl">
+            Investigating Spatial Fibroblast-Immune Crosstalk Driving Osteoarthritis
+          </h3>
+          <div class="research-mentorship">
+            <span class="research-mentorship-label">Mentorship</span>
+            <span class="research-mentorship-value">ASPIRE Fellowship</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND SCIENCE + PHOTO GALLERY ============ -->
+<section class="py-20 md:py-28 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal max-w-3xl mx-auto text-center mb-12">
+      <p class="eyebrow section-kicker-dot">Beyond science</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-5">A few moments along the way</h2>
+      <p class="text-slate leading-relaxed">
+        There’s more to me than research and veterinary medicine. I also enjoy playing piano, badminton, running, spending time with my dog, and finding time for the people and experiences that keep me curious.
+      </p>
+    </div>
+
+    <div class="reveal about-gallery-shell" id="aboutGallery" tabindex="0" aria-label="Sandra's photo gallery">
+      <div class="about-gallery-frame">
+        <button class="about-gallery-button about-gallery-prev focus-ring" type="button" aria-label="Previous photo">&#8249;</button>
+        <div class="about-gallery-viewport">
+          <div class="about-gallery-track">
+            <figure class="about-gallery-slide">
+              <!-- Replace this placeholder with: <img src="images/photo-1.jpg" alt="" class="w-full h-full object-cover"> -->
+              <div class="about-gallery-placeholder" aria-label="Photo placeholder 1">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </figure>
+            <figure class="about-gallery-slide">
+              <div class="about-gallery-placeholder" aria-label="Photo placeholder 2">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </figure>
+            <figure class="about-gallery-slide">
+              <div class="about-gallery-placeholder" aria-label="Photo placeholder 3">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </figure>
+            <figure class="about-gallery-slide">
+              <div class="about-gallery-placeholder" aria-label="Photo placeholder 4">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </figure>
+            <figure class="about-gallery-slide">
+              <div class="about-gallery-placeholder" aria-label="Photo placeholder 5">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </figure>
+          </div>
+        </div>
+        <button class="about-gallery-button about-gallery-next focus-ring" type="button" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="about-gallery-dots" aria-label="Choose a photo"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section class="px-6 py-20 md:py-28">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal contact-cta-card rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
+      <div class="contact-cta-orb contact-cta-orb-one" aria-hidden="true"></div>
+      <div class="contact-cta-orb contact-cta-orb-two" aria-hidden="true"></div>
+      <div class="relative">
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-navy mb-3">Let’s connect</h2>
+        <p class="text-slate mb-8 max-w-md mx-auto">Have a question, a resource to recommend, or someone I should interview? I’d love to hear from you.</p>
+        <a href="contact.html" class="contact-cta-button focus-ring">Contact me &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer mt-16 px-6 pb-10">
+  <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
+    <div class="newsletter-card reveal max-w-6xl mx-auto">
+      <div class="newsletter-copy">
+        <p class="newsletter-eyebrow">Website updates</p>
+        <h2 id="newsletter-heading" class="font-display newsletter-title">Stay updated</h2>
+        <p class="newsletter-description">Receive an occasional email when a new article, interview, or resource is added.</p>
+      </div>
+      <form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/beyond_the_leash" method="post">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" class="newsletter-input" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <input type="hidden" name="embed" value="1">
+        <button class="newsletter-button focus-ring" type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-privacy">Your email will only be used for website updates. You can unsubscribe at any time.</p>
+    </div>
+  </section>
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
+      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const gallery = document.getElementById('aboutGallery');
+  if (!gallery) return;
+  const track = gallery.querySelector('.about-gallery-track');
+  const slides = Array.from(gallery.querySelectorAll('.about-gallery-slide'));
+  const prev = gallery.querySelector('.about-gallery-prev');
+  const next = gallery.querySelector('.about-gallery-next');
+  const dotsWrap = gallery.querySelector('.about-gallery-dots');
+  let index = 0;
+  let startX = null;
+
+  slides.forEach(function (_, i) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'about-gallery-dot focus-ring';
+    dot.setAttribute('aria-label', 'Show photo ' + (i + 1));
+    dot.addEventListener('click', function () { goTo(i); });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach(function (dot, dotIndex) {
+      dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+    });
+  }
+
+  prev.addEventListener('click', function () { goTo(index - 1); });
+  next.addEventListener('click', function () { goTo(index + 1); });
+  gallery.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') goTo(index - 1);
+    if (event.key === 'ArrowRight') goTo(index + 1);
+  });
+  gallery.addEventListener('touchstart', function (event) {
+    startX = event.touches[0].clientX;
+  }, { passive: true });
+  gallery.addEventListener('touchend', function (event) {
+    if (startX === null) return;
+    const delta = event.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 45) goTo(delta > 0 ? index - 1 : index + 1);
+    startX = null;
+  }, { passive: true });
+
+  goTo(0);
+})();
+</script>
+</body>
+</html>
