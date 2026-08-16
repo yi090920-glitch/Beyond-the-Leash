@@ -1,5 +1,5 @@
 /* ============================================================
-   Jordan Hale — shared script
+   Beyond the Leash with Sandra — shared script
    Handles: Tailwind color config, mobile menu toggle,
    and fade-in-on-scroll animations. Loaded on every page.
    ============================================================ */
@@ -37,6 +37,27 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.newsletter-form').forEach(function (form) {
       form.action = 'https://buttondown.com/api/emails/embed-subscribe/' + encodeURIComponent(BUTTONDOWN_USERNAME);
     });
+  }
+
+
+  /* ---------- Homepage: mirror the newest real blog post ---------- */
+  const latestBlogCard = document.getElementById('latest-blog-card');
+  if (latestBlogCard) {
+    fetch('blog.html', { cache: 'no-store' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Could not load blog page');
+        return response.text();
+      })
+      .then(function (html) {
+        const blogDocument = new DOMParser().parseFromString(html, 'text/html');
+        const newestPost = blogDocument.querySelector('article.blog-entry:not(.template-post)');
+        if (newestPost) {
+          latestBlogCard.innerHTML = newestPost.innerHTML;
+        }
+      })
+      .catch(function () {
+        /* Local file previews may block fetch(). The live GitHub Pages site will load it normally. */
+      });
   }
 
   /* ---------- Mobile hamburger menu ---------- */
