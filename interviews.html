@@ -14,19 +14,20 @@
 </head>
 <body class="bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="flex items-center justify-between h-16">
-      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-[110px]">
+      <a href="index.html" class="flex items-center gap-3 font-display font-extrabold text-2xl tracking-tight text-navy focus-ring rounded">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-[120px] w-[120px] object-contain">
         Beyond the Leash with Sandra
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="nav-link focus-ring rounded">Home</a>
-        <a href="about.html" class="nav-link focus-ring rounded">About</a>
-        <a href="blog.html" class="nav-link focus-ring rounded">Blog</a>
-        <a href="resources.html" class="nav-link focus-ring rounded">Resources</a>
-        <a href="interviews.html" class="nav-link nav-active focus-ring rounded" aria-current="page">Interviews</a>
-        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+        <a href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a href="about.html" class="nav-link text-base focus-ring rounded">About</a>
+        <a href="blog.html" class="nav-link text-base focus-ring rounded">Blog</a>
+        <a href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a href="interviews.html" class="nav-link nav-active text-base focus-ring rounded" aria-current="page">Interviews</a>
+        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
       </nav>
 
       <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
@@ -49,7 +50,7 @@
   </div>
 </header>
 
-<section class="pt-40 pb-14 px-6">
+<section class="pt-[200px] pb-14 px-6">
   <div class="max-w-4xl mx-auto text-center">
     <p class="reveal eyebrow">Conversations</p>
     <h1 class="reveal font-display text-4xl md:text-5xl font-bold text-navy mb-4">Interviews</h1>
@@ -58,10 +59,16 @@
 </section>
 
 <!-- ============ INTERVIEW GRID ============
-     To add a video: replace the <div class="aspect-video ...">...</div>
-     placeholder inside a card with a real YouTube embed, e.g.:
+     To add another video later: replace the <div class="aspect-video ...">...</div>
+     placeholder inside a card with a real embed, e.g. for Google Drive:
 
-     <div class="aspect-video rounded-xl overflow-hidden">
+     <div class="aspect-video">
+       <iframe class="w-full h-full" src="https://drive.google.com/file/d/YOUR_FILE_ID/preview"
+         title="Interview title" allow="autoplay" allowfullscreen></iframe>
+     </div>
+
+     Or for YouTube:
+     <div class="aspect-video">
        <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
          title="Interview title" frameborder="0" allowfullscreen></iframe>
      </div>
@@ -69,43 +76,20 @@
 <section class="pb-24 px-6">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
-    <!-- Interview 1: has a real link — button is enabled -->
+    <!-- Interview 1: real video embedded via Google Drive -->
     <article class="reveal card !p-0 overflow-hidden">
-      <!-- VIDEO PLACEHOLDER: replace this div with a YouTube <iframe> embed (see comment above) -->
-      <div class="aspect-video bg-gradient-to-br from-deep to-ocean flex items-center justify-center">
-        <span class="text-white/80 text-sm">Video embed goes here</span>
+      <div class="aspect-video">
+        <iframe class="w-full h-full" src="https://drive.google.com/file/d/1ejrBkl2kOq04P93qBwZGVEbXYN79s8w5zgcE4Hw6R5c/preview" title="On building a career from side projects" allow="autoplay" allowfullscreen></iframe>
       </div>
       <div class="p-6">
         <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-2">May 2026 &middot; 32 min</p>
         <h2 class="font-display text-lg font-bold text-navy mb-1">On building a career from side projects</h2>
         <p class="text-sm font-medium text-ink mb-3">[Guest Name] &mdash; [Guest role or organization]</p>
         <p class="text-sm text-slate leading-relaxed mb-5">A conversation about turning a hobby into steady, sustainable work.</p>
-        <div class="flex flex-wrap gap-3">
-          <!-- REPLACE href with the real video link once available -->
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-primary focus-ring text-xs !px-4 !py-2">View interview</a>
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2">Read transcript</a>
-        </div>
       </div>
     </article>
 
-    <!-- Interview 2: has a real link — button is enabled -->
-    <article class="reveal card !p-0 overflow-hidden">
-      <div class="aspect-video bg-gradient-to-br from-ocean to-sky flex items-center justify-center">
-        <span class="text-white/80 text-sm">Video embed goes here</span>
-      </div>
-      <div class="p-6">
-        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-2">April 2026 &middot; 41 min</p>
-        <h2 class="font-display text-lg font-bold text-navy mb-1">What ten years of teaching taught her about learning</h2>
-        <p class="text-sm font-medium text-ink mb-3">[Guest Name] &mdash; [Guest role or organization]</p>
-        <p class="text-sm text-slate leading-relaxed mb-5">On patience, curiosity, and knowing when to stop explaining.</p>
-        <div class="flex flex-wrap gap-3">
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-primary focus-ring text-xs !px-4 !py-2">View interview</a>
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2">Read transcript</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Interview 3: EXAMPLE with no video link yet — button is disabled and labeled "Coming Soon" -->
+    <!-- Interview 2: EXAMPLE with no video link yet — button is disabled and labeled "Coming Soon" -->
     <article class="reveal card !p-0 overflow-hidden opacity-70">
       <div class="aspect-video bg-slate-100 flex items-center justify-center">
         <span class="text-slate text-sm">Video coming soon</span>
@@ -165,9 +149,7 @@
     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
       <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
       <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
-      <!-- TODO: replace these three with your real profile URLs -->
-      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
-      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
+      <!-- TODO: replace with your real LinkedIn URL -->
       <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
       <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>
