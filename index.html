@@ -11,6 +11,12 @@
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
+<style>
+  /* Resources-preview boxes on the home page: keep the card look, but disable the hover lift. */
+  .static-card:hover {
+    transform: none !important;
+  }
+</style>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
@@ -106,11 +112,7 @@
       <div class="relative">
         <div class="absolute -inset-4 bg-baby/50 rounded-3xl -z-10"></div>
         <div class="w-64 h-72 sm:w-72 sm:h-80 rounded-3xl bg-gradient-to-br from-mist to-baby/60 border border-slate-100 flex items-center justify-center overflow-hidden">
-          <!-- PLACEHOLDER: replace this SVG with an <img src="images/your-photo.jpg"> tag -->
-          <svg viewBox="0 0 200 200" class="w-2/3 h-2/3 text-deep/70" fill="none">
-            <circle cx="100" cy="72" r="34" stroke="currentColor" stroke-width="4"/>
-            <path d="M40 168c8-38 40-58 60-58s52 20 60 58" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-          </svg>
+          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="w-full h-full object-cover">
         </div>
       </div>
     </div>
@@ -167,23 +169,22 @@
       <p class="eyebrow">Resources</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Things worth bookmarking</h2>
       <p class="text-slate leading-relaxed mb-8">
-        A running, hand-picked list of tools, reading, and communities I return to &mdash;
-        organized by category so you can find what's useful fast.
+        A running, hand-picked list of organizations, educational resources, programs, and articles I return to.
       </p>
       <a href="resources.html" class="btn-secondary focus-ring">Explore resources &rarr;</a>
     </div>
     <div class="reveal grid grid-cols-2 gap-4">
-      <div class="card !p-5 text-center">
-        <p class="font-display font-bold text-navy">Tools</p>
+      <div class="card static-card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Organizations</p>
       </div>
-      <div class="card !p-5 text-center">
-        <p class="font-display font-bold text-navy">Reading</p>
+      <div class="card static-card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Educational</p>
       </div>
-      <div class="card !p-5 text-center">
-        <p class="font-display font-bold text-navy">Communities</p>
-      </div>
-      <div class="card !p-5 text-center">
+      <div class="card static-card !p-5 text-center">
         <p class="font-display font-bold text-navy">Programs</p>
+      </div>
+      <div class="card static-card !p-5 text-center">
+        <p class="font-display font-bold text-navy">Articles</p>
       </div>
     </div>
   </div>
