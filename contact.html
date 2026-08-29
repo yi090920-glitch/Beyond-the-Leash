@@ -72,7 +72,7 @@
 -->
 <section class="pb-24 px-6">
   <div class="max-w-2xl mx-auto">
-    <form action="https://formspree.io/f/maeynaon" method="POST" class="reveal grid sm:grid-cols-2 gap-4 text-left card">
+    <form id="contactForm" action="https://formspree.io/f/maeynaon" method="POST" class="reveal grid sm:grid-cols-2 gap-4 text-left card">
       <div class="sm:col-span-1">
         <label for="name" class="block text-xs font-semibold text-navy mb-1.5">Name</label>
         <input id="name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow">
@@ -90,7 +90,8 @@
         <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-deep focus:ring-2 focus:ring-baby/60 outline-none transition-shadow resize-none"></textarea>
       </div>
       <div class="sm:col-span-2">
-        <button type="submit" class="btn-primary focus-ring">Send message</button>
+        <button id="contactSubmitBtn" type="submit" class="btn-primary focus-ring">Send message</button>
+        <p id="contactFormStatus" class="text-sm mt-3" role="status" aria-live="polite"></p>
       </div>
     </form>
   </div>
@@ -177,6 +178,47 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function () {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const status = document.getElementById('contactFormStatus');
+  const submitBtn = document.getElementById('contactSubmitBtn');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.textContent = '';
+    status.classList.remove('text-red-600', 'text-green-700');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+      .then(function (response) {
+        if (response.ok) {
+          form.reset();
+          status.textContent = "Thanks! Your message has been sent — I'll get back to you soon.";
+          status.classList.add('text-green-700');
+        } else {
+          status.textContent = "Something went wrong sending your message. Please try again or email me directly.";
+          status.classList.add('text-red-600');
+        }
+      })
+      .catch(function () {
+        status.textContent = "Something went wrong sending your message. Please try again or email me directly.";
+        status.classList.add('text-red-600');
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+      });
+  });
+})();
+</script>
 
 </body>
 </html>
