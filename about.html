@@ -228,19 +228,12 @@
     min-width: 100%;
     margin: 0;
   }
-  .about-gallery-placeholder {
+  .about-gallery-slide img {
+    display: block;
+    width: 100%;
     aspect-ratio: 16 / 10;
     min-height: 330px;
-    display: grid;
-    place-items: center;
-    background:
-      linear-gradient(135deg, rgba(239,246,255,.96), rgba(219,234,254,.62)),
-      radial-gradient(circle at 82% 18%, rgba(127,174,221,.24), transparent 18rem);
-    color: rgba(46, 92, 154, .44);
-  }
-  .about-gallery-placeholder svg {
-    width: 4.5rem;
-    height: 4.5rem;
+    object-fit: cover;
   }
   .about-gallery-button {
     position: absolute;
@@ -298,7 +291,7 @@
     .about-bio-row { grid-template-columns: 1fr; gap: .35rem; padding: 1rem 0; }
     .research-mentorship { align-items: flex-start; flex-direction: column; gap: .2rem; }
     .about-role-line { gap: .45rem 1rem; }
-    .about-gallery-placeholder { min-height: 280px; aspect-ratio: 4 / 5; }
+    .about-gallery-slide img { min-height: 280px; aspect-ratio: 4 / 5; }
     .about-gallery-prev { left: .7rem; }
     .about-gallery-next { right: .7rem; }
   }
@@ -392,6 +385,7 @@
   <div class="max-w-5xl mx-auto">
     <div class="reveal mb-12">
       <p class="eyebrow">What drives me</p>
+      <h2 class="section-title-accent font-display text-3xl md:text-4xl font-bold text-navy">The ideas behind my work</h2>
     </div>
     <div class="story-grid">
       <article class="reveal story-item">
@@ -482,30 +476,19 @@
         <div class="about-gallery-viewport">
           <div class="about-gallery-track">
             <figure class="about-gallery-slide">
-              <!-- Replace this placeholder with: <img src="images/photo-1.jpg" alt="" class="w-full h-full object-cover"> -->
-              <div class="about-gallery-placeholder" aria-label="Photo placeholder 1">
-                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <img src="images/gallery-1.jpg" alt="Sandra with a dog on the couch" class="w-full h-full object-cover">
             </figure>
             <figure class="about-gallery-slide">
-              <div class="about-gallery-placeholder" aria-label="Photo placeholder 2">
-                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <img src="images/gallery-2.jpg" alt="Sandra feeding a sheep at a farm" class="w-full h-full object-cover">
             </figure>
             <figure class="about-gallery-slide">
-              <div class="about-gallery-placeholder" aria-label="Photo placeholder 3">
-                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <img src="images/gallery-3.jpg" alt="Sandra holding a poodle puppy" class="w-full h-full object-cover">
             </figure>
             <figure class="about-gallery-slide">
-              <div class="about-gallery-placeholder" aria-label="Photo placeholder 4">
-                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <img src="images/gallery-4.jpg" alt="Two dogs in superhero costumes" class="w-full h-full object-cover">
             </figure>
             <figure class="about-gallery-slide">
-              <div class="about-gallery-placeholder" aria-label="Photo placeholder 5">
-                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="27" r="5" stroke="currentColor" stroke-width="2"/><path d="M13 47l13-12 9 8 7-6 9 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <img src="images/gallery-5.jpg" alt="A cat resting on a lap" class="w-full h-full object-cover">
             </figure>
           </div>
         </div>
