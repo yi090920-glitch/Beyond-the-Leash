@@ -3,30 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What I learned from a year of asking better questions — Beyond the Leash with Sandra</title>
-<meta name="description" content="A look back at the interviews that changed how I listen — and the questions that fell flat.">
+<title>One Health: One World, One Connection — Beyond the Leash with Sandra</title>
+<meta name="description" content="One Health is the idea that the health of people, animals, plants, and the environment are deeply connected, and that protecting one often means protecting the others.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
+<style>
+  .post-photo {
+    aspect-ratio: 16 / 10;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--mist);
+    border-radius: .75rem;
+  }
+  .post-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .post-copy p + p { margin-top: 1.1rem; }
+  .post-references {
+    border-top: 1px solid rgba(127, 174, 221, .28);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+  }
+  .post-references ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+  .post-references li + li { margin-top: .5rem; }
+</style>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="flex items-center justify-between h-16">
-      <a href="index.html" class="font-display font-extrabold text-lg tracking-tight text-navy focus-ring rounded">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-[110px]">
+      <a href="index.html" class="flex items-center gap-3 font-display font-extrabold text-2xl tracking-tight text-navy focus-ring rounded">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-[120px] w-[120px] object-contain">
         Beyond the Leash with Sandra
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="nav-link focus-ring rounded">Home</a>
-        <a href="about.html" class="nav-link focus-ring rounded">About</a>
-        <a href="blog.html" class="nav-link nav-active focus-ring rounded" aria-current="page">Blog</a>
-        <a href="resources.html" class="nav-link focus-ring rounded">Resources</a>
-        <a href="interviews.html" class="nav-link focus-ring rounded">Interviews</a>
-        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-sm font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+        <a href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a href="about.html" class="nav-link text-base focus-ring rounded">About</a>
+        <a href="blog.html" class="nav-link nav-active text-base focus-ring rounded" aria-current="page">Blog</a>
+        <a href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
+        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
       </nav>
 
       <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
@@ -49,42 +79,41 @@
   </div>
 </header>
 
-<article class="max-w-3xl mx-auto px-6 pt-40 pb-24">
-  <a href="blog.html" class="reveal text-sm font-semibold text-deep hover:text-navy transition-colors focus-ring rounded">&larr; Back to blog</a>
+<article class="pt-[200px] pb-24 px-6">
+  <div class="max-w-3xl mx-auto">
 
-  <p class="reveal text-xs font-semibold text-ocean uppercase tracking-wide mt-8 mb-4">Reflection &middot; June 2, 2026</p>
-  <h1 class="reveal font-display text-3xl md:text-4xl font-bold text-navy mb-8 leading-tight">
-    What I learned from a year of asking better questions
-  </h1>
+    <a href="blog.html" class="reveal inline-block text-sm font-semibold text-deep hover:text-navy focus-ring rounded mb-8">&larr; Back to Blog</a>
 
-  <div class="reveal text-slate leading-relaxed space-y-6 text-[1.05rem]">
-    
-    <p>
-      A year ago I recorded my first interview with a shaky microphone and a list of
-      questions I was fairly sure were bad. Looking back at that list now, most of them
-      were &mdash; too broad, too easy to answer with a single word, or built to confirm
-      something I already believed rather than to actually learn something.
-    </p>
-    <p>
-      <!-- PLACEHOLDER TEXT: replace this paragraph and the ones below with your own writing.
-           Keep the <h2> heading structure if you want the same visual rhythm as the rest of the site. -->
-      [Replace this placeholder paragraph with your own writing.]
-    </p>
-    <h2 class="font-display text-xl font-bold text-navy pt-4">The questions that actually worked</h2>
-    <p>
-      [Write about what you learned here. Short paragraphs, specific examples, and a
-      conversational tone tend to read best on the web.]
-    </p>
-    <h2 class="font-display text-xl font-bold text-navy pt-4">What I'd tell myself a year ago</h2>
-    <p>
-      [Close with a takeaway or reflection. You can add photos, quotes, or an embedded
-      video here later &mdash; just add ordinary HTML tags inside this article section.]
-    </p>
+    <p class="reveal text-xs font-semibold text-ocean uppercase tracking-wide mb-3">General Info</p>
+    <h1 class="reveal font-display text-3xl md:text-4xl font-bold text-navy leading-tight mb-4">One Health: One World, One Connection</h1>
+    <p class="reveal text-sm text-slate mb-8">September 1, 2026</p>
+
+    <div class="reveal post-photo mb-10">
+      <!-- REPLACE: <div class="post-photo mb-10"><img src="images/blog-one-health.jpg" alt="One Health diagram showing human, animal, and environmental health"></div> -->
+      <span class="text-slate text-sm">Photo coming soon</span>
+    </div>
+
+    <div class="reveal post-copy text-slate leading-relaxed">
+      <p>Think about the term, health. Perhaps you think of a healthy diet or the doctors office, all tied to human health. A few may think about a vets office, focusing on animal health, or even climate change imaging environmental health. But either way, each viewpoint is imagined as its own separate world. We often separate the term health into these three categories. But at its core, the idea of health is most truly embodied by the term One Health. One Health is the idea that the health of people, animals, plants, and the environment are deeply connected, and that protecting one often means protecting the others. As our world becomes increasingly connected through agriculture, travel, urbanization, and changing environments, understanding these relationships has become even more important.</p>
+
+      <p>Animals play a significant role in this delicate, global balance. The World Health Organization reports that more than 60% of emerging infectious diseases reported globally originate in animals, both wild and domestic. Beyond this, animal health can influence food safety, food security, antimicrobial resistance, biodiversity, livelihoods, and even the health of entire ecosystems. Hence, the field of animal science becomes critical: studying animal health, nutrition, genetics, behaviour, diseases, and production can teach us far more than how to simply care for animals alone. A healthier livestock population can contribute to a safer and more reliable food system, while monitoring wildlife health can sometimes reveal environmental or infectious threats before those same threats seriously affect people.</p>
+
+      <p>What excites me most about One Health is that it shifts the question from &ldquo;How do we solve this problem?&rdquo; to &ldquo;How is this problem connected to everything around it?&rdquo; Improving health often requires collaboration across hospitals, veterinary clinics, laboratories, farms, and environmental fields. Challenges such as zoonotic disease, antimicrobial resistance, climate change, food security, and habitat disruption do not fit within traditional scientific boundaries. One Health bridges these perspectives together to create solutions that are preventative rather than reactive. Ultimately, it reminds us that when the health of our world is interconnected, our solutions should be too.</p>
+    </div>
+
+    <div class="reveal post-references">
+      <h2 class="font-display text-lg font-bold text-navy mb-4">References</h2>
+      <ol class="text-sm text-slate leading-relaxed">
+        <li>Centers for Disease Control and Prevention (CDC). About One Health.</li>
+        <li>World Health Organization (WHO). One Health.</li>
+        <li>U.S. Department of Agriculture, Animal and Plant Health Inspection Service (USDA APHIS). One Health.</li>
+        <li>World Organisation for Animal Health (WOAH). One Health.</li>
+      </ol>
+    </div>
 
   </div>
-
-  <div class="flex items-center justify-between mt-14 pt-8 border-t border-slate-100"><span></span><a href="post-2.html" class="text-sm font-semibold text-deep hover:text-navy transition-colors focus-ring rounded">Building this site slowly, on purpose &rarr;</a></div>
 </article>
+
 <footer class="site-footer mt-16 px-6 pb-10">
   <!-- Newsletter signup is part of the shared footer -->
   <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
@@ -127,10 +156,7 @@
     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
       <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
       <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
-      <!-- TODO: replace these three with your real profile URLs -->
-      <a href="https://twitter.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">Twitter / X</a>
-      <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">YouTube</a>
-      <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
       <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>
   </div>
