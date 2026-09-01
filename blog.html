@@ -31,81 +31,6 @@
   .blog-photo-empty {
     background: var(--mist);
   }
-
-  /* Timeline / journal layout for the blog list. */
-  .blog-timeline {
-    position: relative;
-    padding-left: 1.75rem;
-  }
-  .blog-timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: .5rem;
-    bottom: .5rem;
-    width: 3px;
-    border-radius: 9999px;
-    background: linear-gradient(180deg, var(--deep), var(--sky), var(--baby));
-  }
-  .blog-timeline-item {
-    position: relative;
-    padding: 0 0 3rem 0;
-  }
-  .blog-timeline-item:last-child { padding-bottom: 0; }
-  .blog-timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -1.75rem;
-    top: .4rem;
-    width: .7rem;
-    height: .7rem;
-    border-radius: 9999px;
-    background: var(--ocean);
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 2px rgba(127, 174, 221, .45);
-  }
-  .blog-timeline-date {
-    display: block;
-    color: var(--ocean);
-    font-size: .78rem;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: .9rem;
-  }
-  .blog-timeline-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .blog-timeline-photo {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: .75rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-  }
-  .blog-timeline-photo.blog-photo-empty { background: var(--mist); }
-  .blog-timeline-photo img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  @media (min-width: 640px) {
-    .blog-timeline-body {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 1.75rem;
-    }
-    .blog-timeline-photo {
-      width: 13rem;
-      flex: 0 0 auto;
-    }
-  }
 </style>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
@@ -154,57 +79,51 @@
   </div>
 </section>
 
-<!-- ============ BLOG TIMELINE ============
+<!-- ============ BLOG GRID ============
      HOMEPAGE LINKING: the homepage automatically displays the FIRST article with class "blog-entry"
      that does NOT also have class "template-post". The real post below already uses "blog-entry"
      (no "template-post" class), so the homepage will pick it up automatically.
 
      CATEGORIES currently in use: Research & Science, General Info, Personal Notes.
 
-     TO ADD A NEW POST: copy one whole <div class="blog-timeline-item">...</div> block
-     (from "Coming soon" onward works well as a starting template) and paste it in
-     date order — newest at the top.
-
-     TO ADD A PHOTO to a post: replace the <div class="blog-timeline-photo blog-photo-empty">...</div>
+     TO ADD A PHOTO to a post card: replace the <div class="blog-photo blog-photo-empty">...</div>
      placeholder with:
-       <div class="blog-timeline-photo">
+       <div class="blog-photo">
          <img src="images/your-photo.jpg" alt="...">
        </div>
 -->
 <section class="pb-24 px-6">
-  <div class="max-w-3xl mx-auto blog-timeline">
+  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
 
-    <div class="reveal blog-timeline-item">
-      <span class="blog-timeline-date">September 1, 2026</span>
-      <div class="blog-timeline-body">
-        <div class="blog-timeline-photo">
-          <img src="images/blog-one-health.jpg" alt="One Health diagram showing human, animal, and environmental health">
-        </div>
-        <div class="flex-1">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-2">General Info</p>
-          <h2 class="font-display text-xl font-bold text-navy mb-2 leading-snug">
-            <a href="post-1.html" class="hover:text-deep focus-ring rounded">One Health: One World, One Connection</a>
-          </h2>
-          <p class="text-sm text-slate leading-relaxed mb-3">How the health of people, animals, and the environment are more connected than we often realize &mdash; and why that connection matters more than ever.</p>
-          <a href="post-1.html" class="text-xs font-semibold text-deep hover:text-navy focus-ring rounded">Read more &rarr;</a>
+    <article class="reveal card !p-0 overflow-hidden blog-entry">
+      <div class="blog-photo">
+        <img src="images/blog-one-health.jpg" alt="One Health diagram showing human, animal, and environmental health">
+      </div>
+      <div class="p-6">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">General Info</p>
+        <h2 class="font-display text-xl font-bold text-navy mb-3 leading-snug">One Health: One World, One Connection</h2>
+        <p class="text-sm text-slate leading-relaxed mb-5">How the health of people, animals, and the environment are more connected than we often realize &mdash; and why that connection matters more than ever.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>September 1, 2026</span>
+          <a href="post-1.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Read more &rarr;</a>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="reveal blog-timeline-item opacity-70">
-      <span class="blog-timeline-date">[Date]</span>
-      <div class="blog-timeline-body">
-        <div class="blog-timeline-photo blog-photo-empty">
-          <span class="text-slate text-sm">Photo coming soon</span>
-        </div>
-        <div class="flex-1">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-2">[Category]</p>
-          <h2 class="font-display text-xl font-bold text-navy mb-2 leading-snug">[Your next post title]</h2>
-          <p class="text-sm text-slate leading-relaxed mb-3">[Short description of the post goes here.]</p>
-          <span class="text-xs font-semibold text-slate">Coming soon</span>
+    <article class="reveal card !p-0 overflow-hidden opacity-70">
+      <div class="blog-photo blog-photo-empty">
+        <span class="text-slate text-sm">Photo coming soon</span>
+      </div>
+      <div class="p-6">
+        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research &amp; Science</p>
+        <h2 class="font-display text-xl font-bold text-navy mb-3 leading-snug">Signals in Milk: Early Detection of Bovine Mastitis Using Milk Biomarkers</h2>
+        <p class="text-sm text-slate leading-relaxed mb-5">A look at bovine mastitis and why catching it early through milk biomarkers matters for animal health and dairy production.</p>
+        <div class="flex items-center justify-between text-xs text-slate">
+          <span>[Date]</span>
+          <span class="font-semibold text-slate">Coming soon</span>
         </div>
       </div>
-    </div>
+    </article>
 
   </div>
 </section>
