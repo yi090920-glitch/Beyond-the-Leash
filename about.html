@@ -197,7 +197,7 @@
 
   /* Photo gallery — intentionally uses the same card / blue treatment as the site. */
   .about-gallery-shell {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
   }
   .about-gallery-frame {
@@ -233,7 +233,7 @@
     display: block;
     width: 100%;
     aspect-ratio: 4 / 5;
-    min-height: 200px;
+    min-height: 420px;
     object-fit: contain;
   }
   .about-gallery-button {
@@ -364,18 +364,27 @@
       <p class="eyebrow">A little about me</p>
       <h2 class="section-title-accent font-display text-2xl md:text-3xl font-bold text-navy leading-tight">Curiosity shaped by animals, medicine, and research.</h2>
     </div>
-    <div class="reveal about-bio-list">
-      <div class="about-bio-row">
-        <p class="about-bio-label">Background</p>
-        <p class="about-bio-text">I’m Sandra Chen, a student from Jericho, New York, with a passion for veterinary medicine, animal science, and research.</p>
+    <div class="reveal flex flex-col sm:flex-row gap-8 items-start">
+      <!--
+        PHOTO — replace the placeholder below with:
+          <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+      -->
+      <div class="w-full sm:w-44 aspect-[4/5] rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center shrink-0">
+        <span class="text-slate text-sm text-center px-3">Photo coming soon</span>
       </div>
-      <div class="about-bio-row">
-        <p class="about-bio-label">Focus</p>
-        <p class="about-bio-text">My interest in veterinary medicine has grown through shadowing, research, and animal science advocacy — each experience revealing another side of the field and reinforcing my drive to pursue it as a career.</p>
-      </div>
-      <div class="about-bio-row">
-        <p class="about-bio-label">Currently</p>
-        <p class="about-bio-text">Continuing veterinary research while building Beyond the Leash with Sandra, a space for exploring animal health beyond the clinic.</p>
+      <div class="about-bio-list flex-1">
+        <div class="about-bio-row">
+          <p class="about-bio-label">Background</p>
+          <p class="about-bio-text">I’m Sandra Chen, a student from Jericho, New York, with a passion for veterinary medicine, animal science, and research.</p>
+        </div>
+        <div class="about-bio-row">
+          <p class="about-bio-label">Focus</p>
+          <p class="about-bio-text">My interest in veterinary medicine has grown through shadowing, research, and animal science advocacy — each experience revealing another side of the field and reinforcing my drive to pursue it as a career.</p>
+        </div>
+        <div class="about-bio-row">
+          <p class="about-bio-label">Currently</p>
+          <p class="about-bio-text">Continuing veterinary research while building Beyond the Leash with Sandra, a space for exploring animal health beyond the clinic.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -386,6 +395,7 @@
   <div class="max-w-5xl mx-auto">
     <div class="reveal mb-12">
       <p class="eyebrow">What drives me</p>
+      <h2 class="section-title-accent font-display text-3xl md:text-4xl font-bold text-navy">The ideas behind my work</h2>
     </div>
     <div class="story-grid">
       <article class="reveal story-item">
@@ -424,7 +434,7 @@
     <div class="space-y-8">
       <article class="reveal research-card">
         <div class="research-card-header p-7 md:p-9">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">2024 - 2026</p>
+          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research Project 01</p>
           <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight max-w-4xl">
             Precision Target Discovery for Synovial Fibrosis and Inflammation Using RNA-seq-Driven Regulatory Analysis and Drug Repurposing
           </h3>
@@ -441,11 +451,26 @@
           <p>The resulting 41 genes were analyzed using comprehensive literature review to ultimately identify five high-priority, therapeutically actionable gene-drug pairs: ADAMTS4 and Doxycycline, PTGS2 (COX-2) and Celecoxib, CCR7 and Fingolimod, IL1B and Anakinra, IL6 and Tocilizumab.</p>
           <p>These findings establish a reliable pipeline linking canine CCL injury transcriptomics to clinically actionable therapeutic treatments, highlighting promising candidates for drug repurposing in PTOA and offering deeper insight into underlying mechanisms of osteoarthritis in both canines and humans.</p>
         </div>
+        <!--
+          PHOTO GALLERY (3 photos) — replace any placeholder below with:
+            <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        -->
+        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
+        </div>
       </article>
 
       <article class="reveal research-card">
         <div class="research-card-header p-7 md:p-9">
-          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">2026 - 2027</p>
+          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research Project 02</p>
           <h3 class="font-display text-2xl md:text-3xl font-bold text-navy leading-tight max-w-4xl">
             Investigating Spatial Fibroblast-Immune Crosstalk Driving Osteoarthritis
           </h3>
@@ -461,6 +486,21 @@
           <p>Heterogeneous fibroblast and immune populations were identified, with prominent OA-associated distinctions among APOD+, inflammatory lining, lining fibroblast and resident macrophage groups, which were prioritized for downstream communication analysis. Ligand-receptor predictions revealed greater inferred fibroblast-macrophage and macrophage-fibroblast communication in OA compared to healthy tissue, with PRG4-CD44 representing one of the most prominent recurrent interactions.</p>
           <p>Spatial analysis identified increased median representation of fibroblast, macrophage, immune, and matrix-remodeling signatures within OA and identified three candidate fibroblast-macrophage communication hubs, although spatial differences were not statistically significant within the limited sample units. Integration of scRNA-seq and spatial transcriptomics prioritized five candidate interactions: PRG4-CD44, FN1-CD44, FN1-PLAUR, TIMP1-CD63, and VIM-CD44.</p>
           <p>Overall, these findings highlight the potentially pivotal role of spatial fibroblast-immune crosstalk within OA pathogenesis, offering a guide to future research and advancements in OA therapeutics.</p>
+        </div>
+        <!--
+          PHOTO GALLERY (3 photos) — replace any placeholder below with:
+            <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        -->
+        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          </div>
         </div>
       </article>
     </div>
