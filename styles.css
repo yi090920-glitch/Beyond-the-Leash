@@ -968,3 +968,11 @@ footer a:hover { transform: translateY(-1px); }
   footer a:hover,
   #mobileMenu a:hover { transform: none; }
 }
+
+/* Photos are wrapped in <picture> to offer a WebP source alongside the JPEG.
+   display:contents keeps the wrapper out of layout so the <img> stays the
+   direct flex/grid child, and every existing rule that targets `img` still
+   applies unchanged. */
+picture {
+  display: contents;
+}
