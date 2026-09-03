@@ -10,8 +10,12 @@
   --ocean: #2E5C9A;
   --sky:   #7FAEDD;
   --baby:  #BFDBFE;
-  --mist:  #F4F7FB;
-  --ink:   #334155;
+  --mist:  #F7F6F3;
+  --ink:   #3A3A3C;
+  /* Warm accent, used sparingly against the blues: eyebrows, the active nav
+     underline, and the warm section band. */
+  --amber: #C9822F;
+  --amber-soft: #FDF3E5;
   --slate: #64748B;
 }
 
@@ -76,7 +80,7 @@ h1, h2, h3, h4, .font-display {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ocean);
+  color: var(--amber);
   margin-bottom: 1rem;
 }
 
@@ -120,7 +124,7 @@ h1, h2, h3, h4, .font-display {
   right: 0;
   bottom: -6px;
   height: 2px;
-  background: var(--ocean);
+  background: var(--amber);
   border-radius: 2px;
 }
 
@@ -413,9 +417,19 @@ h1 {
 }
 
 .bg-mist {
+  background-color: var(--mist);
   background-image:
     linear-gradient(135deg, rgba(255, 255, 255, 0.6), transparent 42%),
     radial-gradient(circle at 85% 18%, rgba(127, 174, 221, 0.12), transparent 20rem);
+}
+
+/* Warm alternative to .bg-mist, so the page bands alternate between two
+   tints instead of repeating the same one. */
+.bg-warm {
+  background-color: var(--amber-soft);
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.6), transparent 42%),
+    radial-gradient(circle at 85% 18%, rgba(201, 130, 47, 0.10), transparent 20rem);
 }
 
 .newsletter-card {

@@ -296,6 +296,132 @@
     .about-gallery-prev { left: .7rem; }
     .about-gallery-next { right: .7rem; }
   }
+
+  /* ============================================================
+     Research cards, rebuilt
+     Each project leads with a one-line plain-language summary and a
+     few topic tags. The full abstract is still there in full, one
+     click away, so the page can be skimmed without losing anything.
+     ============================================================ */
+
+  .research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+  }
+  .research-tag {
+    padding: 0.28rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(191, 219, 254, 0.45);
+    color: var(--deep);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  /* The plain-language line, set apart from the formal abstract. */
+  .research-summary {
+    padding: 1.5rem 1.75rem;
+    border-left: 3px solid var(--sky);
+    background: rgba(244, 247, 251, 0.75);
+  }
+  @media (min-width: 768px) {
+    .research-summary { padding: 1.75rem 2.25rem; }
+  }
+  .research-summary-label {
+    margin-bottom: 0.4rem;
+    color: var(--ocean);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .research-summary-text {
+    color: var(--navy);
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Collapsible abstract ---------- */
+  .research-abstract {
+    border-top: 1px solid rgba(191, 219, 254, 0.6);
+  }
+  .research-abstract > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    /* 44px tall so it is a comfortable tap target. */
+    min-height: 2.75rem;
+    padding: 1rem 1.75rem;
+    color: var(--ocean);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  @media (min-width: 768px) {
+    .research-abstract > summary { padding: 1rem 2.25rem; }
+  }
+  .research-abstract > summary:hover {
+    background: rgba(244, 247, 251, 0.9);
+    color: var(--navy);
+  }
+  /* Hide the default triangle in both engines. */
+  .research-abstract > summary::-webkit-details-marker { display: none; }
+
+  /* A chevron that turns when the abstract opens. */
+  .research-abstract > summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transition: transform 0.25s ease;
+  }
+  .research-abstract[open] > summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+  .research-abstract[open] > summary {
+    color: var(--navy);
+  }
+
+  .research-abstract-body {
+    padding: 0.25rem 1.75rem 1.75rem;
+  }
+  @media (min-width: 768px) {
+    .research-abstract-body { padding: 0.25rem 2.25rem 2.25rem; }
+  }
+
+  /* ---------- Placeholder photos ----------
+     Matches the "coming soon" treatment used on the resources and
+     interviews pages, so an empty slot reads as intentional rather
+     than as a blank white box. */
+  .about-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px dashed rgba(127, 174, 221, 0.75);
+    border-radius: 0.75rem;
+    background:
+      repeating-linear-gradient(135deg, rgba(191, 219, 254, 0.22) 0 10px, transparent 10px 20px),
+      var(--mist);
+    color: var(--slate);
+    font-size: 0.72rem;
+    text-align: center;
+  }
+  .about-photo-placeholder span { padding: 0 0.4rem; }
+
+  .about-photo-placeholder-lg {
+    border-radius: 1rem;
+    font-size: 0.85rem;
+  }
 </style>
 
 <!-- SEO:START -->
@@ -457,8 +583,8 @@
       (The <source> line is optional - a plain <img> still works. To make a .webp,
       any online JPEG-to-WebP converter will do.)
     -->
-      <div class="w-full sm:w-44 aspect-[4/5] rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center shrink-0">
-        <span class="text-slate text-sm text-center px-3">Photo coming soon</span>
+      <div class="about-photo-placeholder about-photo-placeholder-lg w-full sm:w-44 aspect-[4/5] shrink-0">
+        <span>Photo coming soon</span>
       </div>
       <div class="about-bio-list flex-1">
         <div class="about-bio-row">
@@ -530,15 +656,30 @@
             <span class="research-mentorship-label">Mentorship</span>
             <span class="research-mentorship-value">University of Pennsylvania School of Veterinary Medicine</span>
           </div>
+          <div class="research-tags">
+            <span class="research-tag">RNA-seq</span>
+            <span class="research-tag">Drug repurposing</span>
+            <span class="research-tag">Canine CCL injury</span>
+            <span class="research-tag">Osteoarthritis</span>
+          </div>
         </div>
-        <div class="p-7 md:p-9 abstract-copy text-slate leading-relaxed">
-          <p class="abstract-label">Abstract</p>
-          <p>Canine cranial cruciate ligament (CCL) injuries are a common orthopedic condition inflicting joint instability, pain, and chronic synovial fibrosis, contributing to post-traumatic osteoarthritis (PTOA) development. These biological alterations to the damaged knee are often paralleled in human joint diseases as well, supporting the value of the canine model in further understanding the underlying process behind osteoarthritis. Despite this relevance, systematic pipelines connecting biological data to actionable therapeutic targets are limited.</p>
+
+        <div class="research-summary">
+          <p class="research-summary-label">In short</p>
+          <p class="research-summary-text">Screened gene activity in injured canine knees to shortlist five already-approved drugs worth investigating for osteoarthritis &mdash; a condition that works much the same way in dogs and people.</p>
+        </div>
+
+        <!-- The full abstract, exactly as written, one click away. -->
+        <details class="research-abstract">
+          <summary class="focus-ring">Read the full abstract</summary>
+          <div class="research-abstract-body abstract-copy text-slate leading-relaxed">
+            <p>Canine cranial cruciate ligament (CCL) injuries are a common orthopedic condition inflicting joint instability, pain, and chronic synovial fibrosis, contributing to post-traumatic osteoarthritis (PTOA) development. These biological alterations to the damaged knee are often paralleled in human joint diseases as well, supporting the value of the canine model in further understanding the underlying process behind osteoarthritis. Despite this relevance, systematic pipelines connecting biological data to actionable therapeutic targets are limited.</p>
           <p>This study aimed to identify dysregulated genes in CCL-injured canine synovium and rank candidate genes with Food and Drug Administration (FDA)-approved drugs in order of therapeutic potential. RNA-sequencing data from CCL-injured and healthy canine synovium were filtered for genes statistically significant based on an adjusted p-value &lt;0.05 and a log2 fold-change &gt;1.</p>
           <p>Top 150 upregulated genes were ranked and g:Profiler was used to map resulting canine genes to human orthologs. Utilizing DAVID, functional enrichment analysis was performed to identify relevant biological pathways with clusters highlighting Il-17 signaling, inflammatory cytokines, collagen deposition, and extracellular matrix organization and remodeling.</p>
           <p>The resulting 41 genes were analyzed using comprehensive literature review to ultimately identify five high-priority, therapeutically actionable gene-drug pairs: ADAMTS4 and Doxycycline, PTGS2 (COX-2) and Celecoxib, CCR7 and Fingolimod, IL1B and Anakinra, IL6 and Tocilizumab.</p>
           <p>These findings establish a reliable pipeline linking canine CCL injury transcriptomics to clinically actionable therapeutic treatments, highlighting promising candidates for drug repurposing in PTOA and offering deeper insight into underlying mechanisms of osteoarthritis in both canines and humans.</p>
-        </div>
+          </div>
+        </details>
         <!--
           PHOTO GALLERY (3 photos) — replace any placeholder below with:
         <picture>
@@ -550,14 +691,14 @@
       any online JPEG-to-WebP converter will do.)
     -->
         <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
         </div>
       </article>
@@ -572,15 +713,30 @@
             <span class="research-mentorship-label">Mentorship</span>
             <span class="research-mentorship-value">ASPIRE Fellowship</span>
           </div>
+          <div class="research-tags">
+            <span class="research-tag">Single-cell RNA-seq</span>
+            <span class="research-tag">Spatial transcriptomics</span>
+            <span class="research-tag">Fibroblast&ndash;immune crosstalk</span>
+            <span class="research-tag">Osteoarthritis</span>
+          </div>
         </div>
-        <div class="p-7 md:p-9 abstract-copy text-slate leading-relaxed">
-          <p class="abstract-label">Abstract</p>
-          <p>Impacting over 240 million individuals globally and more than 32 million in the U.S., Osteoarthritis (OA) is the most common form of arthritis worldwide. Traditionally understood as a mechanical disease, synovial inflammation and dysregulated cellular communication are now known to play a critical role in OA progression. This study aimed to characterize and map fibroblast-immune communication niches, supporting the identification of therapeutic targets and development of effective disease interventions.</p>
+
+        <div class="research-summary">
+          <p class="research-summary-label">In short</p>
+          <p class="research-summary-text">Mapped how fibroblasts and immune cells talk to each other in osteoarthritic joint tissue, narrowing thousands of possible signals down to five worth pursuing.</p>
+        </div>
+
+        <!-- The full abstract, exactly as written, one click away. -->
+        <details class="research-abstract">
+          <summary class="focus-ring">Read the full abstract</summary>
+          <div class="research-abstract-body abstract-copy text-slate leading-relaxed">
+            <p>Impacting over 240 million individuals globally and more than 32 million in the U.S., Osteoarthritis (OA) is the most common form of arthritis worldwide. Traditionally understood as a mechanical disease, synovial inflammation and dysregulated cellular communication are now known to play a critical role in OA progression. This study aimed to characterize and map fibroblast-immune communication niches, supporting the identification of therapeutic targets and development of effective disease interventions.</p>
           <p>Healthy and OA synovial single-cell RNA sequencing (scRNA-seq) data (GSE216651) was analyzed using Seurat to characterize fibroblast and immune populations, differential gene expression, and functional enrichment. LIANA was used to infer candidate ligand-receptor interactions while spatial transcriptomic data (GSE294277) was analyzed using Giotto to map transcriptional signatures and identify communication hubs.</p>
           <p>Heterogeneous fibroblast and immune populations were identified, with prominent OA-associated distinctions among APOD+, inflammatory lining, lining fibroblast and resident macrophage groups, which were prioritized for downstream communication analysis. Ligand-receptor predictions revealed greater inferred fibroblast-macrophage and macrophage-fibroblast communication in OA compared to healthy tissue, with PRG4-CD44 representing one of the most prominent recurrent interactions.</p>
           <p>Spatial analysis identified increased median representation of fibroblast, macrophage, immune, and matrix-remodeling signatures within OA and identified three candidate fibroblast-macrophage communication hubs, although spatial differences were not statistically significant within the limited sample units. Integration of scRNA-seq and spatial transcriptomics prioritized five candidate interactions: PRG4-CD44, FN1-CD44, FN1-PLAUR, TIMP1-CD63, and VIM-CD44.</p>
           <p>Overall, these findings highlight the potentially pivotal role of spatial fibroblast-immune crosstalk within OA pathogenesis, offering a guide to future research and advancements in OA therapeutics.</p>
-        </div>
+          </div>
+        </details>
         <!--
           PHOTO GALLERY (3 photos) — replace any placeholder below with:
         <picture>
@@ -592,14 +748,14 @@
       any online JPEG-to-WebP converter will do.)
     -->
         <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
-          <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
-            <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
+          <div class="about-photo-placeholder aspect-square">
+            <span>Photo coming soon</span>
           </div>
         </div>
       </article>
