@@ -70,25 +70,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const bar3 = document.getElementById('bar3');
     let menuOpen = false;
 
+    menuBtn.setAttribute('aria-controls', 'mobileMenu');
+
+    function setMenu(open) {
+      menuOpen = open;
+      mobileMenu.classList.toggle('hidden', !open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      /* Stop the page behind the menu from scrolling while it is open. */
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (bar1) bar1.style.transform = open ? 'translateY(6px) rotate(45deg)' : '';
+      if (bar3) bar3.style.transform = open ? 'translateY(-6px) rotate(-45deg)' : '';
+      if (bar2) bar2.style.opacity = open ? '0' : '1';
+    }
+
     menuBtn.addEventListener('click', function () {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle('hidden', !menuOpen);
-      menuBtn.setAttribute('aria-expanded', String(menuOpen));
-      if (bar1) bar1.style.transform = menuOpen ? 'translateY(6px) rotate(45deg)' : '';
-      if (bar3) bar3.style.transform = menuOpen ? 'translateY(-6px) rotate(-45deg)' : '';
-      if (bar2) bar2.style.opacity = menuOpen ? '0' : '1';
+      setMenu(!menuOpen);
     });
 
     mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menuOpen = false;
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        if (bar1) bar1.style.transform = '';
-        if (bar3) bar3.style.transform = '';
-        if (bar2) bar2.style.opacity = '1';
-      });
+      link.addEventListener('click', function () { setMenu(false); });
     });
+
+    /* Escape closes the menu and returns focus to the button that opened it. */
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menuOpen) {
+        setMenu(false);
+        menuBtn.focus();
+      }
+    });
+
+    /* Rotating to landscape or resizing past the md breakpoint reveals the
+       desktop nav, so the mobile menu must not stay open (and must not keep
+       the page scroll locked). */
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const onDesktop = function (event) { if (event.matches && menuOpen) setMenu(false); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
+    else desktop.addListener(onDesktop);
   }
 
   /* ---------- Reveal elements as the user scrolls ---------- */

@@ -277,7 +277,6 @@ h1, h2, h3, h4, .font-display {
 body {
   position: relative;
   isolation: isolate;
-  overflow-x: hidden;
 }
 
 body::before {
@@ -617,6 +616,17 @@ footer::before {
   font-size: clamp(1.45rem, 3vw, 2.15rem);
   font-weight: 700;
   line-height: 1.35;
+}
+
+/* The mission statement is a sentence, not a title: keep it prominent but
+   sized for reading rather than for headline display. */
+.mission-statement {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .mission-copy p {

@@ -11,14 +11,40 @@
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
+<style>
+  /* Blog card photo boxes, matching blog.html so the homepage cards line up. */
+  .blog-photo {
+    aspect-ratio: 4 / 3;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .blog-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .blog-photo-empty {
+    background: var(--mist);
+  }
+</style>
 
 <!-- SEO:START -->
 <link rel="canonical" href="https://beyondtheleashwithsandra.com/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Sandra Chen">
 <meta name="theme-color" content="#0f2a4a">
-<link rel="icon" href="images/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Beyond the Leash with Sandra">
@@ -83,9 +109,9 @@
 <body class="bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-center justify-between h-16 md:h-[110px]">
+    <div class="flex items-center justify-between h-16 md:h-[96px]">
       <a href="index.html" class="flex items-center gap-2 md:gap-3 min-w-0 pr-3 md:pr-0 font-display font-extrabold text-base leading-tight md:text-2xl tracking-tight text-navy focus-ring rounded">
-        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[120px] md:w-[120px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[104px] md:w-[104px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
         Beyond the Leash with Sandra
       </a>
 
@@ -108,18 +134,18 @@
 
   <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
     <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
-      <a href="index.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">Home</a>
-      <a href="about.html" class="mobile-nav-link block py-2.5 focus-ring rounded">About</a>
-      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
-      <a href="resources.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Resources</a>
-      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
-      <a href="contact.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Contact</a>
+      <a href="index.html" class="mobile-nav-link flex items-center min-h-[44px] nav-active focus-ring rounded" aria-current="page">Home</a>
+      <a href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">About</a>
+      <a href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
     </div>
   </div>
 </header>
 
 <!-- ============ HERO ============ -->
-<section class="relative pt-28 pb-24 md:pt-[230px] md:pb-32 px-6 overflow-hidden">
+<section class="relative pt-28 pb-24 md:pt-[216px] md:pb-32 px-6 overflow-hidden">
   <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
   <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
 
@@ -143,14 +169,13 @@
 <section id="mission" class="mission-section px-6 py-12 md:py-16" aria-labelledby="mission-heading">
   <div class="mission-panel reveal max-w-6xl mx-auto">
     <div class="mission-label-wrap">
-      <p class="mission-kicker">My mission</p>
+      <h2 id="mission-heading" class="mission-kicker">My mission</h2>
       <span class="mission-line" aria-hidden="true"></span>
     </div>
     <div class="mission-copy">
-      <h2 id="mission-heading" class="font-display mission-heading">
+      <p class="font-display mission-statement">
         To deepen understanding of the vital connections between animal, human, and environmental health through science, research, and stories that inspire curiosity and encourage a more connected approach to health.
-
-      </h2>
+      </p>
     </div>
   </div>
 </section>
@@ -172,8 +197,8 @@
 
     <div class="reveal order-1 md:order-2 flex justify-center">
       <div class="relative">
-        <div class="w-80 h-96 sm:w-[26rem] sm:h-[30rem] rounded-3xl flex items-center justify-center overflow-hidden">
-          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200" loading="lazy" decoding="async">
+        <div class="w-full max-w-80 h-96 sm:max-w-[26rem] sm:h-[30rem] rounded-3xl flex items-center justify-center overflow-hidden">
+          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
         </div>
       </div>
     </div>
@@ -206,6 +231,9 @@
 
       <article class="reveal card flex flex-col justify-between">
         <div>
+          <div class="blog-photo blog-photo-empty">
+            <span class="text-xs font-semibold text-slate uppercase tracking-wide">Beyond the Leash</span>
+          </div>
           <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Explore</p>
           <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">More from the blog</h3>
           <p class="text-sm text-slate leading-relaxed mb-6">Browse research notes, reflections, animal science, veterinary medicine, and the ideas I’m exploring along the way.</p>
@@ -214,6 +242,9 @@
       </article>
 
       <article class="reveal card border-dashed">
+        <div class="blog-photo blog-photo-empty">
+          <span class="text-xs font-semibold text-slate uppercase tracking-wide">Coming soon</span>
+        </div>
         <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Coming soon</p>
         <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">Signals in Milk: Early Detection of Bovine Mastitis Using Milk Biomarkers</h3>
         <p class="text-sm text-slate leading-relaxed mb-5">A look at bovine mastitis and why catching it early through milk biomarkers matters for animal health and dairy production.</p>
@@ -235,30 +266,18 @@
       <a href="resources.html" class="btn-secondary focus-ring">Explore resources &rarr;</a>
     </div>
     <div class="reveal grid grid-cols-2 gap-4">
-      <div class="relative">
-        <div class="card !p-5 text-center">
-          <p class="font-display font-bold text-navy">Organizations</p>
-        </div>
-        <div class="absolute inset-0 z-10"></div>
-      </div>
-      <div class="relative">
-        <div class="card !p-5 text-center">
-          <p class="font-display font-bold text-navy">Educational</p>
-        </div>
-        <div class="absolute inset-0 z-10"></div>
-      </div>
-      <div class="relative">
-        <div class="card !p-5 text-center">
-          <p class="font-display font-bold text-navy">Programs</p>
-        </div>
-        <div class="absolute inset-0 z-10"></div>
-      </div>
-      <div class="relative">
-        <div class="card !p-5 text-center">
-          <p class="font-display font-bold text-navy">Articles</p>
-        </div>
-        <div class="absolute inset-0 z-10"></div>
-      </div>
+      <a href="resources.html" class="card !p-5 flex items-center justify-center text-center focus-ring">
+        <span class="font-display font-bold text-navy">Organizations</span>
+      </a>
+      <a href="resources.html" class="card !p-5 flex items-center justify-center text-center focus-ring">
+        <span class="font-display font-bold text-navy">Educational</span>
+      </a>
+      <a href="resources.html" class="card !p-5 flex items-center justify-center text-center focus-ring">
+        <span class="font-display font-bold text-navy">Programs</span>
+      </a>
+      <a href="resources.html" class="card !p-5 flex items-center justify-center text-center focus-ring">
+        <span class="font-display font-bold text-navy">Articles</span>
+      </a>
     </div>
   </div>
 </section>
@@ -348,13 +367,18 @@
     </div>
   </section>
   <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
-    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
-      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
-      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="shrink-0 focus-ring rounded" aria-label="Beyond the Leash with Sandra home">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-12 w-12 object-contain" loading="lazy" decoding="async" width="256" height="245">
+      </a>
+      <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-slate">
+      <a href="index.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Contact</a>
       <!-- TODO: replace with your real LinkedIn URL -->
-      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
-      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>
   </div>
 </footer>

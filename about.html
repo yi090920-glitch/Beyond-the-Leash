@@ -303,8 +303,11 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Sandra Chen">
 <meta name="theme-color" content="#0f2a4a">
-<link rel="icon" href="images/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Beyond the Leash with Sandra">
@@ -378,9 +381,9 @@
 <body class="about-page bg-white text-ink antialiased" id="top">
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-center justify-between h-16 md:h-[110px]">
+    <div class="flex items-center justify-between h-16 md:h-[96px]">
       <a href="index.html" class="flex items-center gap-2 md:gap-3 min-w-0 pr-3 md:pr-0 font-display font-extrabold text-base leading-tight md:text-2xl tracking-tight text-navy focus-ring rounded">
-        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[120px] md:w-[120px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[104px] md:w-[104px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
         Beyond the Leash with Sandra
       </a>
 
@@ -403,18 +406,18 @@
 
   <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
     <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
-      <a href="index.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Home</a>
-      <a href="about.html" class="mobile-nav-link block py-2.5 nav-active focus-ring rounded" aria-current="page">About</a>
-      <a href="blog.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Blog</a>
-      <a href="resources.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Resources</a>
-      <a href="interviews.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Interviews</a>
-      <a href="contact.html" class="mobile-nav-link block py-2.5 focus-ring rounded">Contact</a>
+      <a href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
+      <a href="about.html" class="mobile-nav-link flex items-center min-h-[44px] nav-active focus-ring rounded" aria-current="page">About</a>
+      <a href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
+      <a href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
+      <a href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
     </div>
   </div>
 </header>
 
 <!-- ============ ABOUT HERO ============ -->
-<section class="relative pt-28 pb-20 md:pt-[230px] md:pb-24 px-6 overflow-hidden">
+<section class="relative pt-28 pb-20 md:pt-[216px] md:pb-24 px-6 overflow-hidden">
   <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
   <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
   <div class="max-w-4xl mx-auto text-center relative">
@@ -657,12 +660,17 @@
     </div>
   </section>
   <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
-    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate">
-      <a href="index.html" class="hover:text-deep transition-colors focus-ring rounded">Home</a>
-      <a href="contact.html" class="hover:text-deep transition-colors focus-ring rounded">Contact</a>
-      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
-      <a href="#top" class="hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="shrink-0 focus-ring rounded" aria-label="Beyond the Leash with Sandra home">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-12 w-12 object-contain" loading="lazy" decoding="async" width="256" height="245">
+      </a>
+      <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-slate">
+      <a href="index.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>
   </div>
 </footer>
