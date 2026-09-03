@@ -12,7 +12,147 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
 <style>
-  /* Resource cards: single-photo layout + gallery layout for entries with multiple photos. */
+  /* ============================================================
+     Resources page layout
+     A filter bar across the top, then a responsive grid of resource
+     cards. Each card carries a data-category so the filter can show
+     and hide it. Categories match the four tiles on the homepage.
+     ============================================================ */
+
+  /* ---------- Filter bar ---------- */
+  .resource-filters {
+    display: flex;
+    gap: 0.5rem;
+    /* On narrow screens the chips scroll sideways instead of wrapping
+       into a tall stack that pushes the resources off the screen. */
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.25rem 0.25rem 0.75rem;
+    margin: 0 -0.25rem;
+    scroll-snap-type: x proximity;
+  }
+  .resource-filters::-webkit-scrollbar { display: none; }
+
+  .resource-chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    /* 44px tall so the chips are comfortable to tap. */
+    min-height: 2.75rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid rgba(127, 174, 221, 0.55);
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--navy);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -22px rgba(15, 38, 71, 0.8);
+    transition: background 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.25s ease;
+  }
+  .resource-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--ocean);
+    background: var(--mist);
+  }
+  .resource-chip:active { transform: translateY(0) scale(0.98); }
+
+  .resource-chip[aria-pressed="true"] {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--navy), var(--ocean));
+    color: #ffffff;
+    box-shadow: 0 14px 26px -16px rgba(15, 38, 71, 0.78);
+  }
+
+  /* The small number beside each chip label. */
+  .resource-chip-count {
+    padding: 0.05rem 0.45rem;
+    border-radius: 9999px;
+    background: rgba(46, 92, 154, 0.12);
+    color: var(--ocean);
+    font-size: 0.7rem;
+    font-weight: 700;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .resource-chip[aria-pressed="true"] .resource-chip-count {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+
+  /* ---------- Grid ---------- */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  @media (min-width: 640px) {
+    .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .resource-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  /* Cards fill the full row height so their "Visit" buttons line up
+     no matter how much description each one carries. */
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .resource-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+  }
+  /* Pushes the visit button down to the bottom edge of the card. */
+  .resource-card-spacer { flex: 1; }
+
+  .resource-tag {
+    align-self: flex-start;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(191, 219, 254, 0.5);
+    color: var(--deep);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Hidden by the filter. display:none rather than a faded state so the
+     grid closes up instead of leaving holes in the row. */
+  .resource-card.is-filtered-out { display: none; }
+  /* No fill-mode: when the animation finishes (or never gets to start,
+     e.g. the card was hidden at the moment the class landed) the card
+     falls back to the plain visible state rather than staying at the
+     transparent first keyframe. */
+  .resource-card.is-filtered-in { animation: resource-fade-in 0.35s ease; }
+
+  @keyframes resource-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* Shown only if a filter happens to match nothing. */
+  .resource-empty {
+    padding: 3rem 1.5rem;
+    border: 1px dashed rgba(127, 174, 221, 0.6);
+    border-radius: 1rem;
+    background: var(--mist);
+    color: var(--slate);
+    text-align: center;
+  }
+
+  /* ---------- Photos ----------
+     Images are letterboxed rather than cropped, so a tall photo keeps
+     its whole subject. The soft background makes that look deliberate. */
   .resource-photo {
     aspect-ratio: 4 / 3;
     min-height: 160px;
@@ -20,7 +160,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #ffffff;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 60%, #E7F0FB 100%);
   }
   .resource-photo img {
     display: block;
@@ -28,15 +168,45 @@
     height: 100%;
     object-fit: contain;
   }
-  .resource-photo-placeholder svg {
-    width: 3rem;
-    height: 3rem;
-    color: rgba(46, 92, 154, .35);
-  }
   .resource-photo-empty {
     background: var(--mist);
   }
 
+  /* ---------- "Coming soon" cards ----------
+     Styled as a deliberate placeholder rather than a faded-out card. */
+  .resource-card-soon {
+    border-style: dashed;
+    border-color: rgba(127, 174, 221, 0.75);
+    background: linear-gradient(160deg, #FFFFFF 0%, #F8FBFF 100%);
+  }
+  .resource-card-soon .resource-photo-empty {
+    background:
+      repeating-linear-gradient(135deg, rgba(191, 219, 254, 0.22) 0 10px, transparent 10px 20px),
+      var(--mist);
+  }
+  .resource-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(127, 174, 221, 0.6);
+    color: var(--ocean);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .resource-soon-badge::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background: var(--sky);
+  }
+
+  /* ---------- Photo gallery (cards with several photos) ---------- */
   .resource-gallery {
     position: relative;
   }
@@ -48,7 +218,7 @@
   .resource-gallery-slide {
     min-width: 100%;
     margin: 0;
-    background: #ffffff;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 60%, #E7F0FB 100%);
   }
   .resource-gallery-slide img {
     display: block;
@@ -61,8 +231,9 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 2.25rem;
-    height: 2.25rem;
+    /* 44px so the arrows are a comfortable tap target on phones. */
+    width: 2.75rem;
+    height: 2.75rem;
     display: grid;
     place-items: center;
     border: 1px solid rgba(127, 174, 221, .45);
@@ -70,11 +241,12 @@
     background: rgba(255,255,255,.92);
     color: var(--navy);
     font-size: 1.1rem;
-    transition: transform .2s ease, border-color .2s ease;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
   }
   .resource-gallery-btn:hover {
     border-color: var(--ocean);
-    transform: translateY(-50%) scale(1.05);
+    background: #ffffff;
+    transform: translateY(-50%) scale(1.06);
   }
   .resource-gallery-prev { left: .6rem; }
   .resource-gallery-next { right: .6rem; }
@@ -97,6 +269,12 @@
   .resource-gallery-dot[aria-current="true"] {
     width: 1.1rem;
     background: var(--ocean);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .resource-gallery-track { transition: none; }
+    .resource-card.is-filtered-in { animation: none; }
+    .resource-chip:hover { transform: none; }
   }
 </style>
 
@@ -161,7 +339,7 @@
 <!-- SEO:END -->
 <noscript>
   <!-- Without JS the reveal-on-scroll observer never runs, so make all content visible. -->
-  <style>.reveal{opacity:1!important;transform:none!important}</style>
+  <style>.reveal{opacity:1!important;transform:none!important}.resource-card{display:flex!important}.resource-filters{display:none}</style>
 </noscript>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
@@ -211,44 +389,57 @@
 </section>
 
 <section class="pb-24 px-6">
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-6xl mx-auto">
 
     <!--
       RUNNING LIST OF RESOURCES
 
       Each card has: a photo (or, for a resource with several photos, a swipeable
-      gallery), a small category tag, a name, a description, and its own separate
+      gallery), a category tag, a name, a description, and its own separate
       "Visit ___" link/button at the bottom.
+
+      TO ADD A RESOURCE: copy one <article class="reveal card resource-card"> block
+      and paste it inside the grid below. Two things matter:
+        1. data-category must be one of: organizations, educational, programs, articles
+           (that is what the filter buttons above the grid match on)
+        2. the visible tag text inside <span class="resource-tag"> is just a label,
+           so write it however reads best.
+      The filter counts update themselves — nothing else to edit.
 
       TO ADD A PHOTO to a single-photo card: replace the
       <div class="resource-photo">...</div> placeholder with:
         <div class="resource-photo">
-        <picture>
-          <source srcset="images/your-photo.webp" type="image/webp">
-          <img src="images/your-photo.jpg" alt="...">
-        </picture>
+          <img src="images/your-photo.jpg" alt="..." loading="lazy" decoding="async">
         </div>
 
       TO ADD PHOTOS to a gallery card (like FFA below): copy one
       <figure class="resource-gallery-slide">...</figure> block and paste
       another one right after it inside .resource-gallery-track, pointing
       at a new image file. The arrows/dots update automatically.
-    
-      (The <source> line is optional - a plain <img> still works. To make a .webp,
-      any online JPEG-to-WebP converter will do.)
     -->
-    <div class="grid sm:grid-cols-2 gap-6">
+
+    <!-- Filter buttons. The counts inside them are filled in by script. -->
+    <div class="reveal mb-8">
+      <div class="resource-filters" role="group" aria-label="Filter resources by category">
+        <button type="button" class="resource-chip focus-ring" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="resource-chip focus-ring" data-filter="organizations" aria-pressed="false">Organizations</button>
+        <button type="button" class="resource-chip focus-ring" data-filter="educational" aria-pressed="false">Educational</button>
+        <button type="button" class="resource-chip focus-ring" data-filter="programs" aria-pressed="false">Programs</button>
+        <button type="button" class="resource-chip focus-ring" data-filter="articles" aria-pressed="false">Articles</button>
+      </div>
+      <!-- Announces the result count to screen readers when the filter changes. -->
+      <p class="sr-only" role="status" aria-live="polite" id="resource-status"></p>
+    </div>
+
+    <div class="resource-grid" id="resource-grid">
 
       <!-- FFA — Organization, photo gallery -->
-      <article class="reveal card !p-0 overflow-hidden">
+      <article class="reveal card resource-card !p-0 overflow-hidden" data-category="organizations">
         <div class="resource-gallery" data-resource-gallery>
           <div class="resource-gallery-viewport">
             <div class="resource-gallery-track">
               <figure class="resource-gallery-slide">
-                <picture>
-                  <source srcset="images/ffa-1.webp" type="image/webp">
-                  <img src="images/ffa-1.jpg" alt="FFA National Convention" decoding="async" width="1024" height="768">
-                </picture>
+                <img src="images/ffa-1.jpg" alt="FFA National Convention" decoding="async" width="1024" height="768">
               </figure>
             </div>
           </div>
@@ -256,63 +447,69 @@
           <button class="resource-gallery-btn resource-gallery-next focus-ring" type="button" aria-label="Next photo">&#8250;</button>
           <div class="resource-gallery-dots"></div>
         </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Organization</span>
-          <h2 class="font-display text-lg font-bold text-navy mt-2 mb-2">FFA</h2>
+        <div class="resource-card-body">
+          <span class="resource-tag">Organization</span>
+          <h2 class="font-display text-lg font-bold text-navy mt-3 mb-2">FFA</h2>
           <p class="text-sm text-slate leading-relaxed mb-2">The National FFA Organization (FFA) is a student-led organization that helps young people build leadership, communication, and career skills through agriculture, service, and hands-on competitions.</p>
           <details class="mb-4">
             <summary class="text-xs font-semibold text-ocean cursor-pointer focus-ring rounded">Read more</summary>
             <p class="text-sm text-slate leading-relaxed mt-2">I joined FFA as a founding member of Jericho High School&rsquo;s chapter and have since had the chance to serve as Vice President and President, become a slated candidate for District President, and participate in a variety of FFA competitions and events. More than anything, FFA has been one of the most meaningful parts of my high school experience, giving me opportunities to meet new people, step outside my comfort zone, and explore my interests in agriculture and animal science. I would personally recommend FFA to any student looking for a welcoming community and a way to grow both personally and as a leader.</p>
           </details>
-          <a href="https://www.ffa.org/" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2 inline-block">Visit FFA &rarr;</a>
+          <div class="resource-card-spacer"></div>
+          <a href="https://www.ffa.org/" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Visit FFA &rarr;</a>
         </div>
       </article>
 
       <!-- ASPIRE Fellowship — Program, single photo -->
-      <article class="reveal card !p-0 overflow-hidden">
-      <div class="resource-photo">
-  <picture>
-    <source srcset="images/aspire-1.webp" type="image/webp">
-    <img src="images/aspire-1.jpg" alt="ASPIRE Fellowship" loading="lazy" decoding="async" width="1200" height="1087">
-  </picture>
-</div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Program</span>
-          <h2 class="font-display text-lg font-bold text-navy mt-2 mb-2">ASPIRE Fellowship</h2>
+      <article class="reveal card resource-card !p-0 overflow-hidden" data-category="programs" data-delay="1">
+        <div class="resource-photo">
+          <img src="images/aspire-1.jpg" alt="ASPIRE Fellowship" loading="lazy" decoding="async" width="1200" height="1087">
+        </div>
+        <div class="resource-card-body">
+          <span class="resource-tag">Program</span>
+          <h2 class="font-display text-lg font-bold text-navy mt-3 mb-2">ASPIRE Fellowship</h2>
           <p class="text-sm text-slate leading-relaxed mb-2">The ASPIRE Fellowship is a fully remote research program that connects high school students with PhD-level mentors to develop and carry out original, advanced research.</p>
           <details class="mb-4">
             <summary class="text-xs font-semibold text-ocean cursor-pointer focus-ring rounded">Read more</summary>
             <p class="text-sm text-slate leading-relaxed mt-2">Through one-on-one mentorship, fellows move through the full research process, from refining a question and reviewing literature to developing methodology, analyzing results, and presenting their findings. As an ASPIRE Fellow, I conducted my study, &ldquo;Investigating Spatial Fibroblast-Immune Crosstalk Driving Osteoarthritis,&rdquo; which I later used as the basis for submissions to the Regeneron Science Talent Search (STS) and academic journals, with results currently pending. The experience gave me the opportunity to independently develop a long-term research project while strengthening my skills in scientific writing, data analysis, and translational research.</p>
           </details>
-          <a href="https://aspireresearch.net/" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2 inline-block">Visit ASPIRE Fellowship &rarr;</a>
+          <div class="resource-card-spacer"></div>
+          <a href="https://aspireresearch.net/" target="_blank" rel="noopener noreferrer" class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Visit ASPIRE Fellowship &rarr;</a>
         </div>
       </article>
 
       <!-- Article — coming soon -->
-      <article class="reveal card !p-0 overflow-hidden opacity-70">
+      <article class="reveal card resource-card resource-card-soon !p-0 overflow-hidden" data-category="articles" data-delay="2">
         <div class="resource-photo resource-photo-empty">
           <span class="text-slate text-sm">Photo coming soon</span>
         </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Article</span>
-          <h2 class="font-display text-lg font-bold text-navy mt-2 mb-2">[Article title]</h2>
-          <p class="text-sm text-slate leading-relaxed">Coming soon.</p>
+        <div class="resource-card-body">
+          <span class="resource-tag">Article</span>
+          <h2 class="font-display text-lg font-bold text-navy mt-3 mb-2">An article worth reading</h2>
+          <p class="text-sm text-slate leading-relaxed mb-4">A piece I keep coming back to is on its way to this spot.</p>
+          <div class="resource-card-spacer"></div>
+          <span class="resource-soon-badge">Coming soon</span>
         </div>
       </article>
 
       <!-- Educational — coming soon -->
-      <article class="reveal card !p-0 overflow-hidden opacity-70">
+      <article class="reveal card resource-card resource-card-soon !p-0 overflow-hidden" data-category="educational" data-delay="3">
         <div class="resource-photo resource-photo-empty">
           <span class="text-slate text-sm">Photo coming soon</span>
         </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Educational</span>
-          <h2 class="font-display text-lg font-bold text-navy mt-2 mb-2">[Website name]</h2>
-          <p class="text-sm text-slate leading-relaxed">Coming soon.</p>
+        <div class="resource-card-body">
+          <span class="resource-tag">Educational</span>
+          <h2 class="font-display text-lg font-bold text-navy mt-3 mb-2">A place to learn more</h2>
+          <p class="text-sm text-slate leading-relaxed mb-4">An educational site I rely on will be added here shortly.</p>
+          <div class="resource-card-spacer"></div>
+          <span class="resource-soon-badge">Coming soon</span>
         </div>
       </article>
 
     </div>
+
+    <!-- Only ever seen if a category is emptied out. -->
+    <p class="resource-empty mt-2" id="resource-empty" hidden>Nothing in this category yet &mdash; more on the way.</p>
   </div>
 </section>
 <footer class="site-footer mt-16 px-6 pb-10">
@@ -369,6 +566,107 @@
 </footer>
 
 <script>
+/* ------------------------------------------------------------
+   Resource category filter
+   Shows only the cards matching the chosen chip. The choice is
+   mirrored into the URL (resources.html#programs) so the category
+   tiles on the homepage can link straight to a filtered view, and
+   so a filtered page can be bookmarked or shared.
+   ------------------------------------------------------------ */
+(function () {
+  const grid = document.getElementById('resource-grid');
+  const chips = Array.from(document.querySelectorAll('.resource-chip'));
+  if (!grid || !chips.length) return;
+
+  const cards = Array.from(grid.querySelectorAll('.resource-card'));
+  const emptyNote = document.getElementById('resource-empty');
+  const status = document.getElementById('resource-status');
+  const categories = chips.map(function (chip) { return chip.dataset.filter; });
+
+  /* Put the number of resources inside each chip. */
+  chips.forEach(function (chip) {
+    const key = chip.dataset.filter;
+    const count = key === 'all'
+      ? cards.length
+      : cards.filter(function (card) { return card.dataset.category === key; }).length;
+    const badge = document.createElement('span');
+    badge.className = 'resource-chip-count';
+    badge.textContent = String(count);
+    chip.appendChild(badge);
+  });
+
+  function apply(category, moveFocus) {
+    let shown = 0;
+
+    cards.forEach(function (card) {
+      const match = category === 'all' || card.dataset.category === category;
+      card.classList.toggle('is-filtered-out', !match);
+      card.classList.remove('is-filtered-in');
+      if (match) {
+        shown++;
+        /* Re-trigger the fade so cards animate back in on each change. */
+        void card.offsetWidth;
+        card.classList.add('is-filtered-in');
+        /* Cards revealed by the filter must not stay stuck invisible if
+           they never crossed the scroll observer while hidden. */
+        card.classList.add('is-visible');
+      }
+    });
+
+    chips.forEach(function (chip) {
+      chip.setAttribute('aria-pressed', String(chip.dataset.filter === category));
+    });
+
+    if (emptyNote) emptyNote.hidden = shown > 0;
+    if (status) {
+      status.textContent = shown === 1
+        ? '1 resource shown'
+        : shown + ' resources shown';
+    }
+
+    if (moveFocus) {
+      const active = chips.find(function (chip) { return chip.dataset.filter === category; });
+      if (active) active.focus();
+    }
+  }
+
+  /* Reads a category out of the URL hash, ignoring anything unexpected. */
+  function categoryFromHash() {
+    const key = decodeURIComponent(window.location.hash.replace('#', '')).toLowerCase();
+    return categories.indexOf(key) !== -1 ? key : 'all';
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      const category = chip.dataset.filter;
+      apply(category, false);
+      /* replaceState keeps the back button from filling up with filter steps. */
+      history.replaceState(null, '', category === 'all' ? window.location.pathname : '#' + category);
+    });
+  });
+
+  /* Left/right arrows move between chips, the usual pattern for a button group. */
+  chips.forEach(function (chip, i) {
+    chip.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      event.preventDefault();
+      const step = event.key === 'ArrowRight' ? 1 : -1;
+      const nextChip = chips[(i + step + chips.length) % chips.length];
+      nextChip.focus();
+      apply(nextChip.dataset.filter, false);
+      history.replaceState(null, '', nextChip.dataset.filter === 'all' ? window.location.pathname : '#' + nextChip.dataset.filter);
+    });
+  });
+
+  /* Following a homepage tile, or using back/forward, re-runs the filter. */
+  window.addEventListener('hashchange', function () { apply(categoryFromHash(), false); });
+
+  apply(categoryFromHash(), false);
+})();
+
+/* ------------------------------------------------------------
+   Photo galleries on resource cards
+   ------------------------------------------------------------ */
 (function () {
   document.querySelectorAll('[data-resource-gallery]').forEach(function (gallery) {
     const track = gallery.querySelector('.resource-gallery-track');
