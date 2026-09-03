@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /files/
-Disallow: /Beyond-the-Leash-homepage-round1/
 
 Sitemap: https://beyondtheleashwithsandra.com/sitemap.xml

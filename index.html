@@ -198,7 +198,10 @@
     <div class="reveal reveal-right order-1 md:order-2 flex justify-center">
       <div class="relative">
         <div class="w-full max-w-80 h-96 sm:max-w-[26rem] sm:h-[30rem] rounded-3xl flex items-center justify-center overflow-hidden">
-          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="img-fade w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
+          <picture>
+            <source srcset="images/sandra-and-teddy.webp" type="image/webp">
+            <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="img-fade w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
+          </picture>
         </div>
       </div>
     </div>
@@ -300,8 +303,14 @@
   <div class="max-w-6xl mx-auto text-center">
     <!--
       PHOTO STRIP — replace any placeholder below with:
-        <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
+          <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        </picture>
       Add or remove boxes to change how many photos show (currently 3).
+    
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
     -->
     <div class="reveal flex flex-wrap justify-center gap-4 mb-10">
       <div class="photo-tile w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
@@ -387,7 +396,6 @@
     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-slate">
       <a href="index.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Home</a>
       <a href="contact.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Contact</a>
-      <!-- TODO: replace with your real LinkedIn URL -->
       <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
       <a href="#top" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>

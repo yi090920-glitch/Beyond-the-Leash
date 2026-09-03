@@ -176,15 +176,24 @@
      TO ADD A PHOTO to a post card: replace the <div class="blog-photo blog-photo-empty">...</div>
      placeholder with:
        <div class="blog-photo">
-         <img src="images/your-photo.jpg" alt="...">
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
+          <img src="images/your-photo.jpg" alt="...">
+        </picture>
        </div>
--->
+
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
+    -->
 <section class="pb-24 px-6">
   <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
 
     <article class="reveal card !p-0 overflow-hidden blog-entry">
       <div class="blog-photo">
-        <img src="images/blog-one-health.jpg" alt="One Health diagram showing human, animal, and environmental health" decoding="async" width="439" height="455">
+        <picture>
+          <source srcset="images/blog-one-health.webp" type="image/webp">
+          <img src="images/blog-one-health.jpg" alt="One Health diagram showing human, animal, and environmental health" decoding="async" width="439" height="455">
+        </picture>
       </div>
       <div class="p-6">
         <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">General Info</p>

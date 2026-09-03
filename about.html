@@ -447,8 +447,14 @@
     <div class="reveal flex flex-col sm:flex-row gap-8 items-start">
       <!--
         PHOTO — replace the placeholder below with:
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
           <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
-      -->
+        </picture>
+      
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
+    -->
       <div class="w-full sm:w-44 aspect-[4/5] rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center shrink-0">
         <span class="text-slate text-sm text-center px-3">Photo coming soon</span>
       </div>
@@ -533,8 +539,14 @@
         </div>
         <!--
           PHOTO GALLERY (3 photos) — replace any placeholder below with:
-            <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
-        -->
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
+          <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        </picture>
+        
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
+    -->
         <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
           <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
             <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
@@ -569,8 +581,14 @@
         </div>
         <!--
           PHOTO GALLERY (3 photos) — replace any placeholder below with:
-            <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
-        -->
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
+          <img src="images/your-photo.jpg" alt="..." class="w-full h-full object-cover">
+        </picture>
+        
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
+    -->
         <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
           <div class="aspect-square rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
             <span class="text-slate text-xs text-center px-1">Photo coming soon</span>
@@ -604,19 +622,34 @@
         <div class="about-gallery-viewport">
           <div class="about-gallery-track">
             <figure class="about-gallery-slide">
-              <img src="images/gallery-1.jpg" alt="Sandra holding her Cornell badminton tournament medal" loading="lazy" decoding="async" width="1400" height="1867">
+              <picture>
+                <source srcset="images/gallery-1.webp" type="image/webp">
+                <img src="images/gallery-1.jpg" alt="Sandra holding her Cornell badminton tournament medal" loading="lazy" decoding="async" width="1400" height="1867">
+              </picture>
             </figure>
             <figure class="about-gallery-slide">
-              <img src="images/gallery-2.jpg" alt="Sandra looking at art displayed at an exhibit" loading="lazy" decoding="async" width="1400" height="1867">
+              <picture>
+                <source srcset="images/gallery-2.webp" type="image/webp">
+                <img src="images/gallery-2.jpg" alt="Sandra looking at art displayed at an exhibit" loading="lazy" decoding="async" width="1400" height="1867">
+              </picture>
             </figure>
             <figure class="about-gallery-slide">
-              <img src="images/gallery-3.jpg" alt="Sandra playing badminton in a gym" loading="lazy" decoding="async" width="1400" height="2171">
+              <picture>
+                <source srcset="images/gallery-3.webp" type="image/webp">
+                <img src="images/gallery-3.jpg" alt="Sandra playing badminton in a gym" loading="lazy" decoding="async" width="1400" height="2171">
+              </picture>
             </figure>
             <figure class="about-gallery-slide">
-              <img src="images/gallery-4.jpg" alt="Sandra and a friend at a badminton awards event, holding a Nassau County All-County plaque" loading="lazy" decoding="async" width="1185" height="1551">
+              <picture>
+                <source srcset="images/gallery-4.webp" type="image/webp">
+                <img src="images/gallery-4.jpg" alt="Sandra and a friend at a badminton awards event, holding a Nassau County All-County plaque" loading="lazy" decoding="async" width="1185" height="1551">
+              </picture>
             </figure>
             <figure class="about-gallery-slide">
-              <img src="images/gallery-5.jpg" alt="Sandra walking down a wooden staircase on a wooded trail" loading="lazy" decoding="async" width="1400" height="1867">
+              <picture>
+                <source srcset="images/gallery-5.webp" type="image/webp">
+                <img src="images/gallery-5.jpg" alt="Sandra walking down a wooden staircase on a wooded trail" loading="lazy" decoding="async" width="1400" height="1867">
+              </picture>
             </figure>
           </div>
         </div>

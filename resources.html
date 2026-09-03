@@ -223,13 +223,19 @@
       TO ADD A PHOTO to a single-photo card: replace the
       <div class="resource-photo">...</div> placeholder with:
         <div class="resource-photo">
+        <picture>
+          <source srcset="images/your-photo.webp" type="image/webp">
           <img src="images/your-photo.jpg" alt="...">
+        </picture>
         </div>
 
       TO ADD PHOTOS to a gallery card (like FFA below): copy one
       <figure class="resource-gallery-slide">...</figure> block and paste
       another one right after it inside .resource-gallery-track, pointing
       at a new image file. The arrows/dots update automatically.
+    
+      (The <source> line is optional - a plain <img> still works. To make a .webp,
+      any online JPEG-to-WebP converter will do.)
     -->
     <div class="grid sm:grid-cols-2 gap-6">
 
@@ -239,7 +245,10 @@
           <div class="resource-gallery-viewport">
             <div class="resource-gallery-track">
               <figure class="resource-gallery-slide">
-                <img src="images/ffa-1.jpg" alt="FFA National Convention" decoding="async" width="1024" height="768">
+                <picture>
+                  <source srcset="images/ffa-1.webp" type="image/webp">
+                  <img src="images/ffa-1.jpg" alt="FFA National Convention" decoding="async" width="1024" height="768">
+                </picture>
               </figure>
             </div>
           </div>
@@ -262,7 +271,10 @@
       <!-- ASPIRE Fellowship — Program, single photo -->
       <article class="reveal card !p-0 overflow-hidden">
       <div class="resource-photo">
-  <img src="images/aspire-1.jpg" alt="ASPIRE Fellowship" loading="lazy" decoding="async" width="1200" height="1087">
+  <picture>
+    <source srcset="images/aspire-1.webp" type="image/webp">
+    <img src="images/aspire-1.jpg" alt="ASPIRE Fellowship" loading="lazy" decoding="async" width="1200" height="1087">
+  </picture>
 </div>
         <div class="p-6">
           <span class="text-xs font-semibold text-ocean uppercase tracking-wide">Program</span>
@@ -350,7 +362,6 @@
     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-slate">
       <a href="index.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Home</a>
       <a href="contact.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Contact</a>
-      <!-- TODO: replace with your real LinkedIn URL -->
       <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
       <a href="#top" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
     </div>
