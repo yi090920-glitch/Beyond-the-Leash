@@ -422,6 +422,20 @@
     border-radius: 1rem;
     font-size: 0.85rem;
   }
+
+  /* Real research photos: each keeps its own natural size/aspect ratio so
+     nothing is ever cropped, and sits flush against its neighbors with no
+     placeholder padding or background showing. */
+  .research-photo-grid {
+    align-items: start;
+  }
+  .research-photo-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 12px rgba(15, 38, 71, 0.10);
+  }
 </style>
 
 <!-- SEO:START -->
@@ -676,16 +690,10 @@
       (The <source> line is optional - a plain <img> still works. To make a .webp,
       any online JPEG-to-WebP converter will do.)
     -->
-        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
+        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3 research-photo-grid">
+          <img src="images/research-01-photo-1.jpg" alt="Immune subtype abundance across healthy and OA synovium">
+          <img src="images/research-01-photo-2.jpg" alt="Spatial map of cell types across the synovial tissue section">
+          <img src="images/research-01-photo-3.jpg" alt="Detected genes per spot across the OA001 tissue section">
         </div>
       </article>
 
@@ -733,16 +741,10 @@
       (The <source> line is optional - a plain <img> still works. To make a .webp,
       any online JPEG-to-WebP converter will do.)
     -->
-        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3">
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
-          <div class="about-photo-placeholder aspect-square">
-            <span>Photo coming soon</span>
-          </div>
+        <div class="px-7 md:px-9 pb-7 md:pb-9 grid grid-cols-3 gap-3 research-photo-grid">
+          <img src="images/research-02-photo-1.jpg" alt="Overview of the problem: unknown dysregulated genes, limited cross-species translation, unclear pathways, and no prioritized therapeutic targets">
+          <img src="images/research-02-photo-2.jpg" alt="Diagram of the CCL tear to synovial fibrosis mechanism, from cytokine release through ECM breakdown">
+          <img src="images/research-02-photo-3.jpg" alt="Summary of results: defined gene signatures, cross-species mapping, pathway enrichment, and prioritized gene-to-drug targets">
         </div>
       </article>
     </div>
