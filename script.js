@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* Rotating to landscape or resizing past the md breakpoint reveals the
-       desktop nav, so the mobile menu must not stay open (and must not keep
-       the page scroll locked). */
-    const desktop = window.matchMedia('(min-width: 768px)');
-    const onDesktop = function (event) { if (event.matches && menuOpen) setMenu(false); };
-    if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
-    else desktop.addListener(onDesktop);
+       desktop nav, so the mobile menu must not stay open (and must not leave
+       the page scroll locked). Driven off resize rather than a matchMedia
+       'change' listener, which some environments do not dispatch. */
+    window.addEventListener('resize', function () {
+      if (menuOpen && window.matchMedia('(min-width: 768px)').matches) setMenu(false);
+    });
   }
 
   /* ---------- Reveal elements as the user scrolls ---------- */
