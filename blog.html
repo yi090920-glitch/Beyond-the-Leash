@@ -121,6 +121,7 @@
 </noscript>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
+<!-- BUILD:header -->
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-center justify-between h-16 md:h-[96px]">
@@ -130,12 +131,12 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
-        <a href="about.html" class="nav-link text-base focus-ring rounded">About</a>
-        <a href="blog.html" class="nav-link nav-active text-base focus-ring rounded" aria-current="page">Blog</a>
-        <a href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
-        <a href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
-        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+        <a data-nav="home" href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a data-nav="about" href="about.html" class="nav-link text-base focus-ring rounded">About</a>
+        <a data-nav="blog" href="blog.html" class="nav-link text-base focus-ring rounded nav-active" aria-current="page">Blog</a>
+        <a data-nav="resources" href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a data-nav="interviews" href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
+        <a data-nav="contact" href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
       </nav>
 
       <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
@@ -148,15 +149,16 @@
 
   <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
     <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
-      <a href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
-      <a href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">About</a>
-      <a href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] nav-active focus-ring rounded" aria-current="page">Blog</a>
-      <a href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
-      <a href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
-      <a href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
+      <a data-nav="home" href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
+      <a data-nav="about" href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">About</a>
+      <a data-nav="blog" href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded nav-active" aria-current="page">Blog</a>
+      <a data-nav="resources" href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a data-nav="interviews" href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
+      <a data-nav="contact" href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
     </div>
   </div>
 </header>
+<!-- /BUILD:header -->
 
 <section class="pt-28 md:pt-[186px] pb-14 px-6">
   <div class="max-w-4xl mx-auto text-center">
@@ -223,6 +225,7 @@
 
   </div>
 </section>
+<!-- BUILD:footer -->
 <footer class="site-footer mt-16 px-6 pb-10">
   <!-- Newsletter signup is part of the shared footer -->
   <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
@@ -275,6 +278,7 @@
     </div>
   </div>
 </footer>
+<!-- /BUILD:footer -->
 
 </body>
 </html>

@@ -379,6 +379,7 @@
 </noscript>
 </head>
 <body class="about-page bg-white text-ink antialiased" id="top">
+<!-- BUILD:header -->
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-center justify-between h-16 md:h-[96px]">
@@ -388,12 +389,12 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
-        <a href="about.html" class="nav-link nav-active text-base focus-ring rounded" aria-current="page">About</a>
-        <a href="blog.html" class="nav-link text-base focus-ring rounded">Blog</a>
-        <a href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
-        <a href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
-        <a href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+        <a data-nav="home" href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a data-nav="about" href="about.html" class="nav-link text-base focus-ring rounded nav-active" aria-current="page">About</a>
+        <a data-nav="blog" href="blog.html" class="nav-link text-base focus-ring rounded">Blog</a>
+        <a data-nav="resources" href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a data-nav="interviews" href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
+        <a data-nav="contact" href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
       </nav>
 
       <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
@@ -406,15 +407,16 @@
 
   <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
     <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
-      <a href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
-      <a href="about.html" class="mobile-nav-link flex items-center min-h-[44px] nav-active focus-ring rounded" aria-current="page">About</a>
-      <a href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
-      <a href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
-      <a href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
-      <a href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
+      <a data-nav="home" href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
+      <a data-nav="about" href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded nav-active" aria-current="page">About</a>
+      <a data-nav="blog" href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
+      <a data-nav="resources" href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a data-nav="interviews" href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
+      <a data-nav="contact" href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
     </div>
   </div>
 </header>
+<!-- /BUILD:header -->
 
 <!-- ============ ABOUT HERO ============ -->
 <section class="relative pt-28 pb-20 md:pt-[216px] md:pb-24 px-6 overflow-hidden">
@@ -675,21 +677,42 @@
   </div>
 </section>
 
+<!-- BUILD:footer -->
 <footer class="site-footer mt-16 px-6 pb-10">
+  <!-- Newsletter signup is part of the shared footer -->
   <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
     <div class="newsletter-card reveal max-w-6xl mx-auto">
       <div class="newsletter-copy">
         <p class="newsletter-eyebrow">Website updates</p>
         <h2 id="newsletter-heading" class="font-display newsletter-title">Stay updated</h2>
-        <p class="newsletter-description">Receive an occasional email when a new article, interview, or resource is added.</p>
+        <p class="newsletter-description">
+          Receive an occasional email when a new article, interview, or resource is added.
+        </p>
       </div>
-      <form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/beyond_the_leash" method="post">
+  
+      <!-- Newsletter form connected to Buttondown: beyond_the_leash -->
+      <form
+        class="newsletter-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/beyond_the_leash"
+        method="post"
+      >
         <label class="sr-only" for="newsletter-email">Email address</label>
-        <input id="newsletter-email" class="newsletter-input" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <input
+          id="newsletter-email"
+          class="newsletter-input"
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
         <input type="hidden" name="embed" value="1">
         <button class="newsletter-button focus-ring" type="submit">Subscribe</button>
       </form>
-      <p class="newsletter-privacy">Your email will only be used for website updates. You can unsubscribe at any time.</p>
+  
+      <p class="newsletter-privacy">
+        Your email will only be used for website updates. You can unsubscribe at any time.
+      </p>
     </div>
   </section>
   <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -707,6 +730,7 @@
     </div>
   </div>
 </footer>
+<!-- /BUILD:footer -->
 
 <script>
 (function () {

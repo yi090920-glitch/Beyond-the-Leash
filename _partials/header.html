@@ -1,0 +1,36 @@
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16 md:h-[96px]">
+      <a href="index.html" class="flex items-center gap-2 md:gap-3 min-w-0 pr-3 md:pr-0 font-display font-extrabold text-base leading-tight md:text-2xl tracking-tight text-navy focus-ring rounded">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[104px] md:w-[104px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
+        Beyond the Leash with Sandra
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a data-nav="home" href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a data-nav="about" href="about.html" class="nav-link text-base focus-ring rounded">About</a>
+        <a data-nav="blog" href="blog.html" class="nav-link text-base focus-ring rounded">Blog</a>
+        <a data-nav="resources" href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a data-nav="interviews" href="interviews.html" class="nav-link text-base focus-ring rounded">Interviews</a>
+        <a data-nav="contact" href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a data-nav="home" href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
+      <a data-nav="about" href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">About</a>
+      <a data-nav="blog" href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
+      <a data-nav="resources" href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a data-nav="interviews" href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Interviews</a>
+      <a data-nav="contact" href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
