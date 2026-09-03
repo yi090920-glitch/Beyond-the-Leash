@@ -706,3 +706,265 @@ footer::before {
   background: var(--baby);
   box-shadow: 0 16px 28px -21px rgba(15, 38, 71, 0.68);
 }
+
+
+/* ============================================================
+   Motion layer — page loader, entrance animations, transitions
+   Everything below is decorative. It is fully disabled for
+   visitors who ask their device for reduced motion (see the
+   media query at the bottom of this block).
+   ============================================================ */
+
+/* ---------- Page loading screen ----------
+   Drawn with pseudo-elements on <html> so it appears before any
+   markup renders — no flash of half-built page. script.js adds
+   .is-loading immediately and swaps it for .is-loaded on window load. */
+html.is-loading,
+html.is-loaded {
+  --loader-fade: 0.55s;
+}
+
+html.is-loading::before,
+html.is-loaded::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at 50% 42%, #ffffff 0%, #F4F7FB 55%, #E7F0FB 100%);
+  transition: opacity var(--loader-fade) ease;
+}
+
+html.is-loading::after,
+html.is-loaded::after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10000;
+  width: 3rem;
+  height: 3rem;
+  margin: -1.5rem 0 0 -1.5rem;
+  border-radius: 9999px;
+  border: 3px solid rgba(127, 174, 221, 0.35);
+  border-top-color: var(--ocean);
+  animation: loader-spin 0.8s linear infinite;
+  transition: opacity var(--loader-fade) ease;
+}
+
+/* Once loading finishes the panel fades away and stops catching clicks. */
+html.is-loaded::before,
+html.is-loaded::after {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.is-loading body {
+  overflow: hidden;
+}
+
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Hero entrance ----------
+   Runs once, right after the loader clears. */
+.is-ready .hero-in {
+  animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Only hidden when script.js is running (it adds .is-loading to <html>),
+   so a no-JS visitor still sees the hero straight away. */
+html.is-loading .hero-in,
+html.is-loaded .hero-in { opacity: 0; }
+.is-ready .hero-in:nth-child(1) { animation-delay: 0.05s; }
+.is-ready .hero-in:nth-child(2) { animation-delay: 0.16s; }
+.is-ready .hero-in:nth-child(3) { animation-delay: 0.28s; }
+.is-ready .hero-in:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Reveal-on-scroll, refined ----------
+   The base .reveal rules live higher up in this file; these add a
+   gentler easing plus optional per-item stagger (data-delay="1..6"). */
+.reveal {
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { will-change: auto; }
+
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+.reveal[data-delay="4"] { transition-delay: 0.32s; }
+.reveal[data-delay="5"] { transition-delay: 0.4s; }
+.reveal[data-delay="6"] { transition-delay: 0.48s; }
+
+/* Sideways and scale variants for a bit of variety between sections. */
+.reveal-left  { transform: translateX(-28px); }
+.reveal-right { transform: translateX(28px); }
+.reveal-zoom  { transform: scale(0.96); }
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-zoom.is-visible { transform: none; }
+
+/* ---------- Drifting hero orbs ---------- */
+.orb-drift-slow { animation: orb-drift 18s ease-in-out infinite; }
+.orb-drift-fast { animation: orb-drift 13s ease-in-out infinite reverse; }
+
+@keyframes orb-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-18px, 22px, 0) scale(1.06); }
+}
+
+/* ---------- Header reacts to scrolling ---------- */
+header {
+  transition: box-shadow 0.35s ease, background-color 0.35s ease,
+              backdrop-filter 0.35s ease;
+}
+header.is-scrolled {
+  background-color: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 30px -22px rgba(15, 38, 71, 0.85);
+}
+header img,
+header a.flex {
+  transition: transform 0.35s ease;
+}
+header.is-scrolled img {
+  transform: scale(0.92);
+}
+
+/* ---------- Mobile menu slide-down ---------- */
+#mobileMenu:not(.hidden) {
+  animation: menu-drop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#mobileMenu a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+#mobileMenu a:hover { transform: translateX(4px); }
+
+@keyframes menu-drop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Images fade in once decoded ---------- */
+img.img-fade {
+  opacity: 0;
+  transform: scale(1.015);
+  transition: opacity 0.7s ease, transform 0.9s ease;
+}
+img.img-fade.is-loaded {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Button and card micro-interactions ---------- */
+.btn-primary,
+.btn-secondary,
+.contact-cta-button,
+.mission-scroll-button,
+.newsletter-button {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-primary:hover,
+.newsletter-button:hover { transform: translateY(-2px); }
+.btn-primary:active,
+.btn-secondary:active,
+.contact-cta-button:active,
+.mission-scroll-button:active,
+.newsletter-button:active { transform: translateY(0) scale(0.98); }
+
+/* The hero's "My mission ↓" arrow gives a small nudge downward. */
+.mission-scroll-button span[aria-hidden] {
+  transition: transform 0.25s ease;
+}
+.mission-scroll-button:hover span[aria-hidden] {
+  transform: translateY(3px);
+}
+
+.card {
+  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease;
+}
+
+/* Resource tiles lift a touch more than plain cards. */
+a.card:hover { transform: translateY(-6px); }
+
+/* Interview photo strip tiles */
+.photo-tile {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.photo-tile:hover {
+  transform: translateY(-6px) rotate(-1.2deg);
+  box-shadow: 0 18px 34px -22px rgba(15, 38, 71, 0.55);
+}
+
+/* Footer and nav links slide their underline in (nav) or shift (footer). */
+footer a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+footer a:hover { transform: translateY(-1px); }
+
+/* ---------- Skeleton placeholder ----------
+   Used by the homepage "latest post" card while blog.html is fetched. */
+.skeleton-line {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #EEF3F9 25%, #DCE8F6 37%, #EEF3F9 63%);
+  background-size: 400% 100%;
+  animation: skeleton-sweep 1.4s ease infinite;
+}
+.skeleton-block {
+  aspect-ratio: 4 / 3;
+  min-height: 180px;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #EEF3F9 25%, #DCE8F6 37%, #EEF3F9 63%);
+  background-size: 400% 100%;
+  animation: skeleton-sweep 1.4s ease infinite;
+}
+
+@keyframes skeleton-sweep {
+  from { background-position: 100% 50%; }
+  to   { background-position: 0 50%; }
+}
+
+/* Content swapped in by script fades rather than popping. */
+.swap-in { animation: hero-rise 0.5s ease both; }
+
+/* ---------- Reduced motion ----------
+   Anything above that moves is switched off here. The loader still
+   shows (it is just a plain panel) but nothing spins or slides. */
+@media (prefers-reduced-motion: reduce) {
+  html.is-loading::after,
+  html.is-loaded::after { animation: none; }
+
+  .is-ready .hero-in,
+  .hero-in { animation: none; opacity: 1; }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom { transition: none; opacity: 1; transform: none; }
+
+  .orb-drift-slow,
+  .orb-drift-fast,
+  .skeleton-line,
+  .skeleton-block,
+  #mobileMenu:not(.hidden),
+  .swap-in { animation: none; }
+
+  img.img-fade { opacity: 1; transform: none; }
+
+  .card:hover,
+  a.card:hover,
+  .photo-tile:hover,
+  .btn-primary:hover,
+  .newsletter-button:hover,
+  footer a:hover,
+  #mobileMenu a:hover { transform: none; }
+}

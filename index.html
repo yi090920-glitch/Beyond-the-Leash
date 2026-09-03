@@ -103,7 +103,7 @@
 <!-- SEO:END -->
 <noscript>
   <!-- Without JS the reveal-on-scroll observer never runs, so make all content visible. -->
-  <style>.reveal{opacity:1!important;transform:none!important}</style>
+  <style>.reveal,.hero-in,.img-fade{opacity:1!important;transform:none!important}#latest-blog-skeleton{display:none}#latest-blog-fallback{display:block!important}</style>
 </noscript>
 </head>
 <body class="bg-white text-ink antialiased" id="top">
@@ -146,18 +146,18 @@
 
 <!-- ============ HERO ============ -->
 <section class="relative pt-28 pb-24 md:pt-[216px] md:pb-32 px-6 overflow-hidden">
-  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
-  <div class="absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
+  <div class="orb-drift-slow absolute -top-24 -right-24 w-96 h-96 rounded-full bg-baby/40 blur-3xl pointer-events-none"></div>
+  <div class="orb-drift-fast absolute top-40 -left-32 w-80 h-80 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
 
   <div class="max-w-5xl mx-auto text-center relative">
-    <p class="reveal eyebrow">Animal Health &middot; Science &middot; One Health</p>
-    <h1 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">
+    <p class="hero-in eyebrow">Animal Health &middot; Science &middot; One Health</p>
+    <h1 class="hero-in font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-navy leading-[1.08] tracking-tight">
       Exploring animal health, science, and the One Health connection.
     </h1>
-    <p class="reveal mt-7 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+    <p class="hero-in mt-7 text-lg text-slate max-w-2xl mx-auto leading-relaxed">
      Interviews, blogs, and resources exploring the connections between animal, human, and environmental health.
     </p>
-    <div class="reveal mt-10 flex items-center justify-center">
+    <div class="hero-in mt-10 flex items-center justify-center">
       <a href="#mission" class="mission-scroll-button focus-ring">My mission <span aria-hidden="true">↓</span></a>
     </div>
   </div>
@@ -167,7 +167,7 @@
 
 <!-- ============ MISSION STATEMENT ============ -->
 <section id="mission" class="mission-section px-6 py-12 md:py-16" aria-labelledby="mission-heading">
-  <div class="mission-panel reveal max-w-6xl mx-auto">
+  <div class="mission-panel reveal reveal-zoom max-w-6xl mx-auto">
     <div class="mission-label-wrap">
       <h2 id="mission-heading" class="mission-kicker">My mission</h2>
       <span class="mission-line" aria-hidden="true"></span>
@@ -183,7 +183,7 @@
 <!-- ============ ABOUT PREVIEW ============ -->
 <section class="py-20 md:py-28 px-6">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal order-2 md:order-1">
+    <div class="reveal reveal-left order-2 md:order-1">
       <p class="eyebrow">About me</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Hi, I'm Sandra!</h2>
       <p class="text-slate leading-relaxed mb-4">
@@ -195,10 +195,10 @@
       <a href="about.html" class="btn-secondary focus-ring">Learn more about me &rarr;</a>
     </div>
 
-    <div class="reveal order-1 md:order-2 flex justify-center">
+    <div class="reveal reveal-right order-1 md:order-2 flex justify-center">
       <div class="relative">
         <div class="w-full max-w-80 h-96 sm:max-w-[26rem] sm:h-[30rem] rounded-3xl flex items-center justify-center overflow-hidden">
-          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
+          <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="img-fade w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
         </div>
       </div>
     </div>
@@ -220,16 +220,27 @@
     <div class="grid md:grid-cols-3 gap-8">
       <!-- This card automatically mirrors the newest non-template post on blog.html. -->
       <article id="latest-blog-card" class="reveal card">
-        <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Latest post</p>
-        <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">First post coming soon</h3>
-        <p class="text-sm text-slate leading-relaxed mb-5">When a real post is published on the Blog page, the newest one will appear here automatically.</p>
-        <div class="flex items-center justify-between text-xs text-slate">
-          <span>Beyond the Leash with Sandra</span>
-          <a href="blog.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Visit the blog &rarr;</a>
+        <!-- Shown while blog.html loads; script.js replaces it with the real post,
+             or reveals the fallback below if the post cannot be loaded. -->
+        <div id="latest-blog-skeleton" aria-hidden="true">
+          <div class="skeleton-block mb-5"></div>
+          <div class="skeleton-line w-1/3 mb-4"></div>
+          <div class="skeleton-line w-5/6 mb-3"></div>
+          <div class="skeleton-line w-full mb-3"></div>
+          <div class="skeleton-line w-2/3"></div>
+        </div>
+        <div id="latest-blog-fallback" hidden>
+          <p class="text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Latest post</p>
+          <h3 class="font-display text-xl font-bold text-navy mb-3 leading-snug">First post coming soon</h3>
+          <p class="text-sm text-slate leading-relaxed mb-5">When a real post is published on the Blog page, the newest one will appear here automatically.</p>
+          <div class="flex items-center justify-between text-xs text-slate">
+            <span>Beyond the Leash with Sandra</span>
+            <a href="blog.html" class="font-semibold text-deep hover:text-navy focus-ring rounded">Visit the blog &rarr;</a>
+          </div>
         </div>
       </article>
 
-      <article class="reveal card flex flex-col justify-between">
+      <article class="reveal card flex flex-col justify-between" data-delay="1">
         <div>
           <div class="blog-photo blog-photo-empty">
             <span class="text-xs font-semibold text-slate uppercase tracking-wide">Beyond the Leash</span>
@@ -241,7 +252,7 @@
         <a href="blog.html" class="btn-secondary focus-ring self-start">View all posts &rarr;</a>
       </article>
 
-      <article class="reveal card border-dashed">
+      <article class="reveal card border-dashed" data-delay="2">
         <div class="blog-photo blog-photo-empty">
           <span class="text-xs font-semibold text-slate uppercase tracking-wide">Coming soon</span>
         </div>
@@ -257,7 +268,7 @@
 <!-- ============ RESOURCES PREVIEW ============ -->
 <section class="py-20 md:py-28 px-6">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal">
+    <div class="reveal reveal-left">
       <p class="eyebrow">Resources</p>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-navy mb-6">Things worth bookmarking</h2>
       <p class="text-slate leading-relaxed mb-8">
@@ -265,7 +276,7 @@
       </p>
       <a href="resources.html" class="btn-secondary focus-ring">Explore resources &rarr;</a>
     </div>
-    <div class="reveal grid grid-cols-2 gap-4">
+    <div class="reveal reveal-right grid grid-cols-2 gap-4">
       <a href="resources.html" class="card !p-5 flex items-center justify-center text-center focus-ring">
         <span class="font-display font-bold text-navy">Organizations</span>
       </a>
@@ -293,29 +304,29 @@
       Add or remove boxes to change how many photos show (currently 3).
     -->
     <div class="reveal flex flex-wrap justify-center gap-4 mb-10">
-      <div class="w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
+      <div class="photo-tile w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
         <span class="text-slate text-xs text-center px-2">Photo coming soon</span>
       </div>
-      <div class="w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
+      <div class="photo-tile w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
         <span class="text-slate text-xs text-center px-2">Photo coming soon</span>
       </div>
-      <div class="w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
+      <div class="photo-tile w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
         <span class="text-slate text-xs text-center px-2">Photo coming soon</span>
       </div>
     </div>
-    <p class="reveal eyebrow">Conversations</p>
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold text-navy mb-6">Interviews</h2>
-    <p class="reveal text-slate max-w-xl mx-auto mb-10 leading-relaxed">
+    <p class="reveal eyebrow" data-delay="1">Conversations</p>
+    <h2 class="reveal font-display text-3xl md:text-4xl font-bold text-navy mb-6" data-delay="2">Interviews</h2>
+    <p class="reveal text-slate max-w-xl mx-auto mb-10 leading-relaxed" data-delay="3">
       Recorded conversations with people whose work I admire &mdash; new ones added as they're finished.
     </p>
-    <a href="interviews.html" class="reveal btn-primary focus-ring inline-block">Watch interviews &rarr;</a>
+    <a href="interviews.html" class="reveal btn-primary focus-ring inline-block" data-delay="4">Watch interviews &rarr;</a>
   </div>
 </section>
 
 <!-- ============ CONTACT CTA ============ -->
 <section class="px-6 py-20 md:py-28">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal contact-cta-card rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
+    <div class="reveal reveal-zoom contact-cta-card rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
       <div class="contact-cta-orb contact-cta-orb-one" aria-hidden="true"></div>
       <div class="contact-cta-orb contact-cta-orb-two" aria-hidden="true"></div>
       <div class="relative">

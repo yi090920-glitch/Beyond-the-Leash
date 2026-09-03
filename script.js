@@ -31,6 +31,37 @@ tailwind.config = {
   },
 };
 
+/* ============================================================
+   Page loading screen
+   Runs immediately (this file is loaded in <head>) so the loading
+   panel covers the page before anything renders. It clears on the
+   window 'load' event, with a safety timeout so a slow image can
+   never leave a visitor staring at the spinner.
+   ============================================================ */
+(function () {
+  const root = document.documentElement;
+  root.classList.add('is-loading');
+
+  let cleared = false;
+
+  function clearLoader() {
+    if (cleared) return;
+    cleared = true;
+    root.classList.remove('is-loading');
+    root.classList.add('is-loaded', 'is-ready');
+    /* Remove the panel entirely once its fade-out has finished. */
+    window.setTimeout(function () { root.classList.remove('is-loaded'); }, 700);
+  }
+
+  if (document.readyState === 'complete') {
+    clearLoader();
+  } else {
+    window.addEventListener('load', clearLoader);
+  }
+  /* Safety net: never hold the page for more than 4 seconds. */
+  window.setTimeout(clearLoader, 4000);
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Activate the shared newsletter forms ---------- */
   if (BUTTONDOWN_USERNAME) {
@@ -42,6 +73,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Homepage: mirror the newest real blog post ---------- */
   const latestBlogCard = document.getElementById('latest-blog-card');
+
+  /* Swaps the shimmering placeholder for the written-in fallback text. */
+  function showLatestBlogFallback() {
+    const skeleton = document.getElementById('latest-blog-skeleton');
+    const fallback = document.getElementById('latest-blog-fallback');
+    if (skeleton) skeleton.remove();
+    if (fallback) {
+      fallback.hidden = false;
+      fallback.classList.add('swap-in');
+    }
+  }
+
   if (latestBlogCard) {
     fetch('blog.html', { cache: 'no-store' })
       .then(function (response) {
@@ -53,10 +96,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const newestPost = blogDocument.querySelector('article.blog-entry:not(.template-post)');
         if (newestPost) {
           latestBlogCard.innerHTML = newestPost.innerHTML;
+          latestBlogCard.classList.add('swap-in');
+        } else {
+          showLatestBlogFallback();
         }
       })
       .catch(function () {
         /* Local file previews may block fetch(). The live GitHub Pages site will load it normally. */
+        showLatestBlogFallback();
       });
   }
 
@@ -123,4 +170,31 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
+  /* ---------- Header condenses once the page is scrolled ---------- */
+  const siteHeader = document.querySelector('header');
+  if (siteHeader) {
+    let ticking = false;
+    function syncHeader() {
+      siteHeader.classList.toggle('is-scrolled', window.scrollY > 12);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(syncHeader);
+      }
+    }, { passive: true });
+    syncHeader();
+  }
+
+  /* ---------- Photos fade in as they finish loading ---------- */
+  document.querySelectorAll('img.img-fade').forEach(function (image) {
+    if (image.complete && image.naturalWidth) {
+      image.classList.add('is-loaded');
+    } else {
+      image.addEventListener('load', function () { image.classList.add('is-loaded'); });
+      /* A broken image should not stay invisible. */
+      image.addEventListener('error', function () { image.classList.add('is-loaded'); });
+    }
+  });
 });
