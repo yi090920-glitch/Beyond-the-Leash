@@ -4,8 +4,9 @@
    and fade-in-on-scroll animations. Loaded on every page.
    ============================================================ */
 
-/* Newsletter setup — connected to the Buttondown newsletter below. */
-const BUTTONDOWN_USERNAME = 'beyond_the_leash';
+/* Newsletter setup — connected to EmailOctopus (migrated from Buttondown).
+   The form's action and field names are now hardcoded directly in each
+   page's HTML, so no JS override is needed here. */
 
 /* Tailwind Play CDN configuration — keeps the same custom color
    names (navy, deep, ocean, sky, baby, mist, ink, slate) available
@@ -63,13 +64,6 @@ tailwind.config = {
 })();
 
 document.addEventListener('DOMContentLoaded', function () {
-  /* ---------- Activate the shared newsletter forms ---------- */
-  if (BUTTONDOWN_USERNAME) {
-    document.querySelectorAll('.newsletter-form').forEach(function (form) {
-      form.action = 'https://buttondown.com/api/emails/embed-subscribe/' + encodeURIComponent(BUTTONDOWN_USERNAME);
-    });
-  }
-
 
   /* ---------- Homepage: mirror the newest real blog post ---------- */
   const latestBlogCard = document.getElementById('latest-blog-card');
