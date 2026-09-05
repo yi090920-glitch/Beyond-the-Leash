@@ -255,6 +255,89 @@ h1, h2, h3, h4, .font-display {
   line-height: 1.5;
 }
 
+/* ============================================================
+   EmailOctopus embed override
+   The subscribe form itself now lives on EmailOctopus's servers
+   (loaded via their <script> embed) so its markup can't be edited
+   directly. These rules restyle it in place to match the site's
+   original pill-shaped input + navy button design instead of
+   EmailOctopus's own default card look. Scoped tightly to this
+   specific form's data-form attribute so nothing else is affected.
+   ============================================================ */
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"].inline-container {
+  max-width: 100% !important;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .form-container,
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .emailoctopus-form-wrapper {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .main-form {
+  display: flex !important;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] [eo-form-fields-container] {
+  width: 100%;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .emailoctopus-form-row {
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .form-control {
+  width: 100% !important;
+  min-height: 3rem !important;
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 9999px !important;
+  background: #ffffff !important;
+  color: var(--ink) !important;
+  font: inherit !important;
+  box-shadow: none !important;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .form-control:focus {
+  border-color: var(--deep) !important;
+  box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.75) !important;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] input[type="submit"].btn {
+  width: auto !important;
+  min-height: 3rem !important;
+  padding: 0.75rem 1.5rem !important;
+  border: 0 !important;
+  border-radius: 9999px !important;
+  background: var(--navy) !important;
+  color: #ffffff !important;
+  font: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+[data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] input[type="submit"].btn:hover {
+  background: var(--deep) !important;
+}
+@media (min-width: 640px) {
+  [data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] [eo-form-fields-container] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  [data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .main-form {
+    flex-direction: row;
+    align-items: center;
+  }
+  [data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"] .emailoctopus-form-row {
+    flex: 1;
+  }
+}
+
 @media (min-width: 640px) {
   .newsletter-card {
     padding: 3rem;
