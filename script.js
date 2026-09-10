@@ -23,7 +23,7 @@ tailwind.config = {
         baby: '#BFDBFE',
         mist: '#F4F7FB',
         ink: '#334155',
-        slate: '#64748B',
+        slate: '#5F6F85',
       },
       fontFamily: {
         display: ['Manrope', 'sans-serif'],

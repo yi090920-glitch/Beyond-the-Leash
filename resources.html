@@ -80,7 +80,10 @@
     transition: background 0.25s ease, color 0.25s ease;
   }
   .resource-chip[aria-pressed="true"] .resource-chip-count {
-    background: rgba(255, 255, 255, 0.22);
+    /* A navy tint rather than a white one: the badge sits over the light end
+       of the chip's navy-to-ocean gradient, where a white wash left the white
+       digit at 4.06:1. Darkening the pill instead takes it well clear. */
+    background: rgba(15, 38, 71, 0.35);
     color: #ffffff;
   }
 

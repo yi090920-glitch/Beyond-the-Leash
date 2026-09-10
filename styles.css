@@ -15,12 +15,20 @@
   /* Warm accent, used sparingly against the blues: eyebrows, the active nav
      underline, and the warm section band. */
   --amber: #C9822F;
+  /* Same hue and saturation, darkened until it clears WCAG AA on white at the
+     eyebrow's 12.8px. --amber itself stays put: it is only ever a background. */
+  --amber-text: #9E6625;
   --amber-soft: #FDF3E5;
-  --slate: #64748B;
+  /* Passes 4.5:1 on white *and* on the off-white section bands, where the old
+     #64748B landed at 4.40. Same hue and saturation, one step darker. */
+  --slate: #5F6F85;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Keep decorative overflow from giving the page a sideways scroll. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -80,7 +88,7 @@ h1, h2, h3, h4, .font-display {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--amber-text);
   margin-bottom: 1rem;
 }
 
