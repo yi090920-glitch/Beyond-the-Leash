@@ -31,6 +31,11 @@ anything (exits non-zero if they have):
 python build.py --check
 ```
 
+GitHub Actions runs that same check on every push and pull request
+(`.github/workflows/build-check.yml`), so a page edited by hand inside a
+generated region fails the build instead of being silently overwritten by the
+next person to run `build.py`.
+
 ### How it works
 
 Each page marks the region the build owns:

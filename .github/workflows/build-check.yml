@@ -1,0 +1,29 @@
+# The header and footer on every page are generated from _partials/ by build.py.
+# A page edited by hand inside a <!-- BUILD:x --> region drifts away from its
+# partial, and the next legitimate build silently overwrites the hand edit --
+# which is how the newsletter form came to differ from the partial it is
+# generated from. This job makes that drift fail here instead of in production.
+#
+# If it fails: run `python build.py`, check the diff, and commit the pages
+# alongside the partial.
+
+name: Pages match partials
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # build.py is stdlib-only, so there is nothing to install.
+      - name: Check every page is up to date with _partials/
+        run: python build.py --check
