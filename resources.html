@@ -347,6 +347,8 @@
 </head>
 <body class="bg-white text-ink antialiased" id="top">
 <!-- BUILD:header -->
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex items-center justify-between h-16 md:h-[96px]">
@@ -384,6 +386,7 @@
   </div>
 </header>
 <!-- /BUILD:header -->
+<main id="main" tabindex="-1">
 
 <section class="pt-28 md:pt-[186px] pb-14 px-6">
   <div class="max-w-4xl mx-auto text-center">
@@ -540,6 +543,8 @@
     <p class="resource-empty mt-2" id="resource-empty" hidden>Nothing in this category yet &mdash; more on the way.</p>
   </div>
 </section>
+</main>
+
 <!-- BUILD:footer -->
 <footer class="site-footer mt-16 px-6 pb-10">
   <!-- Newsletter signup is part of the shared footer -->
@@ -673,8 +678,14 @@
     });
   });
 
-  /* Following a homepage tile, or using back/forward, re-runs the filter. */
-  window.addEventListener('hashchange', function () { apply(categoryFromHash(), false); });
+  /* Following a homepage tile, or using back/forward, re-runs the filter.
+     Only category hashes count: the footer's "Back to top" link points at
+     #top, and treating that as "show everything" silently threw away the
+     visitor's chosen filter. */
+  window.addEventListener('hashchange', function () {
+    var key = decodeURIComponent(window.location.hash.replace('#', '')).toLowerCase();
+    if (categories.indexOf(key) !== -1) apply(key, false);
+  });
 
   apply(categoryFromHash(), false);
 })();
@@ -689,6 +700,11 @@
     const prev = gallery.querySelector('.resource-gallery-prev');
     const next = gallery.querySelector('.resource-gallery-next');
     const dotsWrap = gallery.querySelector('.resource-gallery-dots');
+    const status = document.createElement('p');
+    status.className = 'sr-only-live';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    gallery.appendChild(status);
     if (slides.length <= 1) {
       if (prev) prev.style.display = 'none';
       if (next) next.style.display = 'none';
@@ -713,6 +729,8 @@
       dots.forEach(function (dot, dotIndex) {
         dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
       });
+      /* Sliding the track is invisible to a screen reader, so say what changed. */
+      status.textContent = 'Photo ' + (index + 1) + ' of ' + slides.length;
     }
 
     prev.addEventListener('click', function () { goTo(index - 1); });
