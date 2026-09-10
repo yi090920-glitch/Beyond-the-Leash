@@ -5,8 +5,9 @@
    ============================================================ */
 
 /* Newsletter setup — connected to EmailOctopus (migrated from Buttondown).
-   The form's action and field names are now hardcoded directly in each
-   page's HTML, so no JS override is needed here. */
+   The embed lives in _partials/footer.html and is stamped into every page by
+   build.py, so there is nothing to override here. Edit the partial, not the
+   generated pages. */
 
 /* Tailwind Play CDN configuration — keeps the same custom color
    names (navy, deep, ocean, sky, baby, mist, ink, slate) available
