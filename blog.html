@@ -163,17 +163,22 @@
 
      CATEGORIES currently in use: Research & Science, General Info, Personal Notes.
 
-     TO ADD A PHOTO to a post card: replace the <div class="blog-photo blog-photo-empty">...</div>
-     placeholder with:
+     TO ADD A PHOTO to a post card: replace the
+     <div class="blog-photo blog-photo-empty">...</div> placeholder with:
        <div class="blog-photo">
         <picture>
-          <source srcset="images/your-photo.webp" type="image/webp">
-          <img src="images/your-photo.jpg" alt="...">
+          <source type="image/webp" sizes="(min-width: 768px) 400px, 100vw"
+                  srcset="images/your-photo-480.webp 480w, images/your-photo-800.webp 800w">
+          <img src="images/your-photo.jpg" sizes="(min-width: 768px) 400px, 100vw"
+               srcset="images/your-photo-480.jpg 480w, images/your-photo-800.jpg 800w"
+               alt="..." loading="lazy" decoding="async" width="1200" height="800">
         </picture>
        </div>
 
-      (The <source> line is optional - a plain <img> still works. To make a .webp,
-      any online JPEG-to-WebP converter will do.)
+      (Add the photo to images/, list it in SOURCES in make-image-variants.py,
+      then run: python make-image-variants.py - that writes the -480 and -800
+      copies. A plain <img src="images/your-photo.jpg" alt="..."> still works if
+      you would rather skip it; it just costs phone visitors more data.)
     -->
 <section class="pt-14 pb-24 px-6 bg-warm">
   <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">

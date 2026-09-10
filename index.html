@@ -201,8 +201,11 @@
       <div class="relative">
         <div class="w-full max-w-80 h-96 sm:max-w-[26rem] sm:h-[30rem] rounded-3xl flex items-center justify-center overflow-hidden">
           <picture>
-            <source srcset="images/sandra-and-teddy.webp" type="image/webp">
-            <img src="images/sandra-and-teddy.jpg" alt="Sandra with her dog Teddy" class="img-fade w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
+            <source type="image/webp" sizes="(min-width: 640px) 416px, 320px"
+                    srcset="images/sandra-and-teddy-480.webp 480w, images/sandra-and-teddy-800.webp 800w, images/sandra-and-teddy.webp 900w">
+            <img src="images/sandra-and-teddy.jpg" sizes="(min-width: 640px) 416px, 320px"
+                 srcset="images/sandra-and-teddy-480.jpg 480w, images/sandra-and-teddy-800.jpg 800w, images/sandra-and-teddy.jpg 900w"
+                 alt="Sandra with her dog Teddy" class="img-fade w-full h-full object-cover" fetchpriority="high" decoding="async" width="900" height="1200">
           </picture>
         </div>
       </div>

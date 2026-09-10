@@ -56,6 +56,25 @@ while reading a post.
 **Adding a page:** give it the four marker comments and add it to `PAGES` in
 `build.py`, then run the build.
 
+## Photographs
+
+Pages list several widths of each photo, so a phone showing a picture in a
+129 px column does not download a 1200 px original. The narrow copies are
+generated rather than made by hand:
+
+```bash
+python make-image-variants.py
+```
+
+That writes `images/<name>-480.{webp,jpg}` and `-800.{webp,jpg}` beside every
+source listed in `SOURCES` at the top of the script. It skips anything already
+up to date and never upscales, so a small image produces nothing. After adding
+a photo, add it to `SOURCES` and re-run; `--check` exits non-zero if a variant
+is missing or stale.
+
+The full-size original stays in place and stays listed in `srcset` as the
+largest option, so deleting a variant costs quality rather than breaking a page.
+
 ## Previewing locally
 
 ```bash
