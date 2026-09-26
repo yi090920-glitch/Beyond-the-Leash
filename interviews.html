@@ -241,6 +241,28 @@
   }
   .interview-card-spacer { flex: 1; }
 
+  /* Video thumbnails inside grid cards sit flush with the card edges,
+     and use a smaller play button that suits the smaller picture. */
+  .interview-card .video-facade,
+  .interview-card .video-frame { border-radius: 0; }
+  .interview-card .video-facade-play {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: -1.75rem 0 0 -1.75rem;
+  }
+  .interview-card .video-facade-play svg { width: 1.3rem; height: 1.3rem; }
+
+  .interview-card-guest {
+    margin-bottom: 0.6rem;
+    color: var(--navy);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .interview-card-guest span {
+    color: var(--slate);
+    font-weight: 400;
+  }
+
   .interview-card-thumb {
     aspect-ratio: 16 / 9;
     display: flex;
@@ -444,8 +466,8 @@
 <!-- ============ FEATURED INTERVIEW ============
      The newest conversation, shown large at the top of the page.
 
-     TO SWAP IN A NEWER INTERVIEW: move this one down into the grid
-     below as a normal card, then change the four things here:
+     TO SWAP IN A NEWER INTERVIEW: add the new video as a card at the
+     top of the "All interviews" grid below, then change the four things here:
        1. data-video-id  — the YouTube id (the part after "watch?v=")
        2. the <img src>  — https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg
        3. the title, date, duration, guest name and summary
@@ -460,113 +482,137 @@
       <button
         type="button"
         class="video-facade focus-ring"
-        data-video-id="CuJtcmXs6ms"
-        data-video-title="Inside Wildlife Rescue and Rehabilitation"
-        aria-label="Play the interview: Inside Wildlife Rescue and Rehabilitation">
+        data-video-id="chIG_NNF42k"
+        data-video-title="A Career in Veterinary Surgery"
+        aria-label="Play the interview: A Career in Veterinary Surgery">
         <img
-          src="https://i.ytimg.com/vi/CuJtcmXs6ms/maxresdefault.jpg"
-          data-fallback="https://i.ytimg.com/vi/CuJtcmXs6ms/hqdefault.jpg"
-          alt="Lauren Schulz of the Wildlife Center of Long Island, from the interview"
+          src="https://i.ytimg.com/vi/chIG_NNF42k/maxresdefault.jpg"
+          data-fallback="https://i.ytimg.com/vi/chIG_NNF42k/hqdefault.jpg"
+          alt="Dr. Elisabeth Lemmon of UPenn Vet, from the interview"
           width="1280" height="720" decoding="async" fetchpriority="high">
         <span class="video-facade-play" aria-hidden="true">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
         </span>
-        <span class="video-facade-duration" aria-hidden="true">19 min</span>
+        <span class="video-facade-duration" aria-hidden="true">17 min</span>
       </button>
 
       <noscript>
         <!-- Without JavaScript the thumbnail cannot swap itself, so embed directly. -->
-        <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/CuJtcmXs6ms"
-          title="Inside Wildlife Rescue and Rehabilitation"
+        <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/chIG_NNF42k"
+          title="A Career in Veterinary Surgery"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen loading="lazy"></iframe>
       </noscript>
 
       <div class="interview-feature-body">
         <div>
-          <p class="interview-meta"><span>July 2026</span><span>19 min</span></p>
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-navy mb-3 leading-snug">Inside Wildlife Rescue and Rehabilitation</h2>
-          <p class="text-slate leading-relaxed">Go behind the scenes of wildlife rescue and rehabilitation with Lauren from the Wildlife Center of Long Island. Discover the care, challenges, and dedication involved in helping injured and orphaned wildlife recover and return to the wild.</p>
+          <p class="interview-meta"><span>September 2026</span><span>17 min</span></p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-navy mb-3 leading-snug">A Career in Veterinary Surgery</h2>
+          <p class="text-slate leading-relaxed">Learn about Dr. Elisabeth Lemmon's journey into veterinary medicine, her experience as a Small Animal Surgery Resident at UPenn Vet, and the role research plays in improving care for animal patients.</p>
         </div>
         <div>
           <div class="interview-guest">
-            <p class="interview-guest-name">Lauren Schulz</p>
-            <p class="interview-guest-role">Wildlife Center of Long Island</p>
+            <p class="interview-guest-name">Dr. Elisabeth Lemmon</p>
+            <p class="interview-guest-role">Small Animal Surgery Resident, UPenn Vet</p>
           </div>
-          <a href="https://www.youtube.com/watch?v=CuJtcmXs6ms" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.youtube.com/watch?v=chIG_NNF42k" target="_blank" rel="noopener noreferrer"
              class="btn-secondary focus-ring text-xs !px-4 !py-2 inline-block mt-4">Watch on YouTube &rarr;</a>
+          <a href="#all-interviews" class="block mt-3 text-sm font-semibold text-navy hover:text-deep focus-ring rounded">See all interviews &darr;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ EVERY OTHER INTERVIEW ============
-     TO ADD A FINISHED INTERVIEW: copy a card below and give it a real
-     thumbnail plus a play button, following the featured block above:
+<!-- ============ ALL INTERVIEWS ============
+     Every video, newest first. The latest one is also featured above.
 
-     <article class="reveal card interview-card !p-0 overflow-hidden">
-       <button type="button" class="video-facade focus-ring"
-               data-video-id="VIDEO_ID" data-video-title="Interview title"
-               aria-label="Play the interview: Interview title">
-         <img src="https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg"
-              data-fallback="https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg"
-              alt="..." width="1280" height="720" loading="lazy" decoding="async">
-         <span class="video-facade-play" aria-hidden="true">
-           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-         </span>
-       </button>
-       <div class="interview-card-body"> ...title, guest, summary... </div>
-     </article>
+     TO ADD A NEW INTERVIEW:
+       1. Put the new video in the featured block above (see its notes).
+       2. Copy one of the cards below, paste it at the TOP of the grid,
+          and change the video id in all four places, plus the title,
+          date, length, guest and summary.
 
      The click-to-play behaviour is automatic — any .video-facade on the
      page is wired up, so there is no script to edit.
 -->
-<section class="pt-20 pb-24 px-6 bg-warm">
+<section id="all-interviews" class="pt-20 pb-24 px-6 bg-warm" style="scroll-margin-top: 2rem;">
   <div class="max-w-6xl mx-auto">
     <div class="reveal mb-8">
-      <p class="eyebrow">More conversations</p>
-      <h2 class="font-display text-2xl md:text-3xl font-bold text-navy">In the works</h2>
+      <p class="eyebrow">The full series</p>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-navy">All interviews</h2>
     </div>
 
     <div class="interview-grid">
 
-      <article class="reveal card interview-card interview-card-soon !p-0 overflow-hidden">
-        <div class="interview-card-thumb">
-          <span class="text-slate text-sm">Video coming soon</span>
-        </div>
+      <article class="reveal card interview-card !p-0 overflow-hidden">
+        <button type="button" class="video-facade focus-ring"
+                data-video-id="chIG_NNF42k"
+                data-video-title="A Career in Veterinary Surgery"
+                aria-label="Play the interview: A Career in Veterinary Surgery">
+          <img src="https://i.ytimg.com/vi/chIG_NNF42k/maxresdefault.jpg"
+               data-fallback="https://i.ytimg.com/vi/chIG_NNF42k/hqdefault.jpg"
+               alt="Dr. Elisabeth Lemmon of UPenn Vet, from the interview"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video-facade-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="video-facade-duration" aria-hidden="true">17 min</span>
+        </button>
+        <noscript>
+          <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/chIG_NNF42k"
+            title="A Career in Veterinary Surgery"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </noscript>
         <div class="interview-card-body">
-          <p class="interview-meta"><span>Next up</span></p>
-          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">A conversation in the works</h3>
-          <p class="text-sm text-slate leading-relaxed mb-4">The next interview is being recorded. It will appear here once it's edited.</p>
+          <p class="interview-meta"><span>September 2026</span><span>17 min</span></p>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">A Career in Veterinary Surgery</h3>
+          <p class="interview-card-guest">Dr. Elisabeth Lemmon <span>· UPenn Vet</span></p>
+          <p class="text-sm text-slate leading-relaxed mb-4">Learn about Dr. Elisabeth Lemmon's journey into veterinary medicine, her experience as a Small Animal Surgery Resident at UPenn Vet, and the role research plays in improving care for animal patients.</p>
           <div class="interview-card-spacer"></div>
-          <span class="interview-soon-badge">Coming soon</span>
+          <a href="https://www.youtube.com/watch?v=chIG_NNF42k" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Watch on YouTube &rarr;</a>
         </div>
       </article>
 
-      <article class="reveal card interview-card interview-card-soon !p-0 overflow-hidden" data-delay="1">
-        <div class="interview-card-thumb">
-          <span class="text-slate text-sm">Video coming soon</span>
-        </div>
+      <article class="reveal card interview-card !p-0 overflow-hidden" data-delay="1">
+        <button type="button" class="video-facade focus-ring"
+                data-video-id="CuJtcmXs6ms"
+                data-video-title="Inside Wildlife Rescue and Rehabilitation"
+                aria-label="Play the interview: Inside Wildlife Rescue and Rehabilitation">
+          <img src="https://i.ytimg.com/vi/CuJtcmXs6ms/maxresdefault.jpg"
+               data-fallback="https://i.ytimg.com/vi/CuJtcmXs6ms/hqdefault.jpg"
+               alt="Lauren Schulz of the Wildlife Center of Long Island, from the interview"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video-facade-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="video-facade-duration" aria-hidden="true">19 min</span>
+        </button>
+        <noscript>
+          <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/CuJtcmXs6ms"
+            title="Inside Wildlife Rescue and Rehabilitation"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </noscript>
         <div class="interview-card-body">
-          <p class="interview-meta"><span>Planned</span></p>
-          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">More voices from the field</h3>
-          <p class="text-sm text-slate leading-relaxed mb-4">I'm reaching out to veterinarians, researchers, and people working across One Health.</p>
+          <p class="interview-meta"><span>July 2026</span><span>19 min</span></p>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">Inside Wildlife Rescue and Rehabilitation</h3>
+          <p class="interview-card-guest">Lauren Schulz <span>· Wildlife Center of Long Island</span></p>
+          <p class="text-sm text-slate leading-relaxed mb-4">Go behind the scenes of wildlife rescue and rehabilitation with Lauren from the Wildlife Center of Long Island. Discover the care, challenges, and dedication involved in helping injured and orphaned wildlife recover and return to the wild.</p>
           <div class="interview-card-spacer"></div>
-          <span class="interview-soon-badge">Coming soon</span>
+          <a href="https://www.youtube.com/watch?v=CuJtcmXs6ms" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Watch on YouTube &rarr;</a>
         </div>
       </article>
 
-      <article class="reveal card interview-card !p-0 overflow-hidden" data-delay="2">
-        <div class="interview-card-body">
-          <p class="interview-meta"><span>Open invitation</span></p>
-          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">Someone I should talk to?</h3>
-          <p class="text-sm text-slate leading-relaxed mb-4">If there's a person whose work belongs in this series, I'd genuinely like to hear about them.</p>
-          <div class="interview-card-spacer"></div>
-          <a href="contact.html" class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Get in touch &rarr;</a>
-        </div>
-      </article>
+    </div>
 
+    <!-- Invitation to suggest a guest, kept separate from the videos. -->
+    <div class="reveal mt-12 text-center">
+      <p class="text-slate mb-4">Know someone whose work belongs in this series? I'd genuinely like to hear about them.</p>
+      <a href="contact.html" class="btn-secondary focus-ring text-sm !px-5 !py-2.5 inline-block">Suggest a guest &rarr;</a>
     </div>
   </div>
 </section>
