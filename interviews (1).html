@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interviews — Beyond the Leash with Sandra</title>
+<meta name="description" content="Recorded conversations with people whose work is worth paying attention to.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+<style>
+  /* ============================================================
+     Interviews page
+     The newest conversation gets a large thumbnail at the top of the
+     page; everything else sits in a grid below it.
+
+     The big player starts as a picture with a play button over it and
+     only loads the real YouTube embed once someone clicks. That keeps
+     YouTube's scripts and cookies off the page for visitors who never
+     press play, and makes the page load noticeably faster.
+     ============================================================ */
+
+  /* ---------- Featured interview ---------- */
+  .interview-feature {
+    position: relative;
+    isolation: isolate;
+    padding: 1.25rem;
+    border: 1px solid rgba(127, 174, 221, 0.5);
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 55%, #E7F0FB 100%);
+    box-shadow: 0 34px 80px -50px rgba(15, 38, 71, 0.72);
+  }
+
+  @media (min-width: 768px) {
+    .interview-feature { padding: 1.75rem; }
+  }
+
+  .interview-feature-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--navy), var(--ocean));
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .interview-feature-label::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background: var(--baby);
+  }
+
+  /* ---------- Click-to-play thumbnail ---------- */
+  .video-facade {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #0F2647;
+    cursor: pointer;
+  }
+
+  .video-facade img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+  }
+  .video-facade:hover img,
+  .video-facade:focus-visible img {
+    transform: scale(1.04);
+    filter: brightness(0.88);
+  }
+
+  /* Darkens the lower half so the play button and any caption stay legible. */
+  .video-facade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 38, 71, 0.05) 0%, rgba(15, 38, 71, 0.12) 55%, rgba(15, 38, 71, 0.42) 100%);
+    pointer-events: none;
+  }
+
+  .video-facade-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: -2.25rem 0 0 -2.25rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 40px -18px rgba(15, 38, 71, 0.9);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    pointer-events: none;
+  }
+  .video-facade-play svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    /* Nudged right so the triangle looks centred inside the circle. */
+    margin-left: 0.2rem;
+    fill: var(--navy);
+  }
+  .video-facade:hover .video-facade-play,
+  .video-facade:focus-visible .video-facade-play {
+    transform: scale(1.09);
+    background: #ffffff;
+  }
+
+  /* A soft pulse to invite the first click. */
+  .video-facade-play::before {
+    content: '';
+    position: absolute;
+    inset: -0.35rem;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    animation: video-pulse 2.6s ease-out infinite;
+  }
+
+  @keyframes video-pulse {
+    0%   { transform: scale(0.92); opacity: 0.9; }
+    70%  { transform: scale(1.22); opacity: 0; }
+    100% { transform: scale(1.22); opacity: 0; }
+  }
+
+  .video-facade-duration {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 2;
+    padding: 0.22rem 0.55rem;
+    border-radius: 0.4rem;
+    background: rgba(15, 38, 71, 0.82);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  /* The iframe that replaces the thumbnail after a click. */
+  .video-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 1rem;
+    display: block;
+    background: #0F2647;
+  }
+
+  /* ---------- Featured details under the player ---------- */
+  .interview-feature-body {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.5rem 0.25rem 0.25rem;
+  }
+  @media (min-width: 900px) {
+    .interview-feature-body {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+  }
+
+  .interview-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    color: var(--ocean);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .interview-meta span + span::before {
+    content: '·';
+    margin-right: 0.5rem;
+    color: var(--sky);
+  }
+
+  /* The guest's name and organisation, set apart from the summary. */
+  .interview-guest {
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--sky);
+    border-radius: 0 0.75rem 0.75rem 0;
+    background: rgba(244, 247, 251, 0.9);
+  }
+  .interview-guest-name {
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .interview-guest-role {
+    margin-top: 0.15rem;
+    color: var(--slate);
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Grid of the remaining interviews ---------- */
+  .interview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  @media (min-width: 640px) {
+    .interview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .interview-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .interview-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .interview-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+  }
+  .interview-card-spacer { flex: 1; }
+
+  /* Video thumbnails inside grid cards sit flush with the card edges,
+     and use a smaller play button that suits the smaller picture. */
+  .interview-card .video-facade,
+  .interview-card .video-frame { border-radius: 0; }
+  .interview-card .video-facade-play {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: -1.75rem 0 0 -1.75rem;
+  }
+  .interview-card .video-facade-play svg { width: 1.3rem; height: 1.3rem; }
+
+  .interview-card-guest {
+    margin-bottom: 0.6rem;
+    color: var(--navy);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .interview-card-guest span {
+    color: var(--slate);
+    font-weight: 400;
+  }
+
+  .interview-card-thumb {
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--mist);
+  }
+  .interview-card-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ---------- "Coming soon" cards ---------- */
+  .interview-card-soon {
+    border-style: dashed;
+    border-color: rgba(127, 174, 221, 0.75);
+    background: linear-gradient(160deg, #FFFFFF 0%, #F8FBFF 100%);
+  }
+  .interview-card-soon .interview-card-thumb {
+    background:
+      repeating-linear-gradient(135deg, rgba(191, 219, 254, 0.22) 0 10px, transparent 10px 20px),
+      var(--mist);
+  }
+  .interview-soon-badge {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(127, 174, 221, 0.6);
+    color: var(--ocean);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .interview-soon-badge::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background: var(--sky);
+  }
+
+  /* On phones the panel runs edge to edge of the screen. Inside the normal
+     page gutter the featured video ends up NARROWER than the ordinary cards
+     below it, which reads backwards; going full-bleed keeps it the largest
+     thing on the page. The gutter is restored on the text underneath. */
+  @media (max-width: 639px) {
+    .interview-feature {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding: 1rem 0 0;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+    }
+    .interview-feature-label { margin-left: 1.5rem; }
+    .video-facade { border-radius: 0; }
+    .interview-feature-body { padding: 1.5rem 1.5rem 0.5rem; }
+
+    /* A 72px button swamps a short thumbnail at this width. */
+    .video-facade-play {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: -1.75rem 0 0 -1.75rem;
+    }
+    .video-facade-play svg { width: 1.3rem; height: 1.3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-facade-play::before { animation: none; }
+    .video-facade img,
+    .video-facade-play { transition: none; }
+    .video-facade:hover img,
+    .video-facade:focus-visible img { transform: none; }
+    .video-facade:hover .video-facade-play { transform: none; }
+  }
+</style>
+
+<!-- SEO:START -->
+<link rel="canonical" href="https://beyondtheleashwithsandra.com/interviews.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Sandra Chen">
+<meta name="theme-color" content="#0f2a4a">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Beyond the Leash with Sandra">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Interviews — Beyond the Leash with Sandra">
+<meta property="og:description" content="Recorded conversations with people whose work is worth paying attention to.">
+<meta property="og:url" content="https://beyondtheleashwithsandra.com/interviews.html">
+<meta property="og:image" content="https://beyondtheleashwithsandra.com/images/logo.png">
+<meta property="og:image:alt" content="Beyond the Leash with Sandra">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Interviews — Beyond the Leash with Sandra">
+<meta name="twitter:description" content="Recorded conversations with people whose work is worth paying attention to.">
+<meta name="twitter:image" content="https://beyondtheleashwithsandra.com/images/logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://beyondtheleashwithsandra.com/interviews.html#webpage",
+  "url": "https://beyondtheleashwithsandra.com/interviews.html",
+  "name": "Interviews — Beyond the Leash with Sandra",
+  "description": "Recorded conversations with people whose work is worth paying attention to.",
+  "isPartOf": {
+    "@id": "https://beyondtheleashwithsandra.com/#website"
+  },
+  "inLanguage": "en-US"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://beyondtheleashwithsandra.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Interviews",
+      "item": "https://beyondtheleashwithsandra.com/interviews.html"
+    }
+  ]
+}
+</script>
+<!-- SEO:END -->
+<noscript>
+  <!-- Without JS the reveal-on-scroll observer never runs, so make all content visible. -->
+  <style>.reveal{opacity:1!important;transform:none!important}.video-facade{display:none}</style>
+</noscript>
+</head>
+<body class="bg-white text-ink antialiased" id="top">
+<!-- BUILD:header -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16 md:h-[96px]">
+      <a href="index.html" class="flex items-center gap-2 md:gap-3 min-w-0 pr-3 md:pr-0 font-display font-extrabold text-base leading-tight md:text-2xl tracking-tight text-navy focus-ring rounded">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-11 w-11 md:h-[88px] md:w-[88px] object-contain shrink-0" decoding="async" width="256" height="245" fetchpriority="high">
+        Beyond the Leash with Sandra
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a data-nav="home" href="index.html" class="nav-link text-base focus-ring rounded">Home</a>
+        <a data-nav="about" href="about.html" class="nav-link text-base focus-ring rounded">About</a>
+        <a data-nav="blog" href="blog.html" class="nav-link text-base focus-ring rounded">Blog</a>
+        <a data-nav="resources" href="resources.html" class="nav-link text-base focus-ring rounded">Resources</a>
+        <a data-nav="interviews" href="interviews.html" class="nav-link text-base focus-ring rounded nav-active" aria-current="page">Interviews</a>
+        <a data-nav="contact" href="contact.html" class="header-contact-link ml-2 px-4 py-2 rounded-full bg-navy text-white text-base font-medium hover:bg-deep transition-colors focus-ring">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded">
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-navy transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-navy transition-transform" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a data-nav="home" href="index.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Home</a>
+      <a data-nav="about" href="about.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">About</a>
+      <a data-nav="blog" href="blog.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Blog</a>
+      <a data-nav="resources" href="resources.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Resources</a>
+      <a data-nav="interviews" href="interviews.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded nav-active" aria-current="page">Interviews</a>
+      <a data-nav="contact" href="contact.html" class="mobile-nav-link flex items-center min-h-[44px] focus-ring rounded">Contact</a>
+    </div>
+  </div>
+</header>
+<!-- /BUILD:header -->
+<main id="main" tabindex="-1">
+
+<section class="pt-28 md:pt-[186px] pb-14 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="reveal eyebrow">Conversations</p>
+    <h1 class="reveal font-display text-4xl md:text-5xl font-bold text-navy mb-4">Interviews</h1>
+    <p class="reveal text-slate max-w-xl mx-auto">Learn from the people shaping animal health, science, and the world around us.</p>
+  </div>
+</section>
+
+<!-- ============ FEATURED INTERVIEW ============
+     The newest conversation, shown large at the top of the page.
+
+     TO SWAP IN A NEWER INTERVIEW: add the new video as a card at the
+     top of the "All interviews" grid below, then change the four things here:
+       1. data-video-id  — the YouTube id (the part after "watch?v=")
+       2. the <img src>  — https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg
+       3. the title, date, duration, guest name and summary
+       4. the <noscript> iframe src at the bottom of this block
+-->
+<section class="pb-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="interview-feature reveal">
+      <p class="interview-feature-label">Latest interview</p>
+
+      <!-- Click-to-play thumbnail. Script swaps this for the real player. -->
+      <button
+        type="button"
+        class="video-facade focus-ring"
+        data-video-id="chIG_NNF42k"
+        data-video-title="A Career in Veterinary Surgery"
+        aria-label="Play the interview: A Career in Veterinary Surgery">
+        <img
+          src="https://i.ytimg.com/vi/chIG_NNF42k/maxresdefault.jpg"
+          data-fallback="https://i.ytimg.com/vi/chIG_NNF42k/hqdefault.jpg"
+          alt="Dr. Elisabeth Lemmon of UPenn Vet, from the interview"
+          width="1280" height="720" decoding="async" fetchpriority="high">
+        <span class="video-facade-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="video-facade-duration" aria-hidden="true">17 min</span>
+      </button>
+
+      <noscript>
+        <!-- Without JavaScript the thumbnail cannot swap itself, so embed directly. -->
+        <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/chIG_NNF42k"
+          title="A Career in Veterinary Surgery"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </noscript>
+
+      <div class="interview-feature-body">
+        <div>
+          <p class="interview-meta"><span>September 2026</span><span>17 min</span></p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-navy mb-3 leading-snug">A Career in Veterinary Surgery</h2>
+          <p class="text-slate leading-relaxed">Learn about Dr. Elisabeth Lemmon's journey into veterinary medicine, her experience as a Small Animal Surgery Resident at UPenn Vet, and the role research plays in improving care for animal patients.</p>
+        </div>
+        <div>
+          <div class="interview-guest">
+            <p class="interview-guest-name">Dr. Elisabeth Lemmon</p>
+            <p class="interview-guest-role">Small Animal Surgery Resident, UPenn Vet</p>
+          </div>
+          <a href="https://www.youtube.com/watch?v=chIG_NNF42k" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary focus-ring text-xs !px-4 !py-2 inline-block mt-4">Watch on YouTube &rarr;</a>
+          <a href="#all-interviews" class="block mt-3 text-sm font-semibold text-navy hover:text-deep focus-ring rounded">See all interviews &darr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALL INTERVIEWS ============
+     Every video, newest first. The latest one is also featured above.
+
+     TO ADD A NEW INTERVIEW:
+       1. Put the new video in the featured block above (see its notes).
+       2. Copy one of the cards below, paste it at the TOP of the grid,
+          and change the video id in all four places, plus the title,
+          date, length, guest and summary.
+
+     The click-to-play behaviour is automatic — any .video-facade on the
+     page is wired up, so there is no script to edit.
+-->
+<section id="all-interviews" class="pt-20 pb-24 px-6 bg-warm" style="scroll-margin-top: 2rem;">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-8">
+      <p class="eyebrow">The full series</p>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-navy">All interviews</h2>
+    </div>
+
+    <div class="interview-grid">
+
+      <article class="reveal card interview-card !p-0 overflow-hidden">
+        <button type="button" class="video-facade focus-ring"
+                data-video-id="chIG_NNF42k"
+                data-video-title="A Career in Veterinary Surgery"
+                aria-label="Play the interview: A Career in Veterinary Surgery">
+          <img src="https://i.ytimg.com/vi/chIG_NNF42k/maxresdefault.jpg"
+               data-fallback="https://i.ytimg.com/vi/chIG_NNF42k/hqdefault.jpg"
+               alt="Dr. Elisabeth Lemmon of UPenn Vet, from the interview"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video-facade-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="video-facade-duration" aria-hidden="true">17 min</span>
+        </button>
+        <noscript>
+          <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/chIG_NNF42k"
+            title="A Career in Veterinary Surgery"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </noscript>
+        <div class="interview-card-body">
+          <p class="interview-meta"><span>September 2026</span><span>17 min</span></p>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">A Career in Veterinary Surgery</h3>
+          <p class="interview-card-guest">Dr. Elisabeth Lemmon <span>· UPenn Vet</span></p>
+          <p class="text-sm text-slate leading-relaxed mb-4">Learn about Dr. Elisabeth Lemmon's journey into veterinary medicine, her experience as a Small Animal Surgery Resident at UPenn Vet, and the role research plays in improving care for animal patients.</p>
+          <div class="interview-card-spacer"></div>
+          <a href="https://www.youtube.com/watch?v=chIG_NNF42k" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Watch on YouTube &rarr;</a>
+        </div>
+      </article>
+
+      <article class="reveal card interview-card !p-0 overflow-hidden" data-delay="1">
+        <button type="button" class="video-facade focus-ring"
+                data-video-id="CuJtcmXs6ms"
+                data-video-title="Inside Wildlife Rescue and Rehabilitation"
+                aria-label="Play the interview: Inside Wildlife Rescue and Rehabilitation">
+          <img src="https://i.ytimg.com/vi/CuJtcmXs6ms/maxresdefault.jpg"
+               data-fallback="https://i.ytimg.com/vi/CuJtcmXs6ms/hqdefault.jpg"
+               alt="Lauren Schulz of the Wildlife Center of Long Island, from the interview"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video-facade-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="video-facade-duration" aria-hidden="true">19 min</span>
+        </button>
+        <noscript>
+          <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/CuJtcmXs6ms"
+            title="Inside Wildlife Rescue and Rehabilitation"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </noscript>
+        <div class="interview-card-body">
+          <p class="interview-meta"><span>July 2026</span><span>19 min</span></p>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 leading-snug">Inside Wildlife Rescue and Rehabilitation</h3>
+          <p class="interview-card-guest">Lauren Schulz <span>· Wildlife Center of Long Island</span></p>
+          <p class="text-sm text-slate leading-relaxed mb-4">Go behind the scenes of wildlife rescue and rehabilitation with Lauren from the Wildlife Center of Long Island. Discover the care, challenges, and dedication involved in helping injured and orphaned wildlife recover and return to the wild.</p>
+          <div class="interview-card-spacer"></div>
+          <a href="https://www.youtube.com/watch?v=CuJtcmXs6ms" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary focus-ring text-xs !px-4 !py-2 self-start">Watch on YouTube &rarr;</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Invitation to suggest a guest, kept separate from the videos. -->
+    <div class="reveal mt-12 text-center">
+      <p class="text-slate mb-4">Know someone whose work belongs in this series? I'd genuinely like to hear about them.</p>
+      <a href="contact.html" class="btn-secondary focus-ring text-sm !px-5 !py-2.5 inline-block">Suggest a guest &rarr;</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- BUILD:footer -->
+<footer class="site-footer mt-16 px-6 pb-10">
+  <!-- Newsletter signup is part of the shared footer -->
+  <section class="newsletter-section pb-16 md:pb-20" aria-labelledby="newsletter-heading">
+    <div class="newsletter-card reveal max-w-6xl mx-auto">
+      <div class="newsletter-copy">
+        <p class="newsletter-eyebrow">Website updates</p>
+        <h2 id="newsletter-heading" class="font-display newsletter-title">Stay updated</h2>
+        <p class="newsletter-description">
+          Receive an occasional email when a new article, interview, or resource is added.
+        </p>
+      </div>
+  
+      <!-- Newsletter form: official EmailOctopus embed widget (list form f70572da-a969-11f1-9f71-6566c0d51ddc) -->
+      <div class="newsletter-form eo-embed-wrap">
+        <script async src="https://eocampaign1.com/form/f70572da-a969-11f1-9f71-6566c0d51ddc.js" data-form="f70572da-a969-11f1-9f71-6566c0d51ddc"></script>
+      </div>
+  
+      <p class="newsletter-privacy">
+        Your email will only be used for website updates. You can unsubscribe at any time.
+      </p>
+    </div>
+  </section>
+  <div class="max-w-6xl mx-auto pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="shrink-0 focus-ring rounded" aria-label="Beyond the Leash with Sandra home">
+        <img src="images/logo.png" alt="Beyond the Leash with Sandra logo" class="h-12 w-12 object-contain" loading="lazy" decoding="async" width="256" height="245">
+      </a>
+      <p class="text-sm text-slate">&copy; 2026 Beyond the Leash with Sandra. Built with care.</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-slate">
+      <a href="index.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Home</a>
+      <a href="contact.html" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Contact</a>
+      <a href="https://www.linkedin.com/in/sandra--chen/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">LinkedIn</a>
+      <a href="#top" class="inline-flex items-center min-h-[44px] py-2 hover:text-deep transition-colors focus-ring rounded">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+<!-- /BUILD:footer -->
+
+<script>
+/* ------------------------------------------------------------
+   Click-to-play video thumbnails
+   Every .video-facade on the page starts as a still image. Pressing it
+   swaps in the YouTube player set to autoplay, so the visitor's click
+   is the only thing that ever contacts YouTube.
+   ------------------------------------------------------------ */
+(function () {
+  /* maxresdefault does not exist for every video (especially new uploads).
+     When it's missing, YouTube doesn't send an error; it sends a small
+     120px-wide gray placeholder instead. So we check the image's real width
+     and switch to the fallback if it's that placeholder or fails outright. */
+  document.querySelectorAll('.video-facade img[data-fallback]').forEach(function (image) {
+    function useFallback() {
+      if (image.dataset.fellBack) return;
+      image.dataset.fellBack = 'true';
+      image.src = image.dataset.fallback;
+    }
+    function check() {
+      if (image.naturalWidth > 0 && image.naturalWidth <= 120) useFallback();
+    }
+    image.addEventListener('error', useFallback);
+    image.addEventListener('load', check);
+    if (image.complete) check();
+  });
+
+  document.querySelectorAll('.video-facade').forEach(function (facade) {
+    facade.addEventListener('click', function () {
+      const id = facade.dataset.videoId;
+      if (!id) return;
+
+      const frame = document.createElement('iframe');
+      frame.className = 'video-frame';
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+                  '?autoplay=1&rel=0&modestbranding=1';
+      frame.title = facade.dataset.videoTitle || 'Interview';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.setAttribute('allowfullscreen', '');
+
+      facade.replaceWith(frame);
+      /* Move keyboard focus into the player that just replaced the button. */
+      frame.focus({ preventScroll: true });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
