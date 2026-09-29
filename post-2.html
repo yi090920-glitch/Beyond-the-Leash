@@ -12,6 +12,19 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="script.js"></script>
 <style>
+  .post-photo {
+    width: 100%;
+    aspect-ratio: 1200 / 663;
+    overflow: hidden;
+    background: var(--mist);
+    border-radius: .75rem;
+  }
+  .post-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .post-copy p + p { margin-top: 1.1rem; }
   .post-references {
     border-top: 1px solid rgba(127, 174, 221, .28);
@@ -42,13 +55,13 @@
 <meta property="og:title" content="Signals in Milk, Part 1: The Hidden Cost of Bovine Mastitis — Beyond the Leash with Sandra">
 <meta property="og:description" content="Why mastitis remains one of the dairy industry’s most costly diseases, costing the U.S. an estimated $1.9 billion a year, and why earlier detection matters.">
 <meta property="og:url" content="https://beyondtheleashwithsandra.com/post-2.html">
-<meta property="og:image" content="https://beyondtheleashwithsandra.com/images/logo.png">
+<meta property="og:image" content="https://beyondtheleashwithsandra.com/images/blog-mastitis.jpg">
 <meta property="og:image:alt" content="Beyond the Leash with Sandra">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Signals in Milk, Part 1: The Hidden Cost of Bovine Mastitis — Beyond the Leash with Sandra">
 <meta name="twitter:description" content="Why mastitis remains one of the dairy industry’s most costly diseases, costing the U.S. an estimated $1.9 billion a year, and why earlier detection matters.">
-<meta name="twitter:image" content="https://beyondtheleashwithsandra.com/images/logo.png">
+<meta name="twitter:image" content="https://beyondtheleashwithsandra.com/images/blog-mastitis.jpg">
 
 <meta property="article:published_time" content="2026-09-29T00:00:00+00:00">
 <meta property="article:author" content="Sandra Chen">
@@ -67,7 +80,7 @@
   },
   "datePublished": "2026-09-29",
   "dateModified": "2026-09-29",
-  "image": "https://beyondtheleashwithsandra.com/images/logo.png",
+  "image": "https://beyondtheleashwithsandra.com/images/blog-mastitis.jpg",
   "inLanguage": "en-US",
   "author": {
     "@type": "Person",
@@ -174,7 +187,17 @@
     <p class="reveal text-xs font-semibold text-ocean uppercase tracking-wide mb-3">Research &amp; Science</p>
     <h1 class="reveal font-display text-3xl md:text-4xl font-bold text-navy leading-tight mb-3">Signals in Milk: Early Detection of Bovine Mastitis Using Milk Biomarkers</h1>
     <p class="reveal font-display text-lg md:text-xl font-semibold text-deep mb-4">Part 1: The Hidden Cost of Bovine Mastitis</p>
-    <p class="reveal text-sm text-slate mb-10">September 29, 2026</p>
+    <p class="reveal text-sm text-slate mb-8">September 29, 2026</p>
+
+    <div class="reveal post-photo mb-10">
+      <picture>
+        <source type="image/webp" sizes="(min-width: 800px) 768px, 100vw"
+                srcset="images/blog-mastitis-480.webp 480w, images/blog-mastitis-800.webp 800w, images/blog-mastitis.webp 1200w">
+        <img src="images/blog-mastitis.jpg" sizes="(min-width: 800px) 768px, 100vw"
+             srcset="images/blog-mastitis-480.jpg 480w, images/blog-mastitis-800.jpg 800w, images/blog-mastitis.jpg 1200w"
+             alt="Black-and-white Holstein dairy cows standing together in a green pasture" fetchpriority="high" decoding="async" width="1200" height="663">
+      </picture>
+    </div>
 
     <div class="reveal post-copy text-slate leading-relaxed">
       <p>Think about your daily morning routine. Maybe you pour a bowl of milk before your cereal (that is the correct order!), add a quick splash into your coffee, or chug a glass before heading out the door. Milk is such a fundamental part of our life that we rarely pause to think about where it comes from or the animals providing it.</p>

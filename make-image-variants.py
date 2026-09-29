@@ -49,6 +49,8 @@ SOURCES = {
     "ffa-1.jpg": (480, 800),
     # Homepage — the portrait beside the hero.
     "sandra-and-teddy.jpg": (480, 800),
+    # Blog — Signals in Milk, Part 1 (blog card and top of post-2).
+    "blog-mastitis.jpg": (480, 800),
 }
 
 WEBP_QUALITY = 82
